@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Login</title>
+</head>
+<body>
+    <div class="login-container">
+    <div class="container">
+    <div class="navbar">
+        <div class="logo">
+            <a href="index.html"> <img src="assets/img/logo.png"> </a>
+        </div>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Acceuil</a></li>
+            <li><a href="annonce.html">Annonces</a></li>
+            <li><a href="billets.html">Billets</a></li>
+            <li><a href="actualites.html">Actualités</a></li>
+            <li><a href="account.html">Compte</a></li>
+        </ul>
+    </nav>
+    <a href="panier.html">><img src="assets/img/cart.png" class="cart" alt=""></a>
+  </div>
+  </div>
+  
+<!--------------- account-page ----------->
+    <div class="account-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-2">
+                    <img src="assets/img/image1.png" alt="" width="100%">
+                </div>
+                <div class="col-2">
+                    <div class="form-container">
+                        <div class="form-btn">
+                            <span onclick="login()">Connexion</span>
+                            <span onclick="register()">Inscription</span>
+                            <hr id="indicator">
+                        </div>
+                        <form action="" id="LoginForm">
+                            <input type="email" placeholder="Email">
+                            <input type="password" placeholder="password">
+                            <button type="submit" class="btn">Connexion</button>
+                            <a href="mdp.html">Mot de passe oublié ?</a>
+                        </form>
+                        <div class="reg-container">
+                        <form action="" id="RegForm">
+                            <input type="text" placeholder="Nom">
+                            <input type="text" placeholder="Prénom">
+                            <input type="email" placeholder="Email" id="email">
+                            <input type="password" placeholder="Mot de passe" id="mdp">
+                            <input type="date" id="datenaissance" name="datenaissance">
+                            <input type="radio" name="sexe" id="homme" value="Homme" class="gender">
+                            <label for="homme">Homme</label>
+                            <input type="radio" name="sexe" id="Femme" value="Femme" class="gender">
+                            <label for="Femme">Femme</label>
+                            <input type="text" placeholder="Numéro de téléphone" id=Numtel>
+                            <input type="text" placeholder="Adresse" id=Numtel>
+                            <button type="submit" class="btn">S'inscrire</button>
+                            
+                        </form>
+                    </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+   <!-----------------------js for toggle form -------------> 
+   <script>
+        function register(){
+            document.getElementById("RegForm").style.transform="translateX(0px)";
+            document.getElementById("LoginForm").style.transform="translateX(0px)";
+            document.getElementById("indicator").style.transform="translateX(100px)";
+                    }
+        function login(){
+            document.getElementById("RegForm").style.transform="translateX(300px)";
+            document.getElementById("LoginForm").style.transform="translateX(300px)";
+            document.getElementById("indicator").style.transform="translateX(0px)";
+        }
+   </script>
+</body>
+</html>
