@@ -30,7 +30,6 @@
   </div>
   
 <!--------------- account-page ----------->
-<!--------------- account-page ----------->
 <div class="account-page">
     <div class="container">
         <div class="row">
@@ -44,9 +43,9 @@
                         <span onclick="register()">Inscription</span>
                         <hr id="indicator">
                     </div>
-                    <form action="" id="LoginForm">
-                        <input type="email" placeholder="Email">
-                        <input type="password" placeholder="password">
+                    <form action="login.php" method="POST" id="LoginForm">
+                        <input type="email" name="email" placeholder="Email">
+                        <input type="password" name="mdp" placeholder="password">
                         <button type="submit" class="btn">Connexion</button>
                         <a href="mdp.html">Mot de passe oublié ?</a>
                     </form>
