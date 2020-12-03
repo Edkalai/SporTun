@@ -49,8 +49,9 @@
                         <button type="submit" class="btn">Connexion</button>
                         <a href="mdp.html">Mot de passe oublié ?</a>
                     </form>
+                    
                     <div class="reg-container">
-                        <form action="SignUp.php" method="POST" id="RegForm">
+                        <form action="SignUp.php" method="POST" id="RegForm" name="f">
                         <input type="text" name="nom" placeholder="Nom">
                         <input type="text" name="prenom" placeholder="Prénom">
                         <input type="email" name="email" placeholder="Email" id="email">
@@ -65,6 +66,9 @@
                         <button type="submit" class="btn">S'inscrire</button>
                         
                     </form>
+                    <p style="color: rgb(255, 0, 0);" id="erreur"></p>
+                    <script src="login.js"></script>
+
                 </div>
 
 
