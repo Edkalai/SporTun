@@ -1,5 +1,5 @@
 <?php
-include_once 'DBconnection.php';
+include_once 'includes/DBconnection.php';
 
 $email = $_POST['email'];
 $mdp = $_POST['mdp'];
