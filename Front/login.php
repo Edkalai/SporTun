@@ -1,5 +1,5 @@
 <?php
-include_once 'includes/DBconnection.php';
+include_once 'DBconnection.php';
 
 $email = $_POST['email'];
 $mdp = $_POST['mdp'];
@@ -30,7 +30,7 @@ else
     {
         $sql="SELECT nom from utilisateurs where email='$email' and mdp='$mdp';";
         $nom=mysqli_query($conn,$sql);
-        echo( "bienvenu" );
+        echo( "bienvenue" );
     }
 }
 
