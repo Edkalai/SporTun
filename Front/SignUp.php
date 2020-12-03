@@ -17,4 +17,4 @@
 
     mysqli_query($conn,$sql);
 
-    header("Location: ../account.html?signup=success");
+    header("Location: account.html?signup=success");
