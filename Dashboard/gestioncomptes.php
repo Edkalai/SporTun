@@ -1,10 +1,16 @@
+<?php
+include 'DBconnection.php';
+$sql='select * from utilisateurs;';
+$result=mysqli_query($conn,$sql);
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
 
 
     <!-- Title Page-->
-    <title>Gestion des comptes</title>
+    <title>gestion des comptes</title>
 
     <!-- Fontfaces CSS-->
     
@@ -34,29 +40,29 @@
                     <div class="header__navbar">
                         <ul class="list-unstyled">
                             <li class="has-sub">
-                                <a href="index.html">
+                                <a href="#">
                                     <i class="fas fa-home"></i>Acceuil
                                     <span class="bot-line"></span>
                                 </a>
                             </li>
                             <li>
-                                <a href="gestionannonces.html">
+                                <a href="#">
                                     <i class="fas fa-bullhorn"></i>
                                     <span class="bot-line"></span>Gestion des annonces</a>
                             </li>
                             <li>
-                                <a href="gestionbillets.html">
+                                <a href="table.html">
                                     <i class="fas fa-tag"></i>
                                     <span class="bot-line"></span>Gestion des billets</a>
                             </li>   
                             <li class="has-sub">
-                                <a href="gestionactualites.html">
+                                <a href="#">
                                     <i class="fas fa-list-alt"></i>
                                     <span class="bot-line"></span>Gestion des actualités</a>
                             
                             </li>
                             <li class="has-sub">
-                                <a href="gestioncomptes.html">
+                                <a href="gestioncompte.html">
                                     <i class="fas fa-user"></i>
                                     <span class="bot-line"></span>Gestion des comptes</a>
                             
@@ -230,8 +236,8 @@
             <div class="container">
             <div class="row">
             <div class="col-md-12">
-                <h3 class="title-5 m-b-35">informations des comptes</h3>
-                
+
+            
                     
                     
                 </div>
@@ -239,140 +245,57 @@
                     <table class="table table-data2">
                         <thead>
                             <tr>
-                                <th>Nom </th>
-                                <th>Prénom</th>
+                                <th>Nom</th>
+                                <th>Prenom</th>
                                 <th>Email</th>
-                                <th>Mot de passe </th>
-                                <th>date de naissance</th>
+                                <th>Mot de passe</th>
+                                <th>Date de naissance</th>
                                 <th>Sexe</th>
                                 <th>Numéro de téléphone</th>
                                 <th>Adresse</th>
+
+                                
                             </tr>
                         </thead>
                         <tbody>
+                            <?php 
+                            while($rows=mysqli_fetch_assoc($result))
+                            {
+                                ?>
+
                             <tr class="tr-shadow">
-                               
-                                <td>test</td>
+
+                                <td><?php echo $rows['nom']; ?></td>
+                                <td><?php echo $rows['prenom']; ?></td>
+                                <td><?php echo $rows['email']; ?></td>
+                                <td><?php echo $rows['mdp']; ?></td>
+                                <td><?php echo $rows['datenaissance']; ?></td>
+                                <td><?php echo $rows['sexe']; ?></td>
+                                <td><?php echo $rows['numtel']; ?></td>
+                                <td><?php echo $rows['adresse']; ?></td>
+
                                 <td>
-                                    Test
-                                 </td>
-                                <td>
-                                    <span class="block-email">ash@example.com</span>
-                                </td>
-                                <td>123456789</td>
-                                <td>2018-09-27 02:12</td>
-                                <td>
-                                    <span>tunis</span>
-                                </td>
-                                <td>
-                                    
-                                </td>
-                                <td></td>
-                                <td>
-                                    
+
+
                                     <div class="table-data-feature">
-                                 
+
                                         <button class="item" data-toggle="tooltip" data-placement="top" title="Bannir le compte">
                                             <i class="zmdi zmdi-delete"></i>
                                         </button>
-                                        
+
                                     </div>
                                 </td>
-                                
+
                             </tr>
+
+                            <?php
+                            }
+                            ?>
+
                             <tr class="spacer"></tr>
-                            <tr class="tr-shadow">
-                               
-                                <td>test</td>
-                                <td>
-                                    Test
-                                 </td>
-                                <td>
-                                    <span class="block-email">ash@example.com</span>
-                                </td>
-                                <td>123456789</td>
-                                <td>2018-09-27 02:12</td>
-                                <td>
-                                    <span>tunis</span>
-                                </td>
-                                <td>
-                                    
-                                </td>
-                                <td></td>
-                                <td>
-                                    
-                                    <div class="table-data-feature">
-                                 
-                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Bannir le compte">
-                                            <i class="zmdi zmdi-delete"></i>
-                                        </button>
-                                        
-                                    </div>
-                                </td>
-                                
-                            </tr>
-                            <tr class="spacer"></tr>
-                            <tr class="tr-shadow">
-                               
-                                <td>test</td>
-                                <td>
-                                    Test
-                                 </td>
-                                <td>
-                                    <span class="block-email">ash@example.com</span>
-                                </td>
-                                <td>123456789</td>
-                                <td>2018-09-27 02:12</td>
-                                <td>
-                                    <span>tunis</span>
-                                </td>
-                                <td>
-                                    
-                                </td>
-                                <td></td>
-                                <td>
-                                    
-                                    <div class="table-data-feature">
-                                 
-                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Bannir le compte">
-                                            <i class="zmdi zmdi-delete"></i>
-                                        </button>
-                                        
-                                    </div>
-                                </td>
-                                
-                            </tr>
-                            <tr class="spacer"></tr>
-                            <tr class="tr-shadow">
-                               
-                                <td>test</td>
-                                <td>
-                                    Test
-                                 </td>
-                                <td>
-                                    <span class="block-email">ash@example.com</span>
-                                </td>
-                                <td>123456789</td>
-                                <td>2018-09-27 02:12</td>
-                                <td>
-                                    <span>tunis</span>
-                                </td>
-                                <td>
-                                    
-                                </td>
-                                <td></td>
-                                <td>
-                                    
-                                    <div class="table-data-feature">
-                                 
-                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Bannir le compte">
-                                            <i class="zmdi zmdi-delete"></i>
-                                        </button>
-                                        
-                                    </div>
-                                </td>
-                                
-                            </tr>
+                            
+
+
                         </tbody>
                     </table>
                 </div>
