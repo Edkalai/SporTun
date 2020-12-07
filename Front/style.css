@@ -319,13 +319,12 @@ th:last-child{
 
 /*---------footer------------*/
 
-.footer{
+.footer {
     background: #A19C9C ;
     color : #000000 ;
     font-size : 14px;
     padding : 60px 0 20px;
-    
-}
+ }
 
 .footer p{
     color:#000000;

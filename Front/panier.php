@@ -16,8 +16,8 @@ $result=mysqli_query($conn,$sql);
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
-    <div class="header">
+<body >
+    <div class="header" >
         <div class="container">
           <div class="navbar">
               <div class="logo">
@@ -76,24 +76,24 @@ $result=mysqli_query($conn,$sql);
             <table>
                 <tr>
                 <td>Subtotal</td>
-                <td>630TND</td>
+                <td>xTND</td>
             </tr>
             <tr>
                     <td>Tax</td>
-                    <td>40TND</td>
+                    <td>xTND</td>
                 </tr>
                 <tr>
                     <td>Total</td>
-                    <td>670TND</td>
-                </tr>
-            </table>
+                    <td>xTND</td>
+                 </tr>
+                </table>
+            </div>
         </div>
     </div>
-</div>
   
 <!---------- footer ------------>
     <div class="footer" style="padding : 1px 0 20px">
-        <div class="container">
+        <div class="container" style= >
             <div class="row">
                 <div class="footer-col-1">
                     <h3>Télécharger notre application</h3>
