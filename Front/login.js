@@ -8,8 +8,7 @@ document.getElementById("RegForm").addEventListener("submit" , function(e){
     var email = document.getElementById("email");
     var mdp = document.getElementById("mdp");
     var mdp2 = document.getElementById("mdp2");
-    var date = document.getElementById("date");
-    var sexe = document.getElementById("sexe");
+    var date = document.getElementById("datenaissance");
     var numtel = document.getElementById("numtel");
     var adresse = document.getElementById("adresse");
     var ch;
