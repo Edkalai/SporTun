@@ -1,6 +1,7 @@
 <?php
 include 'DBconnection.php';
-$sql='select * from panier where email=$current_user;';
+session_start();
+$sql='select * from panier where email="'.$_SESSION["email"].'";';
 $result=mysqli_query($conn,$sql);
 ?>
 
@@ -35,63 +36,41 @@ $result=mysqli_query($conn,$sql);
           <img src="assets/img/cart.png" class="cart" alt="">
         </div>
       
-    <!-------cart items details  -------->
+            <!-------cart items details  -------->
   
-    <div class="small-container cart-page">
-        <table>
-            <tr>
-                <th>Produit</th>
-                <th>Quantité</th>
-                <th>Subtotal</th>
-              </tr>
-              <tr>
-                  <td>
-                  <div class="cart-info">
-                      <img src="assets/img/product-1.jpg" >
+        <div class="small-container cart-page">
+            <table>
+                <tr>
+                    <th>Produit</th>
+                    <th>Quantité</th>
+                    <th>Subtotal</th>
+                 </tr>
+             
+              <?php 
+                            while($rows=mysqli_fetch_assoc($result))
+                            {
+                                ?>
+                    <tr>
+                     <td>
+                <div class="cart-info">
+                    <img src="assets/img/<?php echo $rows['image']; ?>">
                       <div>
-                          <p>Raquette de tennis</p>
-                          <small> Prix : 40TND</small>
+                          <p><?php echo $rows['titre']; ?></p>
+                          <small> Prix : <?php echo $rows['prix']; ?> TND</small>
                           <br>
                           <a href="">Annuler</a>
                       </div>
-                  </div>
+                </div>
                   
-                  <td><input type="number" value="1" min="1"></td>
-                  <td>40TND</td>
+                  <td><input type="number" value="<?php echo $rows['quantite']?>" min="1"></td>
+                  <td><?php echo $rows['prix']; ?></td>
               </td>
               </tr>
-              <tr>
-                  <td>
-                  <div class="cart-info">
-                      <img src="assets/img/product-2.jpg" >
-                      <div>
-                          <p>Hatléres de musculation</p>
-                          <small> Prix : 50TND</small>
-                          <br>
-                          <a href="">Annuler</a>
-                      </div>
-                  </div>
-                  
-                  <td><input type="number" value="1" min="1"></td>
-                  <td>50TND</td>
-              </td>
-              </tr>
-              <tr>
-                  <td>
-                  <div class="cart-info">
-                      <img src="assets/img/product-3.jpg" >
-                      <div>
-                          <p>Vélo d'appartement</p>
-                          <small> Prix : 550TND</small>
-                          <br>
-                          <a href="">Annuler</a>
-                      </div>
-                  </div>
-                  
-                  <td><input type="number" value="1" min="1"></td>
-                  <td>550TND</td>
-              </td>
-              </tr>
+              <?php
+                 }
+                 ?>
+              
+              
         </table>
         <div class="totalprice">
             <table>
@@ -110,7 +89,7 @@ $result=mysqli_query($conn,$sql);
             </table>
         </div>
     </div>
-  </div>
+</div>
   
 <!---------- footer ------------>
     <div class="footer" style="padding : 1px 0 20px">

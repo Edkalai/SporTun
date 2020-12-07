@@ -1,6 +1,6 @@
 <?php
 include_once 'DBconnection.php';
-
+session_start();
 $email = $_POST['email'];
 $mdp = $_POST['mdp'];
 
@@ -30,10 +30,9 @@ else
     {
         $sql="SELECT nom from utilisateurs where email='$email' and mdp='$mdp';";
         $nom=mysqli_query($conn,$sql);
-        while ($rows=mysqli_fetch_assoc($nom))
-        {
-        echo( "bienvenue ".$rows['nom']);
-        }
+        $_SESSION["email"] = $email;
+        header("Location: index.html?login=success");
+        
     }
 }
 
