@@ -30,7 +30,10 @@ else
     {
         $sql="SELECT nom from utilisateurs where email='$email' and mdp='$mdp';";
         $nom=mysqli_query($conn,$sql);
-        echo( "bienvenue" );
+        while ($rows=mysqli_fetch_assoc($nom))
+        {
+        echo( "bienvenue ".$rows['nom']);
+        }
     }
 }
 
