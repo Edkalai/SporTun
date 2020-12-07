@@ -1,6 +1,11 @@
 <?php
 include 'DBconnection.php';
 session_start();
+if ($_SESSION["email"]=="")
+{
+    header("Location: account.html");
+    exit();
+}
 $sql='select * from panier where email="'.$_SESSION["email"].'";';
 $result=mysqli_query($conn,$sql);
 ?>
