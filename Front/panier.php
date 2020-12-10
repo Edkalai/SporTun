@@ -3,11 +3,14 @@ include 'DBconnection.php';
 session_start();
 if ($_SESSION["email"]=="")
 {
-    header("Location: account.html");
+    header("Location: account.php");
     exit();
 }
 $sql='select * from panier where email="'.$_SESSION["email"].'";';
 $result=mysqli_query($conn,$sql);
+$sql='select SUM(prix) as total from panier where email="'.$_SESSION["email"].'";';
+$req=mysqli_query($conn,$sql);
+$somme=mysqli_fetch_assoc($req);
 ?>
 
 
@@ -35,10 +38,10 @@ $result=mysqli_query($conn,$sql);
                   <li><a href="annonce.html">Annonces</a></li>
                   <li><a href="billets.html">Billets</a></li>
                   <li><a href="actualites.html">Actualités</a></li>
-                  <li><a href="account.html">Compte</a></li>
+                  <li><a href="account.php">Compte</a></li>
               </ul>
           </nav>
-          <img src="assets/img/cart.png" class="cart" alt="">
+          <a href="panier.php"><img src="assets/img/cart.png" class="cart" alt=""></a>
         </div>
       
             <!-------cart items details  -------->
@@ -48,12 +51,13 @@ $result=mysqli_query($conn,$sql);
                 <tr>
                     <th>Produit</th>
                     <th>Quantité</th>
-                    <th>Subtotal</th>
+                    <th>Prix</th>
                  </tr>
              
               <?php 
                             while($rows=mysqli_fetch_assoc($result))
                             {
+                                $id=$rows['id']
                                 ?>
                     <tr>
                      <td>
@@ -63,12 +67,12 @@ $result=mysqli_query($conn,$sql);
                           <p><?php echo $rows['titre']; ?></p>
                           <small> Prix : <?php echo $rows['prix']; ?> TND</small>
                           <br>
-                          <a href="">Annuler</a>
+                          <a href="annuler.php?id=<?php echo $id ?>"> Annuler</a> 
                       </div>
                 </div>
                   
                   <td><input type="number" value="<?php echo $rows['quantite']?>" min="1"></td>
-                  <td><?php echo $rows['prix']; ?></td>
+                  <td><?php echo $rows['prix']; ?> TND</td>
               </td>
               </tr>
               <?php
@@ -79,20 +83,13 @@ $result=mysqli_query($conn,$sql);
         </table>
         <div class="totalprice">
             <table>
-                <tr>
-                <td>Subtotal</td>
-                <td>xTND</td>
-            </tr>
-            <tr>
-                    <td>Tax</td>
-                    <td>xTND</td>
-                </tr>
-                <tr>
+                  <tr>
                     <td>Total</td>
-                    <td>xTND</td>
-                 </tr>
+                    <td><?php echo $somme['total']; ?>TND</td>
+                  </tr>
                 </table>
             </div>
+            <button  class="btn checkout-btn"><a href="logout.php" style="color:white;" > Payer </a> </button> 
         </div>
     </div>
   

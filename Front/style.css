@@ -119,7 +119,6 @@ margin-top: 70px;
         height: 300px;
         object-fit: cover;
     }
-}
 .hoverprofile:hover{
     color: black;
 }
@@ -206,12 +205,12 @@ form .btn :focus{
 }
 
 #LoginForm {
-    left:-300px;
+    left:0px;
 
 }
 
 #RegForm{
-    left : 0;
+    left : -300px;
 }
 
 form a {
@@ -229,6 +228,7 @@ form a {
     transform : translateX(100px);
     transition :transform 1s;
 }
+
 ::-webkit-scrollbar-track
 {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
@@ -253,9 +253,9 @@ form a {
 									   color-stop(0.86, rgb(217, 122, 122)));
 }
 input[type=radio] {
-    border: 0px;
+    border: 5px;
     width: 5%;
-    height: 3em;
+    height: 4em;
 }
 
 /*------ cart items details ------*/
@@ -315,7 +315,10 @@ td:last-child{
 th:last-child{
     text-align:right;
 }
-
+.checkout-btn{
+    position:relative;
+    left:930px;
+}
 
 /*---------footer------------*/
 
@@ -372,4 +375,103 @@ ul{
 }
 .copyright{
     text-align: center;
+}
+/*---------profile page-----------*/
+.profile-container{
+    background:#fff;
+    width:650px;
+    height:540px;
+    margin : 0 auto;
+    position : relative;
+    bottom: 150px;
+    margin-top:10%;
+    box-shadow:2px 5px 20px
+    rgba(119,119,119,.5);
+
+}
+.leftbox
+{
+    float:left;
+    top:-5%;
+    left : 5%;
+    position:absolute;
+    width: 15%;
+    height:110%;
+    background:#ff523b;
+    box-shadow: 3px 3px 10px
+    rgba(119,119,119,.5);
+    border: .1em solid #fff;
+
+}
+
+
+.profile-container nav a {
+    list-style:none;
+    padding: 35px;
+    color:#fff;
+    font-size:1.1em;
+    display:block;
+    transition:all .3s ease-in-out;
+}
+.profile-container nav a:hover {
+    color:#292525;
+    cursor:pointer;
+    transform:scale(1.2);
+
+}
+
+.profile-container nav a :first-child {
+    margin-top:70px;
+}
+
+.profile-container nav a.active {
+    color:#292525;
+}
+.rightbox {
+   width:60%;
+   margin-left:27%;
+   padding-top:15px;
+   
+}
+.tabShow {
+    transition:all .5s ease-in;
+    width:80%;
+    position:absolute;
+}
+
+.profile-container h1{
+    font-family:"Montserrat",sans-serif;
+    color: #db5f4f;
+    font-size:1.4rem;
+    margin-top:40px;
+    margin-bottom:35px;
+}
+
+.profile-container h2 {
+    color:#777;
+    font-family: "Roboto",sans-serif;
+    text-transform: uppercase;
+    font-size:10px;
+    letter-spacing:1px;
+    margin-left:2px;
+    margin-top:10px;
+}
+
+.input{
+    border:0;
+    border-bottom: 1px solid #8d2f04;
+    width:80%;
+    font-family:'montserrat',sans-serif;
+    font-size:.8em;
+    padding: 7px 0;
+    color:#070707;
+    outline:none;
+}
+
+.tabShow {
+    display:none;
+}
+
+.logout-btn{
+    margin-left:150px;
 }

@@ -1,3 +1,14 @@
+<?php
+include 'DBconnection.php';
+session_start();
+if (isset($_SESSION["email"]))
+{
+    header("Location: profile.php");
+    exit();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +33,7 @@
             <li><a href="annonce.html">Annonces</a></li>
             <li><a href="billets.html">Billets</a></li>
             <li><a href="actualites.html">Actualités</a></li>
-            <li><a href="account.html">Compte</a></li>
+            <li><a href="account.php">Compte</a></li>
         </ul>
     </nav>
     <a href="panier.php"><img src="assets/img/cart.png" class="cart" alt=""></a>
@@ -39,8 +50,8 @@
             <div class="col-2">
                 <div class="form-container">
                     <div class="form-btn">
-                        <span onclick="login()">Connexion</span>
                         <span onclick="register()">Inscription</span>
+                        <span onclick="login()">Connexion</span>
                         <hr id="indicator">
                     </div>
                     <form action="login.php" method="POST" id="LoginForm">
@@ -66,14 +77,14 @@
                         <label for="autre">Autre</label>
                         <input type="text" name="numtel" placeholder="Numéro de téléphone" id="Numtel">
                         <input type="text" name="adresse" placeholder="Adresse" id="Adresse">
-                        <button type="submit" class="btn" value="RegForm">S'inscrire</button>
+                        <button type="submit" class="btn" value="RegForm" onclick="verif()">S'inscrire</button>
                         
                     </form>
                     
 
                 </div>
 
-                <p style="color: rgb(255, 0, 0);" id="erreur"></p>
+                <p style="color: rgb(255, 0, 0);" id="erreurinscription"></p>
                 <script src="login.js"></script> 
                 </div>
             </div>
@@ -86,12 +97,12 @@
 
    <!-----------------------js for toggle form -------------> 
    <script>
-        function register(){
+        function login(){
             document.getElementById("RegForm").style.transform="translateX(0px)";
             document.getElementById("LoginForm").style.transform="translateX(0px)";
             document.getElementById("indicator").style.transform="translateX(100px)";
                     }
-        function login(){
+        function register(){
             document.getElementById("RegForm").style.transform="translateX(300px)";
             document.getElementById("LoginForm").style.transform="translateX(300px)";
             document.getElementById("indicator").style.transform="translateX(0px)";
