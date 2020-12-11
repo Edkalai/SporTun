@@ -15,7 +15,7 @@ if (isset($_SESSION["email"]))
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <a href="index.html"> <img src="assets/img/logo.png"> </a>
+    <link rel="shortcut icon" href="assets/img/logo.ico">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <title>Login</title>
