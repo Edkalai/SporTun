@@ -3,7 +3,7 @@ include 'DBconnection.php';
 session_start();
 $sql='select * from utilisateurs where email="'.$_SESSION["email"].'";';
 $result=mysqli_query($conn,$sql);
-$row=mysqli_fetch_assoc($result)
+$row=mysqli_fetch_assoc($result);
 ?>
 
 
@@ -70,7 +70,7 @@ $row=mysqli_fetch_assoc($result)
             <h2>Email</h2>
             <input type="text" class="input" name="mdp" value="<?php echo $row['email']; ?>" >
             <h2>Mot de passe</h2>
-            <input type="password" class="input" value="<?php echo $row['mdp']; ?>" >
+            <input type="password" class="input" value="hashed" >
             <button class="btn" type="submit">Modifier</button>
             <button  class="btn logout-btn"><a href="logout.php" style="color:white;" > Déconnexion </a> </button> 
 

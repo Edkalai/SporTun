@@ -10,10 +10,10 @@
     $numtel = $_POST['numtel'];
     $adresse = $_POST['adresse'];
     
-    
+    $hashed_password=password_hash($mdp,PASSWORD_DEFAULT);
 
     $sql = "INSERT INTO utilisateurs (nom, prenom, email, mdp, datenaissance, sexe, numtel, adresse, ban)
-    VALUES ('$nom', '$prenom', '$email', '$mdp', '$datenaissance', '$sexe' , '$numtel', '$adresse', '0');";
+    VALUES ('$nom', '$prenom', '$email', '$hashed_password', '$datenaissance', '$sexe' , '$numtel', '$adresse', '0');";
 
     mysqli_query($conn,$sql);
 
