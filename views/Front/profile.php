@@ -84,12 +84,11 @@ $row=mysqli_fetch_assoc($result);
         </div>
         <div class="payment tabShow">
             <h1>Informations de paiement</h1>
-            <h2>Méthode de paiement</h2>
-            <input type="text" class="input" value="MasterCard - 0202 **** **** 7336">
-            <h2>Adresse</h2>
-            <input type="text" class="input" value="Adresse">
-            
-            <button class="btn">Modifier</button>
+            <h2>Solde</h2>
+            <input type="text" class="input" value="<?php echo $row['solde']?> TND">
+            <h2>Montant d'ajout</h2>
+            <input type="text" class="input" placeholder="Saisir le montant que vous voulez ajouter à votre solde en TND">
+            <button class="btn">Ajouter à votre solde</button>
         
         </div>
      
