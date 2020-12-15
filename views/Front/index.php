@@ -1,3 +1,12 @@
+<?php
+include 'DBconnection.php';
+session_start();
+$compte="Compte";
+if (isset($_SESSION["email"]))
+{
+    $compte="Profil";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,16 +23,16 @@
       <div class="container">
         <div class="navbar">
             <div class="logo">
-                <a href="index.html"> <img src="assets/img/logo.png"> </a>
+                <a href="index.php"> <img src="assets/img/logo.png"> </a>
             </div>
         
         <nav>
             <ul>
-                <li><a href="index.html">Acceuil</a></li>
-                <li><a href="annonce.html">Annonces</a></li>
-                <li><a href="billets.html">Billets</a></li>
-                <li><a href="actualites.html">Actualités</a></li>
-                <li><a href="account.php">Compte</a></li>
+                <li><a href="index.php">Acceuil</a></li>
+                <li><a href="annonce.php">Annonces</a></li>
+                <li><a href="billets.php">Billets</a></li>
+                <li><a href="actualites.php">Actualités</a></li>
+                <li><a href="account.php"><?php echo $compte ?></a></li>
             </ul>
         </nav>
         <a href="panier.php"><img src="assets/img/cart.png" class="cart" alt=""></a>
@@ -33,7 +42,7 @@
             <h1>Donnez Un Nouveau Style <br> à Votre Entrainemnet!</h1>
             <p>SporTun met en rapport les vendeurs et les acheteurs en Tunisie <br>
                  et offre une expérience utilisateur exceptionnelle</p>
-         <a href="annonce.html" class="btn">Explorer &#8594; </a>
+         <a href="annonce.php" class="btn">Explorer &#8594; </a>
         </div>
           <div class="col-2">
              <img src="assets/img/image1.png" alt="">

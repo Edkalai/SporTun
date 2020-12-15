@@ -184,7 +184,7 @@ margin-top: 70px;
     top : 130px;
     transition:transform 1s;
 }
-form input {
+.account-page form input {
     width :100%;
     height:30px;
     margin : 10px 0;
@@ -193,14 +193,14 @@ form input {
 }
 
 
-form .btn {
+.account-page form .btn {
     width:100%;
     border : none;
     cursor : pointer;
     margin : 10px 0;
 }
 
-form .btn :focus{
+.account-page form .btn :focus{
     outline :none;
 }
 
@@ -213,7 +213,7 @@ form .btn :focus{
     left : -300px;
 }
 
-form a {
+.account-page form a {
     font-size:12px;
 }
 
@@ -257,6 +257,7 @@ input[type=radio] {
     width: 5%;
     height: 4em;
 }
+
 
 /*------ cart items details ------*/
 
@@ -378,9 +379,9 @@ ul{
 }
 /*---------profile page-----------*/
 .profile-container{
-    background:#fff;
-    width:650px;
-    height:540px;
+    background:white;
+    width:680px;
+    height:600px;
     margin : 0 auto;
     position : relative;
     bottom: 150px;

@@ -35,7 +35,7 @@ else
         $sql="SELECT nom from utilisateurs where email='$email';";
         $nom=mysqli_query($conn,$sql);
         $_SESSION["email"] = $email;
-        header("Location: index.html?login=success");
+        header("Location: profile.php");
         
     }
 }

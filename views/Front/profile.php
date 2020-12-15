@@ -19,22 +19,23 @@ $row=mysqli_fetch_assoc($result);
 <link href="assets/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
     <link href="assets/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
 <title>Profile</title>
+<script src="profile.js"></script>
 </head>
 <body style="overflow-x:hidden;" >
 <div class="header" >
         <div class="container">
           <div class="navbar">
               <div class="logo">
-                  <a href="index.html"> <img src="assets/img/logo.png"> </a>
+                  <a href="index.php"> <img src="assets/img/logo.png"> </a>
               </div>
           
           <nav>
               <ul>
-                  <li><a href="index.html">Acceuil</a></li>
-                  <li><a href="annonce.html">Annonces</a></li>
-                  <li><a href="billets.html">Billets</a></li>
-                  <li><a href="actualites.html">Actualités</a></li>
-                  <li><a href="account.php">Compte</a></li>
+                  <li><a href="index.php">Acceuil</a></li>
+                  <li><a href="annonce.php">Annonces</a></li>
+                  <li><a href="billets.php">Billets</a></li>
+                  <li><a href="actualites.php">Actualités</a></li>
+                  <li><a href="account.php">Profil</a></li>
               </ul>
           </nav>
           <a href="panier.php"><img src="assets/img/cart.png" class="cart" alt=""></a>
@@ -42,7 +43,7 @@ $row=mysqli_fetch_assoc($result);
       
 </div>
 
-<div class="profile-container">
+<div class="profile-container" style=" width:660px; height:580px;">
     <div class="leftbox">
         <nav>
         <a onclick="tabs(0)" class="tab active">
@@ -59,21 +60,26 @@ $row=mysqli_fetch_assoc($result);
     </div>
     <div class="rightbox">
         <div class="profile tabShow">
-
+            <form action="modif.php" name="f2" method="POST" id="modifform">
             <h1>Informations Personnelles</h1>
             <h2>Nom</h2>
-            <input type="text" class="input" name="nom" value="<?php echo $row['nom']; ?>" >
+            <input type="text" class="input" name="nom" id="esm" value="<?php echo $row['nom']; ?>" >
             <h2>Prénom</h2>
-            <input type="text" class="input" name="prenom" value="<?php echo $row['prenom']; ?>" >
-            <h2>Date de naissance</h2>
-            <input type="date" class="input" name="datenaissance" value="<?php echo $row['datenaissance']; ?>">
+            <input type="text" class="input" name="prenom" id="prenom" value="<?php echo $row['prenom']; ?>" >
             <h2>Email</h2>
-            <input type="text" class="input" name="mdp" value="<?php echo $row['email']; ?>" >
+            <input type="text" class="input" name="email" id="email" value="<?php echo $row['email']; ?>" >
             <h2>Mot de passe</h2>
-            <input type="password" class="input" value="hashed" >
-            <button class="btn" type="submit">Modifier</button>
+            <input type="password" class="input" name="mdp" id="mdp" placeholder="Saisir votre nouveau mot de passe" >
+            <h2>Date de naissance</h2>
+            <input type="date" class="input" name="datenaissance" id="datenaissance" value="<?php echo $row['datenaissance']; ?>">
+            <h2>Numéro de téléphone</h2>
+            <input type="text" class="input" name="numtel" id="numtel" value="<?php echo $row['numtel']; ?>" >
+            <h2>Adresse</h2>
+            <input type="text" class="input" name="adresse" id="adresse" value="<?php echo $row['adresse']; ?>" >
+            <p  id="erreurmodif" style="color :#ff523b; margin:10px 0px;" ></p>
+            <button class="btn" type="submit" onclick="return verif()">Modifier</button>
             <button  class="btn logout-btn"><a href="logout.php" style="color:white;" > Déconnexion </a> </button> 
-
+            </form>
         
         </div>
         <div class="payment tabShow">

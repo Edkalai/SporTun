@@ -1,3 +1,12 @@
+<?php
+include 'DBconnection.php';
+session_start();
+$compte="Compte";
+if (isset($_SESSION["email"]))
+{
+    $compte="Profil";
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -16,15 +25,15 @@
         <div class="container">
             <div class="navbar">
                 <div class="logo">
-                    <a href="index.html"> <img src="assets/img/logo.png"> </a>
+                    <a href="index.php"> <img src="assets/img/logo.png"> </a>
                 </div>
                 <nav>
                     <ul>
-                        <li><a href="index.html">Acceuil</a></li>
-                        <li><a href="annonce.html">Annonces</a></li>
-                        <li><a href="billets.html">Billets</a></li>
-                        <li><a href="actualites.html">Actualités</a></li>
-                        <li><a href="account.php">Compte</a></li>
+                        <li><a href="index.php">Acceuil</a></li>
+                        <li><a href="annonce.php">Annonces</a></li>
+                        <li><a href="billets.php">Billets</a></li>
+                        <li><a href="actualites.php">Actualités</a></li>
+                        <li><a href="account.php"><?php echo $compte ?></a></li>
                     </ul>
                 </nav>
                 <img src="assets/img/cart.png" class="cart" alt="">
