@@ -19,6 +19,7 @@ if (isset($_SESSION["email"]))
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <title>Login</title>
+    <script src="signup.js"> </script>
 </head>
 <body>
     <div class="login-container">
@@ -63,13 +64,13 @@ if (isset($_SESSION["email"]))
                     </form>
                     
                     <div class="reg-container">
-                        <form action="SignUp.php" method="POST" id="RegForm" name="f">
+                        <form action="SignUp.php" method="POST" id="RegForm" name="f1" >
                         <input type="text" name="nom" placeholder="Nom" id="nom">
                         <input type="text" name="prenom" placeholder="Prénom" id="prenom">
                         <input type="email" name="email" placeholder="Email" id="email">
-                        <input type="password" name=mdp placeholder="Mot de passe" id="mdp">
-                        <input type="password" name=mdp placeholder="Confirmer votre mot de passe" id="mdp2">
-                        <input type="date" name="datenaissance" id="datenaissance" min="1919-01-01" max="2004-01-01" >
+                        <input type="password" name="mdp" placeholder="Mot de passe" id="mdp">
+                        <input type="password" name="mdp2" placeholder="Confirmer votre mot de passe" id="mdp2">
+                        <input type="date" name="datenaissance" id="datenaissance" >
                         <input type="radio" name="sexe" id="homme" value="H" class="gender">
                         <label for="homme">Homme</label>
                         <input type="radio" name="sexe" id="Femme" value="F" class="gender">
@@ -78,15 +79,16 @@ if (isset($_SESSION["email"]))
                         <label for="autre">Autre</label>
                         <input type="text" name="numtel" placeholder="Numéro de téléphone" id="Numtel">
                         <input type="text" name="adresse" placeholder="Adresse" id="Adresse">
-                        <button type="submit" class="btn" value="RegForm" onclick="verif()">S'inscrire</button>
+                        <p  id="erreur" style="color :#ff523b; margin:10px 0px;" ></p>
+                        <a href="href="#RegForm"></a><button  type="submit" class="btn" value="RegForm" onclick="return verif()">S'inscrire</button></a>
                         
-                    </form>
-                    
+                      </form>
+                       
 
-                </div>
+                    </div>
 
-                <p style="color: rgb(255, 0, 0);" id="erreurinscription"></p>
-                <script src="login.js"></script> 
+ 
+                
                 </div>
             </div>
         </div>
