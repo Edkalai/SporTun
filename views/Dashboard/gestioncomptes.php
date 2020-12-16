@@ -248,11 +248,11 @@ $result=mysqli_query($conn,$sql);
                                 <th>Nom</th>
                                 <th>Prenom</th>
                                 <th>Email</th>
-                                <th>Mot de passe</th>
                                 <th>Date de naissance</th>
                                 <th>Sexe</th>
                                 <th>Numéro de téléphone</th>
                                 <th>Adresse</th>
+                                <th>Ban</th>
 
                                 
                             </tr>
@@ -268,21 +268,35 @@ $result=mysqli_query($conn,$sql);
                                 <td><?php echo $rows['nom']; ?></td>
                                 <td><?php echo $rows['prenom']; ?></td>
                                 <td><?php echo $rows['email']; ?></td>
-                                <td><?php echo $rows['mdp']; ?></td>
                                 <td><?php echo $rows['datenaissance']; ?></td>
                                 <td><?php echo $rows['sexe']; ?></td>
                                 <td><?php echo $rows['numtel']; ?></td>
                                 <td><?php echo $rows['adresse']; ?></td>
+                                <td><?php echo $rows['ban']; ?></td>
 
                                 <td>
 
 
                                     <div class="table-data-feature">
 
-                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Bannir le compte">
+                                        <a href="ban.php?id=<?php echo $rows['email'] ?>">
+                                          <button class="item" data-toggle="tooltip" data-placement="top"  title="Ban">
                                             <i class="zmdi zmdi-delete"></i>
                                         </button>
+                                        </a>
+                                    </div>
+                                </td>
 
+                                <td>
+
+
+                                    <div class="table-data-feature">
+
+                                        <a href="unban.php?id=<?php echo $rows['email'] ?>">
+                                                    <button class="item" data-toggle="tooltip" data-placement="top"  title="Unban">
+                                                        <i class="zmdi zmdi-time-restore-setting"></i>
+                                                    </button>
+                                        </a>
                                     </div>
                                 </td>
 

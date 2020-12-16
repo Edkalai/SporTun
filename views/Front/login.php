@@ -17,7 +17,6 @@ else
     $result=mysqli_query($conn,$sql);
     $row=mysqli_fetch_assoc($result);
     $hashed_password=$row['mdp'];
-    echo($hashed_password);
     if (!  password_verify($mdp, $hashed_password) )
     {
       echo("Mot de passe invalide");
