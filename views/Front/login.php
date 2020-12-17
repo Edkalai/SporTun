@@ -34,6 +34,7 @@ else
         $sql="SELECT nom from utilisateurs where email='$email';";
         $nom=mysqli_query($conn,$sql);
         $_SESSION["email"] = $email;
+        mysqli_query($conn,"update utilisateurs set loggedin=1 where email='$email';");
         header("Location: profile.php");
         
     }

@@ -252,7 +252,7 @@ margin-top: 70px;
 									   color-stop(0.72, rgb(189, 73, 73)),
 									   color-stop(0.86, rgb(217, 122, 122)));
 }
-input[type=radio] {
+.reg-container input[type=radio] {
     border: 5px;
     width: 5%;
     height: 4em;
@@ -474,5 +474,8 @@ ul{
 }
 
 .logout-btn{
-    margin-left:150px;
+    position: relative;
+    margin-left: 150px;
+    bottom: 95px;
+    left: 100px;
 }
