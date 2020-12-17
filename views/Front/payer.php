@@ -18,6 +18,16 @@ else{
     $nvsolde=$solde-$total;
     $sql="update utilisateurs set solde='$nvsolde' where email='$useremail';";
     mysqli_query($conn,$sql);
+    $date=date("y-m-d");
+    $sql="select * from panier where email='$useremail';";
+    $resultat=mysqli_query($conn,$sql);
+    while($rows=mysqli_fetch_assoc($resultat))
+    {
+        $titre=$rows['titre'];
+        $prix=$rows['prix'];
+        $sql="insert into vente (email,titre,prix,datevente) values ('$useremail','$titre','$prix','$date');";
+        mysqli_query($conn,$sql);
+    }
     $sql="delete from panier where email='$useremail';";
     mysqli_query($conn,$sql);
     header ("Location: panier.php");
