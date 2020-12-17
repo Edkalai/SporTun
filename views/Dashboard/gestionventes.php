@@ -7,6 +7,8 @@ $resultat=mysqli_query($conn,$sql);
 $nbvente=mysqli_fetch_assoc($resultat);
 $sql='select email, count(*) as c FROM vente GROUP BY email ORDER BY c DESC';
 $resultat=mysqli_query($conn,$sql);
+$sql='select email, sum(prix) as s FROM vente GROUP BY email ORDER BY s DESC';
+$resultatprix=mysqli_query($conn,$sql);
 ?>
 
 
@@ -313,6 +315,54 @@ $resultat=mysqli_query($conn,$sql);
                          
                      </section>
 
+                     <div class="page-content--bgf7">
+            
+            <div class="container">
+            <div class="row">
+            <div class="col-md-12">
+
+            
+                    
+                    
+                </div>
+                <div class="table-responsive table-responsive-data2">
+                    <table class="table table-data2">
+                        <thead>
+                            <tr>
+                                <th>Email</th>
+                                <th>Montant dépensé</th>
+                                
+
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php 
+                            while($rows=mysqli_fetch_assoc($resultatprix))
+                            {
+                                ?>
+
+                            <tr class="tr-shadow">
+
+                                <td><?php echo $rows['email']; ?></td>
+                                <td><?php echo $rows['s']; ?></td>
+                                
+                                
+
+                            </tr>
+
+                            <?php
+                            }
+                            ?>
+                            <tr class="spacer"></tr>
+                            
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 
                      <div class="page-content--bgf7">
             
