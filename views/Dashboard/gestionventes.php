@@ -1,26 +1,26 @@
 <?php
 include 'DBconnection.php';
-$sql='select * from utilisateurs;';
+$sql='select * from vente;';
 $result=mysqli_query($conn,$sql);
-$sql='select count(email) as total from utilisateurs where loggedin=1 ;';
+$sql='select count(idvente) as total from vente ;';
 $resultat=mysqli_query($conn,$sql);
-$membersonline=mysqli_fetch_assoc($resultat);
-$sql='select count(email) as total from utilisateurs;';
+$nbvente=mysqli_fetch_assoc($resultat);
+$sql='select email, count(*) as c FROM vente GROUP BY email ORDER BY c DESC';
 $resultat=mysqli_query($conn,$sql);
-$members=mysqli_fetch_assoc($resultat);
-$sql='select count(email) as total from utilisateurs where ban=1;';
-$resultat=mysqli_query($conn,$sql);
-$membersbanned=mysqli_fetch_assoc($resultat);
 ?>
+
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+
+
+    <meta charset="UTF-8">
+
 
 
     <!-- Title Page-->
-    <title>gestion des comptes</title>
+    <title>Gestion des ventes</title>
 
     <!-- Fontfaces CSS-->
     
@@ -257,69 +257,36 @@ $membersbanned=mysqli_fetch_assoc($resultat);
                     <table class="table table-data2">
                         <thead>
                             <tr>
-                                <th>Nom</th>
-                                <th>Prenom</th>
+                                <th>ID</th>
                                 <th>Email</th>
-                                <th>Date de naissance</th>
-                                <th>Sexe</th>
-                                <th>Numéro de téléphone</th>
-                                <th>Adresse</th>
-                                <th>En Ligne</th>
-                                <th>Ban</th>
+                                <th>Titre</th>
+                                <th>Prix</th>
+                                <th>Date de vente</th>
+                                
 
                                 
                             </tr>
                         </thead>
                         <tbody>
-                            <?php 
+                        <?php 
                             while($rows=mysqli_fetch_assoc($result))
                             {
                                 ?>
 
                             <tr class="tr-shadow">
 
-                                <td><?php echo $rows['nom']; ?></td>
-                                <td><?php echo $rows['prenom']; ?></td>
+                                <td><?php echo $rows['idvente']; ?></td>
                                 <td><?php echo $rows['email']; ?></td>
-                                <td><?php echo $rows['datenaissance']; ?></td>
-                                <td><?php echo $rows['sexe']; ?></td>
-                                <td><?php echo $rows['numtel']; ?></td>
-                                <td><?php echo $rows['adresse']; ?></td>
-                                <td><?php echo $rows['Loggedin']; ?></td>
-                                <td><?php echo $rows['ban']; ?></td>
-
-                                <td>
-
-
-                                    <div class="table-data-feature">
-
-                                        <a href="ban.php?id=<?php echo $rows['email'] ?>">
-                                          <button class="item" data-toggle="tooltip" data-placement="top"  title="Ban">
-                                            <i class="zmdi zmdi-delete"></i>
-                                        </button>
-                                        </a>
-                                    </div>
-                                </td>
-
-                                <td>
-
-
-                                    <div class="table-data-feature">
-
-                                        <a href="unban.php?id=<?php echo $rows['email'] ?>">
-                                                    <button class="item" data-toggle="tooltip" data-placement="top"  title="Unban">
-                                                        <i class="zmdi zmdi-time-restore-setting"></i>
-                                                    </button>
-                                        </a>
-                                    </div>
-                                </td>
+                                <td><?php echo $rows['titre']; ?></td>
+                                <td><?php echo $rows['prix']; ?></td>
+                                <td><?php echo $rows['datevente']; ?></td>
+                                
 
                             </tr>
 
                             <?php
                             }
                             ?>
-
                             <tr class="spacer"></tr>
                             
 
@@ -333,29 +300,11 @@ $membersbanned=mysqli_fetch_assoc($resultat);
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-6 col-lg-3">
-                                        <div class="statistic__item statistic__item--blue">
-                                            <h2 class="number"><?php echo ($members['total']) ?></h2>
-                                            <span class="desc">Utilisateurs</span>
+                                        <div class="statistic__item statistic__item--blue" style="left:500px;">
+                                            <h2 class="number"><?php echo ($nbvente['total']) ?></h2>
+                                            <span class="desc">Nombre de vente</span>
                                             <div class="icon">
-                                                <i class="zmdi zmdi-account-o"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <div class="col-md-6 col-lg-3">
-                                        <div class="statistic__item statistic__item--green">
-                                            <h2 class="number"><?php echo ($membersonline['total']) ?></h2>
-                                            <span class="desc">Utilisateurs en ligne</span>
-                                            <div class="icon">
-                                                <i class="zmdi zmdi-account-o"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-3">
-                                        <div class="statistic__item statistic__item--red">
-                                            <h2 class="number"><?php echo ($membersbanned['total']) ?></h2>
-                                            <span class="desc">Utilisateurs suspendues</span>
-                                            <div class="icon">
-                                                <i class="zmdi zmdi-account-o"></i>
+                                                <i class="zmdi zmdi-shopping-cart"></i>
                                             </div>
                                         </div>
                                     </div>
@@ -363,7 +312,56 @@ $membersbanned=mysqli_fetch_assoc($resultat);
                             </div> 
                          
                      </section>
-    
+
+
+                     <div class="page-content--bgf7">
+            
+            <div class="container">
+            <div class="row">
+            <div class="col-md-12">
+
+            
+                    
+                    
+                </div>
+                <div class="table-responsive table-responsive-data2">
+                    <table class="table table-data2">
+                        <thead>
+                            <tr>
+                                <th>Email</th>
+                                <th>Nombre d'achats</th>
+                                
+
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php 
+                            while($rows=mysqli_fetch_assoc($resultat))
+                            {
+                                ?>
+
+                            <tr class="tr-shadow">
+
+                                <td><?php echo $rows['email']; ?></td>
+                                <td><?php echo $rows['c']; ?></td>
+                                
+                                
+
+                            </tr>
+
+                            <?php
+                            }
+                            ?>
+                            <tr class="spacer"></tr>
+                            
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 
 
                 <script src="vendor/jquery-3.2.1.min.js"></script>
