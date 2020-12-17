@@ -40,6 +40,15 @@ Notes:	decreasing heading by 0.4em with every subsequent heading level
 /*                   GENERIC                           */
 /*-----------------------------------------------------*/
 /* ----- Normalize ----- */
+html{
+    height:100%;
+}
+
+body{
+    min-height: 100%;
+}
+
+
 * {
     margin: 0;
     padding: 0;

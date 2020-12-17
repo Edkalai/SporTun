@@ -2,6 +2,15 @@
 include 'DBconnection.php';
 $sql='select * from utilisateurs;';
 $result=mysqli_query($conn,$sql);
+$sql='select count(email) as total from utilisateurs where loggedin=1 ;';
+$resultat=mysqli_query($conn,$sql);
+$membersonline=mysqli_fetch_assoc($resultat);
+$sql='select count(email) as total from utilisateurs;';
+$resultat=mysqli_query($conn,$sql);
+$members=mysqli_fetch_assoc($resultat);
+$sql='select count(email) as total from utilisateurs where ban=1;';
+$resultat=mysqli_query($conn,$sql);
+$membersbanned=mysqli_fetch_assoc($resultat);
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +35,7 @@ $result=mysqli_query($conn,$sql);
     <!-- Main CSS-->
     <link href="css/styles.css" rel="stylesheet" media="all">
 </head>
-<body>
+<body >
  <div class="page-wrapper">
         <!-- HEADER DESKTOP-->
         <header class="header-desktop3 d-none d-lg-block">
@@ -252,6 +261,7 @@ $result=mysqli_query($conn,$sql);
                                 <th>Sexe</th>
                                 <th>Numéro de téléphone</th>
                                 <th>Adresse</th>
+                                <th>En Ligne</th>
                                 <th>Ban</th>
 
                                 
@@ -272,6 +282,7 @@ $result=mysqli_query($conn,$sql);
                                 <td><?php echo $rows['sexe']; ?></td>
                                 <td><?php echo $rows['numtel']; ?></td>
                                 <td><?php echo $rows['adresse']; ?></td>
+                                <td><?php echo $rows['Loggedin']; ?></td>
                                 <td><?php echo $rows['ban']; ?></td>
 
                                 <td>
@@ -315,9 +326,41 @@ $result=mysqli_query($conn,$sql);
                 </div>
             </div>
         </div>
-    </div>
-
-
+                    <section class="statistic statistic2">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6 col-lg-3">
+                                        <div class="statistic__item statistic__item--blue">
+                                            <h2 class="number"><?php echo ($members['total']) ?></h2>
+                                            <span class="desc">Utilisateurs</span>
+                                            <div class="icon">
+                                                <i class="zmdi zmdi-account-o"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <div class="col-md-6 col-lg-3">
+                                        <div class="statistic__item statistic__item--green">
+                                            <h2 class="number"><?php echo ($membersonline['total']) ?></h2>
+                                            <span class="desc">Utilisateurs en ligne</span>
+                                            <div class="icon">
+                                                <i class="zmdi zmdi-account-o"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-3">
+                                        <div class="statistic__item statistic__item--red">
+                                            <h2 class="number"><?php echo ($membersbanned['total']) ?></h2>
+                                            <span class="desc">Utilisateurs suspendues</span>
+                                            <div class="icon">
+                                                <i class="zmdi zmdi-account-o"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                         
+                     </section>
+    
 
 
                 <script src="vendor/jquery-3.2.1.min.js"></script>

@@ -78,8 +78,9 @@ $row=mysqli_fetch_assoc($result);
             <input type="text" class="input" name="adresse" id="adresse" value="<?php echo $row['adresse']; ?>" >
             <p  id="erreurmodif" style="color :#ff523b; margin:10px 0px;" ></p>
             <button class="btn" type="submit" onclick="return verif()">Modifier</button>
-            <button  class="btn logout-btn"><a href="logout.php" style="color:white;" > Déconnexion </a> </button> 
+            
             </form>
+            <button  class="btn logout-btn"><a href="logout.php" style="color:white;" > Déconnexion </a> </button> 
         
         </div>
         <div class="payment tabShow">
