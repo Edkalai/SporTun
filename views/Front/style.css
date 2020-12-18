@@ -100,6 +100,87 @@ margin-top: 70px;
 .col-3 img{
     width:100%
 }
+
+
+
+
+
+
+.col-allproducts{
+
+    flex-basis:97%;
+    min-width:250px;
+    margin-bottom:30px;
+
+
+    width:300px;
+    height:auto;
+    display:inline-block;
+    position:relative;
+    transition:.3s;
+    margin:4px;
+}
+
+
+.col-allproducts img{
+
+    height:100px;
+    border-radius:4px;
+}
+
+.col-categories{
+
+    flex-basis:30%;
+    min-width:250px;
+    margin-bottom:30px;
+
+
+    width:300px;
+    height:auto;
+    display:inline-block;
+    position:relative;
+    transition:.3s;
+    margin:4px;
+
+}
+
+
+.col-categories img{
+    width:100%;
+    height:100%;
+    transition:.3s;
+    border-radius:4px;
+}
+
+
+
+.col-categories:hover img{
+    filter:blur(2px) brightness(60%);
+    box-shadow:0 0 16px cyan;
+  }
+   
+  .col-categories :not(img){
+    position:absolute;
+    z-index:1;
+    top:30%;
+    width:100%;
+    text-align:center;
+    color:#fff;
+    opacity:0;
+    transition:.3s;
+  }
+  
+  .col-categories h3{
+    top:50%
+  }
+  
+  .col-categories:hover :not(img){
+    opacity:1;
+  }
+
+
+
+
 .small-container{
  max-width:1080px;
  margin:auto;
@@ -479,3 +560,101 @@ ul{
     bottom: 95px;
     left: 100px;
 }
+
+
+
+
+
+    /*-------------single product details-------------*/
+    
+
+    
+    .single-product{
+        margin-top: 80px;
+    }
+    .single-product .col-2 img{
+        padding: 0;
+    }
+    .single-product .col-2{
+        padding: 20px;
+    }
+    .single-product h4{
+        margin: 20px 0;
+        font-size: 22px;
+        font-weight: bold;
+    }
+    .single-product select{
+        display: block;
+        padding: 10px;
+        margin-top: 20px;
+    }
+
+    .single-product input{
+        width: 50px;
+        height: 40px;
+        padding-left: 10px;
+        font-size: 20px;
+        margin-right: 10px;
+        border: 1px solid  #ee1b23;
+    }
+
+    input:focus{
+         outline: none;
+    }
+
+    .single-product .fa{
+        color: #ee1b23;
+        margin-left: 10px;
+    }
+
+    .small-img-row{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .small-img-col{
+        flex-basis: 24%;
+        cursor: pointer;
+    }
+
+
+/*----------------annonces page---------------*/
+
+
+
+.row-2{
+    justify-content: space-between;
+    margin: 100px auto 50px;
+}
+
+select{
+    border: 1px solid #ee1b23;;
+    padding: 5px;
+}
+
+select:focus{
+    outline: none;
+}
+
+
+.page-btn{
+    margin: 0 auto 80px;
+}
+
+.page-btn span{
+    display: inline-block;
+    border: 1px solid #ee1b23;;
+    margin-left: 10px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+}
+
+.page-btn span:hover{
+    background: #ee1b23;
+    color: #fff;
+}
+
+
