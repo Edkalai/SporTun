@@ -244,8 +244,24 @@ $resultatprix=mysqli_query($conn,$sql);
         </div>
         <!-- END HEADER MOBILE -->
 
+      
         <!-- PAGE CONTENT-->
         <div class="page-content--bgf7">
+        <section class="statistic statistic2">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6 col-lg-3">
+                                        <div class="statistic__item statistic__item--blue" style="left:500px;">
+                                            <h2 class="number"><?php echo ($nbvente['total']) ?></h2>
+                                            <span class="desc">Nombre de vente</span>
+                                            <div class="icon">
+                                                <i class="zmdi zmdi-shopping-cart"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                     </section>
             
             <div class="container">
             <div class="row">
@@ -298,22 +314,7 @@ $resultatprix=mysqli_query($conn,$sql);
                 </div>
             </div>
         </div>
-                    <section class="statistic statistic2">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-md-6 col-lg-3">
-                                        <div class="statistic__item statistic__item--blue" style="left:500px;">
-                                            <h2 class="number"><?php echo ($nbvente['total']) ?></h2>
-                                            <span class="desc">Nombre de vente</span>
-                                            <div class="icon">
-                                                <i class="zmdi zmdi-shopping-cart"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> 
-                         
-                     </section>
+                  
 
                      <div class="page-content--bgf7">
             
