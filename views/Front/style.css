@@ -104,8 +104,6 @@ margin-top: 70px;
 
 
 
-
-
 .col-allproducts{
 
     flex-basis:97%;
@@ -127,6 +125,34 @@ margin-top: 70px;
     height:100px;
     border-radius:4px;
 }
+
+
+/**********/
+.col-allproducts:hover img{
+    filter:blur(2px) brightness(60%);
+    box-shadow:0 0 16px cyan;
+  }
+   
+  .col-allproducts :not(img){
+    position:absolute;
+    z-index:1;
+    top:30%;
+    width:100%;
+    text-align:center;
+    color:#fff;
+    opacity:0;
+    transition:.3s;
+  }
+  
+  .col-allproducts h3{
+    top:50%
+  }
+  
+  .col-allproducts:hover :not(img){
+    opacity:1;
+  }
+
+  /*********/
 
 .col-categories{
 
