@@ -119,11 +119,11 @@ if($tri==5){
         
         <nav>
             <ul>
-                <li><a href="index.html">Acceuil</a></li>
+                <li><a href="index.php">Acceuil</a></li>
                 <li><a href="AjouterAnnonce">Annonces</a></li>
                 <li><a href="billets.html">Billets</a></li>
                 <li><a href="actualites.html">Actualités</a></li>
-                <li><a href="account.html">Compte</a></li>
+                <li><a href="account.php">Compte</a></li>
             </ul>
         </nav>
         <a href="panier.php"><img src="assets/img/cart.png" class="cart" alt=""></a>
