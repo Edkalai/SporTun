@@ -2,12 +2,11 @@
 
 include '../Dashboard/DBconnection.php';
 
+
 if(isset($_GET['categorie'])) {
     $categorie = $_GET['categorie'];
-    $cat=$categorie;
     }else{
-        $categorie = 0;
-        $cat="Tous Les Produits";
+        $categorie = 'Tous Les Produits';   
     }
 
 if(isset($_GET['tri'])) {
@@ -27,6 +26,12 @@ $npage = ($_GET['npage']);
 $sql1='SELECT * from annonces;';
 $result1=mysqli_query($conn,$sql1);
 $NbAnnonces=mysqli_num_rows($result1);
+
+if($categorie!='Tous Les Produits'){
+    $sql1 = "SELECT * FROM annonces WHERE categorie ='" . $categorie. " ';"; 
+    $result1=mysqli_query($conn,$sql1);
+    $NbAnnonces=mysqli_num_rows($result1);
+}
 
 
 
@@ -90,11 +95,10 @@ if($tri==5){
 
 
 
-/*
-    $selectstart=($npage*12)+65;
-    $sql="SELECT * from annonces WHERE id >=". $selectstart ." LIMIT 12 ;";
-    $result=mysqli_query($conn,$sql1);
-*/
+
+
+
+
 
 ?>
 
@@ -139,53 +143,57 @@ if($tri==5){
             <h2 class="title">Catégories en vedette</h2>
 
 
-            <div class="row">
-                <a href="Annonce.php?categorie=Fitness Muscu" class="col-allproducts">
-                    <img src="assets/img/20_thumb.png" style="width: 100%;" alt="Fitness Muscu">
-                </a>   
-            </div>
-
-
 
             <div class="row">
                 <?php $s=$npage+1;?>
-                <?php echo "<a href='Annonce.php?categorie=Fitness Muscu&?npage=$s&tri=$tri Muscu' class='col-categories'>";?>
+                <?php echo "<a href='Annonce.php?categorie=Fitness Muscu&?npage=$s&tri=$tri#c1' class='col-categories'>";?>
                     <img src="assets/img/20_thumb.png" alt="Fitness Muscu">
                     <h2>FITNESS MUSCU</h2>
                 </a>
-                <?php echo "<a href='Annonce.php?categorie=Cyclisme&?npage=$s&tri=$tri Muscu' class='col-categories'>";?>
+                <?php echo "<a href='Annonce.php?categorie=Cyclisme&?npage=$s&tri=$tri#c1' class='col-categories'>";?>
                     <img src="assets/img/18_thumb.png" alt="Cyclisme">
                     <h2>CYCLISME</h2>
                 </a>
-                <?php echo "<a href='Annonce.php?categorie=Equitation&?npage=$s&tri=$tri Muscu' class='col-categories'>";?>
+                <?php echo "<a href='Annonce.php?categorie=Equitation&?npage=$s&tri=$tri#c1' class='col-categories'>";?>
                     <img src="assets/img/4_thumb.png" alt="Equitation">
                     <h2>EQUITATION</h2>
                 </a>
-                <?php echo "<a href='Annonce.php?categorie=Golf&?npage=$s&tri=$tri Muscu' class='col-categories'>";?>
+                <?php echo "<a href='Annonce.php?categorie=Golf&?npage=$s&tri=$tri#c1' class='col-categories'>";?>
                     <img src="assets/img/8_thumb.png" alt="Golf">
                     <h2>GOLF</h2>
                 </a>
-                <?php echo "<a href='Annonce.php?categorie=Nautique&?npage=$s&tri=$tri Muscu' class='col-categories'>";?>
+                <?php echo "<a href='Annonce.php?categorie=Nautique&?npage=$s&tri=$tri#c1' class='col-categories'>";?>
                     <img src="assets/img/21_thumb.png" alt="Nautique">
                     <h2>NAUTIQUE</h2>
                 </a>
-                <?php echo "<a href='Annonce.php?categorie=Autre&?npage=$s&tri=$tri Muscu' class='col-categories'>";?>
+                <?php echo "<a href='Annonce.php?categorie=Autre&?npage=$s&tri=$tri#c1' class='col-categories'>";?>
                     <img src="assets/img/230_thumb.png" alt="Autre">
                     <h2>AUTRE</h2>
                 </a>
         
             </div>
+
+            <br>
+            <div class="row">
+                <?php echo "<a href='Annonce.php?categorie=Tous Les Produits&?npage=$s&tri=$tri#c1' class='col-allproducts'>";?>
+                    <img src="assets/img/equipements1.png" style="width: 100%;" alt="Fitness Muscu">
+                    <h2>Tous Les Produits</h2>
+                </a>   
+            </div>
+
+
+
         </div>
 
 
      </div> 
     
-        <div class="small-container">
+        <div id="c1" class="small-container">
 
             <div class="row row-2">
                 
 
-                <?php echo"<h2>$cat</h2>";?>
+                <?php echo"<h2>$categorie</h2>";?>
 
                 
                 <select name="formal" onchange="javascript:handleSelect(this)">  
@@ -221,6 +229,12 @@ if($tri==5){
 -->
         <?php
         
+        /*echo $categorie;
+        echo"</br>";
+        echo $tri;
+        echo"</br>";
+        echo $npage;*/
+
         if($NbAnnonces==0){
         
             echo "</br></br></br></br></br>";
@@ -235,11 +249,9 @@ if($tri==5){
         $i=0;
         while($rows=mysqli_fetch_assoc($result))
         {
-
-            if($rows['categorie']==$categorie){
-            
+            if(($rows['categorie']==$categorie)||($categorie=='Tous Les Produits')){
                 if($n>=($npage*12))
-                { 
+                {   
                     $i++;
                     $id=$rows['id'];
                     ?>
@@ -278,7 +290,7 @@ if($tri==5){
 
         if($npage!=0){
             $s=$npage-1;
-            echo"<a href='Annonce.php?npage=$s&tri=$tri'><span>&#8592;</span></a>"; 
+            echo"<a href='Annonce.php?categorie=$categorie&npage=$s&tri=$tri#c1'><span>&#8592;</span></a>"; 
         }
 
 
@@ -291,7 +303,7 @@ if($tri==5){
 
         for($i=0;$i<$nbpages;$i++){
             $s=$i+1;
-            echo"<a href='Annonce.php?npage=$i&tri=$tri'><span>$s</span></a>";
+            echo"<a href='Annonce.php?categorie=$categorie&npage=$i&tri=$tri#c1'><span>$s</span></a>";
             
         }
 
@@ -300,7 +312,7 @@ if($tri==5){
 
             if($NbAnnonces>12){
                 $s=$npage+1;
-                echo"<a href='Annonce.php?npage=$s&tri=$tri'><span>&#8594;</span></a>"; 
+                echo"<a href='Annonce.php?categorie=$categorie&npage=$s&tri=$tri#c1'><span>&#8594;</span></a>"; 
             }      
         
         }
@@ -373,7 +385,8 @@ if($tri==5){
         <script type="text/javascript"> 
             function handleSelect(elm) 
             {
-            window.location = "Annonce.php?npage=0&tri="+elm.value; 
+            var categorie = "<?php echo $categorie; ?>";
+            window.location = "Annonce.php?&categorie="+categorie+"&npage=0&tri="+elm.value+"#c1"; 
             //window.location = "AjouterAnnonce.html?tri=1"; 
             //window.location = elm.value+".php"; 
             } 
