@@ -14660,3 +14660,21 @@ section {
 .vue-lists ul, .vue-lists ol {
     padding-left: 30px;
 }
+
+
+
+.stat{
+    max-width:1325px;
+    margin:auto;
+    /*border: 1px solid #000000;*/
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    
+
+}
+
+.stat.title{
+    text-align: left;
+}
+
