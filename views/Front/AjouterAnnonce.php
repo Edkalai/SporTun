@@ -1,69 +1,161 @@
 <?php
     include_once 'DBconnection.php';
 
-
-    $target_dir = "uploads/";
-    $target_file = $target_dir . basename($_FILES["image"]["name"]);
-    $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-    
-    // Check if image file is a actual image or fake image
-    if(isset($_POST["submit"])) {
-      $check = getimagesize($_FILES["image"]["tmp_name"]);
-      if($check !== false) {
-        echo "File is an image - " . $check["mime"] . ".";
-        $uploadOk = 1;
-      } else {
-        echo "File is not an image.";
-        $uploadOk = 0;
-      }
-    }
-    
-    // Check if file already exists
-    if (file_exists($target_file)) {
-      echo "Sorry, file already exists.";
-      $uploadOk = 0;
-    }
-    
-    // Check file size
-    if ($_FILES["image"]["size"] > 10000000) {
-      echo "Sorry, your file is too large.";
-      $uploadOk = 0;
-    }
-    
-    // Allow certain file formats
-    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-    && $imageFileType != "gif" ) {
-      echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-      $uploadOk = 0;
-    }
-    
-    // Check if $uploadOk is set to 0 by an error
-    if ($uploadOk == 0) {
-      echo "Sorry, your file was not uploaded.";
-    // if everything is ok, try to upload file
-    } else {
-      if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-        echo "The file ". htmlspecialchars( basename( $_FILES["image"]["name"])). " has been uploaded.";
-      } else {
-        echo "Sorry, there was an error uploading your file.";
-      }
+    session_start();
+    if (isset($_SESSION["email"]))
+    {
+    $email=$_SESSION['email'];
+    //exit();
     }
 
 
-      $titre = $_POST['titre'];
-      $description = $_POST['description'];
-      $categorie = $_POST['categorie'];
-      //$image = $_POST['$target_file'];
-      $prix = $_POST['prix'];
-      $emplacement = $_POST['emplacement'];
-    
 
-    
 
-      $sql = "INSERT INTO annonces (titre, description, categorie, image, prix, emplacement)
-      VALUES ('$titre', '$description', '$categorie', '$target_file', '$prix', '$emplacement');";
+    if(isset($_POST['submit'])){
 
-    mysqli_query($conn,$sql);
 
+        $titre = $_POST['titre'];
+        $description = $_POST['description'];
+        $categorie = $_POST['categorie'];
+        //$image = $_POST['$target_file'];
+        $prix = $_POST['prix'];
+        $emplacement = $_POST['emplacement'];
+      
+
+        $uploadsDir = "assets/img/";
+        $allowedFileType = array('jpg','png','jpeg');
+        
+        // Velidate if files exist
+        if (!empty(array_filter($_FILES['fileUpload']['name']))) {
+        
+        // Loop through file items
+            $i=0;
+            foreach($_FILES['fileUpload']['name'] as $id=>$val){
+                $i++;
+                echo $i;
+                // Get files upload path
+                $fileName        = $_FILES['fileUpload']['name'][$id];
+                $tempLocation    = $_FILES['fileUpload']['tmp_name'][$id];
+                $targetFilePath  = $uploadsDir . $fileName;
+                $fileType        = strtolower(pathinfo($targetFilePath, PATHINFO_EXTENSION));
+                $uploadDate      = date('Y-m-d H:i:s');
+                $uploadOk = 1;
+
+                if(in_array($fileType, $allowedFileType)){
+                        if(move_uploaded_file($tempLocation, $targetFilePath)){
+                            $sqlVal = "('".$fileName."', '".$uploadDate."')";
+                        } else {
+                            $response = array(
+                                "status" => "alert-danger",
+                                "message" => "File coud not be uploaded."
+                            );
+                        }
+                    
+                } else {
+                    $response = array(
+                        "status" => "alert-danger",
+                        "message" => "Only .jpg, .jpeg and .png file formats allowed."
+                    );
+                }
+                // Add into MySQL database
+                if(!empty($sqlVal)) {
+
+
+
+                    //$insert = $conn->query("INSERT INTO user (imagefileUpload, date_time) VALUES $sqlVal");
+                    if($i==1){
+                        $insert1 = $fileName;
+                        if($insert1) {
+                            $response = array(
+                                "status" => "alert-success",
+                                "message" => "Files successfully uploaded."
+                            );
+                        } else {
+                            $response = array(
+                                "status" => "alert-danger",
+                                "message" => "Files coudn't be uploaded due to database error."
+                            );
+                        }
+                    }
+                    if($i==2){
+                        $insert2 = $fileName;
+                        if($insert2) {
+                            $response = array(
+                                "status" => "alert-success",
+                                "message" => "Files successfully uploaded."
+                            );
+                        } else {
+                            $response = array(
+                                "status" => "alert-danger",
+                                "message" => "Files coudn't be uploaded due to database error."
+                            );
+                        }
+                    }
+                    if($i==3){
+                        $insert3 = $fileName;
+                        if($insert3) {
+                            $response = array(
+                                "status" => "alert-success",
+                                "message" => "Files successfully uploaded."
+                            );
+                        } else {
+                            $response = array(
+                                "status" => "alert-danger",
+                                "message" => "Files coudn't be uploaded due to database error."
+                            );
+                        }
+                    }
+                    if($i==4){
+                        $insert4 = $fileName;
+                        if($insert4) {
+                            $response = array(
+                                "status" => "alert-success",
+                                "message" => "Files successfully uploaded."
+                            );
+                        } else {
+                            $response = array(
+                                "status" => "alert-danger",
+                                "message" => "Files coudn't be uploaded due to database error."
+                            );
+                        }
+                    }
+                    if($i==5){
+                        $insert5 = $fileName;
+                        if($insert5) {
+                            $response = array(
+                                "status" => "alert-success",
+                                "message" => "Files successfully uploaded."
+                            );
+                        } else {
+                            $response = array(
+                                "status" => "alert-danger",
+                                "message" => "Files coudn't be uploaded due to database error."
+                            );
+                        }
+                    }
+
+                }
+            }
+
+
+
+            mysqli_query($conn,"INSERT INTO annonces (titre, description, categorie, image1, image2, image3, image4, image5, prix, emplacement,email)
+            VALUES ('$titre', '$description', '$categorie', '$insert1', '$insert2', '$insert3', '$insert4', '$insert5', '$prix', '$emplacement','$email');");
+
+
+
+        } else {
+            // Error
+            $response = array(
+                "status" => "alert-danger",
+                "message" => "Please select a file to upload."
+            );
+        }
+        
+
+
+
+
+
+    }
     header("Location: AjouterAnnonce.html");

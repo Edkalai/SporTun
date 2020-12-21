@@ -1,8 +1,33 @@
 <?php
 
     include '../Dashboard/DBconnection.php';
+    include 'PHPfunctions.php';
+
+
+
+    session_start();
+    $compte="Compte";
+    if (isset($_SESSION["email"]))
+    {
+        $compte="Profil";
+        $email=$_SESSION['email'];
+    }
+
+
+    if(isset($_GET['image'])) {
+        $image = ($_GET['image']);
+        
+        }else{
+            $image = 'image1';
+        }
+
     $id = $_GET['id'];
     $sql = "SELECT * FROM annonces WHERE id=". $id .";";
+    
+    /********** inc vues****************/ 
+    $vues = "UPDATE annonces SET vues = vues +1 WHERE id =" . $id .";";
+    $conn->query($vues);
+
     $result=mysqli_query($conn,$sql);
     $row=mysqli_fetch_assoc($result);
 
@@ -11,11 +36,10 @@
 
 
     
-    $sql1 = "SELECT * FROM annonces WHERE categorie ='" . $row['categorie']. " ' and id !=". $id ." LIMIT 4 ;"; 
+    $sql1 = "SELECT * FROM annonces WHERE categorie ='" . $row['categorie']. " ' and id !=". $id ." LIMIT 4 ;";
+    $categorie= $row['categorie'];
     //echo $sql1; die;
     $result1 = mysqli_query($conn,$sql1);
-    $rows = mysqli_fetch_assoc($result1);
-
     //echo $row['categorie']
 
     
@@ -41,11 +65,14 @@
         
         <nav>
             <ul>
-                <li><a href="index.html">Acceuil</a></li>
-                <li><a href="AjouterAnnonce">Annonces</a></li>
-                <li><a href="billets.html">Billets</a></li>
-                <li><a href="actualites.html">Actualités</a></li>
-                <li><a href="account.html">Compte</a></li>
+                <li><a href="index.php">Acceuil</a></li>
+                <li><a href="annonce.php">Annonces</a></li>
+                <?php if($compte=="Profil"){ 
+                echo"<li><a href='AjouterAnnonce.php'>Créer une annonce</a></li>";
+                }?>
+                <li><a href="billets.php">Billets</a></li>
+                <li><a href="actualites.php">Actualités</a></li>
+                <li><a href="account.php"><?php echo $compte ?></a></li>
             </ul>
         </nav>
         <a href="panier.php"><img src="assets/img/cart.png" class="cart" alt=""></a>
@@ -61,31 +88,49 @@
         <div class="small-container single-product" >
             <div class="row">
                 <div class="col-2">
-               
-                <?php echo " <img src=".$row['image']. " width='100%' ></a> "?>
+                <?php echo " <img src=assets/img/".$row[$image]. " width='100%' ></a> "?>
                 
-            <!--        <div class="small-img-row">
-                        <div class="small-img-col">
-                            <img src="assets/img/product-1.jpg" width="100%" class="small-img">
-                        </div>
-                        <div class="small-img-col">
-                            <img src="assets/img/product-2.jpg" width="100%" class="small-img">
-                        </div>
-                        <div class="small-img-col">
-                            <img src="assets/img/product-1.jpg" width="100%" class="small-img">
-                        </div>
-                        <div class="small-img-col">
-                            <img src="assets/img/product-1.jpg" width="100%" class="small-img">
-                        </div>
-                    </div>     -->
+                    <div class="small-img-row">
+                        <?php
+
+                            echo "<div class='small-img-col'>";
+                                echo "<a href=DetailsAnnonce.php?id=$id&image=image1> <img src=assets/img/".$row['image1']. " width='100%' ></a> ";
+                            echo "</div>";
+                            
+                            if($row['image2']!=''){
+                            echo "<div class='small-img-col'>";
+                                echo "<a href=DetailsAnnonce.php?id=$id&image=image2> <img src=assets/img/".$row['image2']. " width='100%' ></a> ";
+                            echo "</div>";
+                            }
+                            if($row['image3']!=''){
+                            echo "<div class='small-img-col'>";
+                                echo "<a href=DetailsAnnonce.php?id=$id&image=image3> <img src=assets/img/".$row['image3']. " width='100%' ></a> ";
+                            echo "</div>";
+                            }
+                            if($row['image4']!=''){
+                            echo"<div class='small-img-col'>";
+                                echo "<a href=DetailsAnnonce.php?id=$id&image=image4> <img src=assets/img/".$row['image4']. " width='100%' ></a> ";
+                            echo "</div>";
+                            }
+                            if($row['image5']!=''){
+                            echo "<div class='small-img-col'>";
+                                echo "<a href=DetailsAnnonce.php?id=$id&image=image5> <img src=assets/img/".$row['image5']. " width='100%' ></a> ";
+                            echo "</div>";
+                            }
+                            
+
+                        ?>
+                    </div>     
                 
                 </div> 
                 <div class="col-2">
                     <h1><?php echo $row['titre']; ?></h1>
                     
                     <h4><?php echo $row['prix'] . ' TND'; ?></h4>
-                    <input type="number" value="1">
-                    <a href="" class="btn">Ajouter Au Panier</a>
+                    <input id="quantite" type="number" value="1">
+                              
+                    <a href='' onclick="this.href='AjouterPanier.php?id=<?php echo$id?>&quantite='+document.getElementById('quantite').value" class='btn'>Ajouter Au Panier</a>
+                
                     <h3>Description <i class="fa fa-indent"></i></h3>
                     <br>
                     <p><?php echo $row['description']; ?></p>
@@ -99,7 +144,8 @@
         <div class="small-container">
             <div class="row row-2">
                 <h2>Produits Connexes</h2>
-                <p>Voir Plus</p>
+
+                <?php echo "<p><a href='Annonce.php?categorie=$categorie#c1' class='hoverprofile'>Voir Plus</a></p>";?>
             </div>
         </div>
 
@@ -114,18 +160,19 @@
 
 
             <?php
-                $n=0;
-                while(($rows=mysqli_fetch_assoc($result1))&&($n<4))
+                
+                while($rows=mysqli_fetch_assoc($result1))
                 {
                     $idx=$rows['id'];
-                    $n++;
+                    
                 
             ?>
                      <div class='col-4'>
-                        <?php echo "<a href=DetailsAnnonce.php?id=$idx> <img src=" .$rows['image']. " ></a> "?>
+                        <?php $description=LimitCharacter($rows['description'],50); ?>
+                        <?php echo "<a href=DetailsAnnonce.php?id=$idx> <img src=assets/img/" .$rows['image1']. " ></a> "?>
                         <h4><?php echo $rows['titre']; ?></h4>
                         <p><?php echo $rows['prix'] . ' TND'; ?></p>
-                        <p><?php echo $rows['description']; ?></p>
+                        <p><?php echo $description ?></p>
                         <p> <a href="" class="hoverprofile" title="Voir profil de vendeur" > Nada </a> </p>
                         
                     </div>
@@ -135,32 +182,7 @@
         
             ?>
 
-            <!--
-            <div class="col-4">
-                <img src="assets/img/product-2.jpg" alt="">
-                <h4>Hatléres de musculation</h4>
-                <p> 50.00TND</p>
-                <p>Etat: comme neuf</p>
-                <p> <a href="" class="hoverprofile" title="Voir profil de vendeur" > Hedi </a> </p>
-                
-            </div>
-            <div class="col-4">
-                <img src="assets/img/product-3.jpg" alt="">
-                <h4>Vélo d'appartement</h4>
-                <p> 550.00TND</p>
-                <p>Etat: comme neuf</p>
-                <p> <a href="" class="hoverprofile" title="Voir profil de vendeur" > Elyes </a> </p>
-                
-            </div>
-            <div class="col-4">
-                <img src="assets/img/product-4.jpg" alt="">
-                <h4>Combinaison natation</h4>
-                <p> 120.00TND</p>
-                <p>Etat: comme neuf</p>
-                <p> <a href="" class="hoverprofile" title="Voir profil de vendeur" > Youssef </a> </p>
-                
-            </div>
-            -->
+
 
 
 
@@ -242,6 +264,7 @@
         {
             ProductImg.src = SmallImg[3].src;
         }
+
         
 </script>
 

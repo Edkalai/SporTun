@@ -4,9 +4,25 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <title>Ajouter annonce</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+
+    <style>
+        .reg-container {
+          max-width: 450px;
+        }
+        .imgGallery img {
+          padding: 8px;
+          max-width: 100px;
+        }    
+    </style>
+
+
 </head>
 
 <body>
@@ -22,11 +38,12 @@
         
         <nav>
             <ul>
-                <li><a href="index.html">Acceuil</a></li>
-                <li><a href="annonce.html">Annonces</a></li>
-                <li><a href="billets.html">Billets</a></li>
-                <li><a href="actualites.html">Actualités</a></li>
-                <li><a href="account.html">Compte</a></li>
+                <li><a href="index.php">Acceuil</a></li>
+                <li><a href="Annonce.php">Annonces</a></li>
+                <li><a href='AjouterAnnonce.php'>Créer une annonce</a></li>
+                <li><a href="billets.php">Billets</a></li>
+                <li><a href="actualites.php">Actualités</a></li>
+                <li><a href="account.php">Profil</a></li>
             </ul>
         </nav>
         <a href="panier.html"><img src="assets/img/cart.png" class="cart" alt=""></a>
@@ -78,8 +95,17 @@
 
                             </select>
                             </br></br>
-                            <label for="photos">Photos (10 maximum)</label>
-                            <input type="file" name="image" accept="uploads/*" multiple>
+                            <label for="photos">Photos (5 maximum)</label>
+
+                            <div class="user-image mb-3 text-center">
+                                <div class="imgGallery"> 
+                                  <!-- Image preview -->
+                                </div>
+                            </div>
+
+                            <div class="custom-file">
+                                <input type="file" name="fileUpload[]" class="custom-file-input" id="chooseFile" multiple>
+                            </div>
                             </br></br>
                             <label for="prix">Prix (TND)</label>
                             <input type="number" name="prix" placeholder="prix">
@@ -120,6 +146,10 @@
                             <button type="submit" name="submit" class="btn">Ajouter l'annonce</button>
                              
                         </form>
+
+
+                    
+
                         <p style="color: rgb(255, 0, 0);" id="erreur"></p>
                         <script src="login.js"></script>
     
@@ -188,6 +218,36 @@
             document.getElementById("indicator").style.transform="translateX(0px)";
         }
    </script>
+
+        <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+    <script>
+        $(function() {
+        // Multiple images preview with JavaScript
+        var multiImgPreview = function(input, imgPreviewPlaceholder) {
+
+            if (input.files) {
+                var filesAmount = input.files.length;
+
+                for (i = 0; i < filesAmount; i++) {
+                    var reader = new FileReader();
+
+                    reader.onload = function(event) {
+                        $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(imgPreviewPlaceholder);
+                    }
+
+                    reader.readAsDataURL(input.files[i]);
+                }
+            }
+
+        };
+
+        $('#chooseFile').on('change', function() {
+            multiImgPreview(this, 'div.imgGallery');
+        });
+        });    
+    </script>
 
     
 </body>

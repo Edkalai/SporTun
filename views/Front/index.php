@@ -7,6 +7,7 @@ if (isset($_SESSION["email"]))
     $compte="Profil";
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,6 +31,9 @@ if (isset($_SESSION["email"]))
             <ul>
                 <li><a href="index.php">Acceuil</a></li>
                 <li><a href="annonce.php">Annonces</a></li>
+                <?php if($compte=="Profil"){ 
+                echo"<li><a href='AjouterAnnonce.html'>Créer une annonce</a></li>";
+                }?>
                 <li><a href="billets.php">Billets</a></li>
                 <li><a href="actualites.php">Actualités</a></li>
                 <li><a href="account.php"><?php echo $compte ?></a></li>

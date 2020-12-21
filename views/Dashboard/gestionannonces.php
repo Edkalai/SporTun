@@ -305,6 +305,7 @@ $NbAnnonces=mysqli_num_rows($result);
                                                 <th>Image</th>
                                                 <th>Prix</th>
                                                 <th>Emplacement</th>
+                                                <th>Propriétaire</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -319,9 +320,11 @@ $NbAnnonces=mysqli_num_rows($result);
                                 <td><?php echo $rows['titre']; ?></td>
                                 <td><?php echo $rows['description']; ?></td>
                                 <td><?php echo $rows['categorie']; ?></td>
-                                <td><?php echo "<img src='../Front/".$rows['image']."' style='width:150px' >"; ?></td>
+                                <td><?php echo "<img src='../Front/assets/img/".$rows['image1']."' style='width:150px' >"; ?></td>
                                 <td><?php echo $rows['prix']; ?></td>
                                 <td><?php echo $rows['emplacement']; ?></td>
+                                <td><?php echo $rows['email']; ?></td>
+
 
 
                                 <td>

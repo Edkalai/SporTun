@@ -1,6 +1,16 @@
 <?php
 
 include '../Dashboard/DBconnection.php';
+include 'PHPfunctions.php';
+
+
+session_start();
+$compte="Compte";
+if (isset($_SESSION["email"]))
+{
+    $compte="Profil";
+}
+
 
 
 if(isset($_GET['categorie'])) {
@@ -48,17 +58,16 @@ if($tri==0){
     //Popularité
 if($tri==1){
 
-    $sql="SELECT * from annonces ;";
+    $sql="SELECT * from annonces ORDER BY vues DESC;";
     $result=mysqli_query($conn,$sql);
     $choix='Popularité';
 
-    
-
 }
+
     //Nouveautés
 if($tri==2){
 
-    $sql="SELECT * FROM annonces ORDER BY id DESC ;";
+    $sql="SELECT * FROM annonces ORDER BY date_time DESC ;";
     $result=mysqli_query($conn,$sql);
     $choix='Nouveautés';
 
@@ -112,9 +121,16 @@ if($tri==5){
     <title>SporTun</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 </head>
 <body>
+
+
+
+
+
+
       <div class="container">
         <div class="navbar">
             <div class="logo">
@@ -124,9 +140,12 @@ if($tri==5){
         <nav>
             <ul>
                 <li><a href="index.php">Acceuil</a></li>
-                <li><a href="AjouterAnnonce">Annonces</a></li>
-                <li><a href="billets.html">Billets</a></li>
-                <li><a href="actualites.html">Actualités</a></li>
+                <li><a href="Annonce.php">Annonces</a></li>
+                <?php if($compte=="Profil"){ 
+                echo"<li><a href='AjouterAnnonce.php'>Créer une annonce</a></li>";
+                }?>
+                <li><a href="billets.php">Billets</a></li>
+                <li><a href="actualites.php">Actualités</a></li>
                 <li><a href="account.php">Compte</a></li>
             </ul>
         </nav>
@@ -176,8 +195,8 @@ if($tri==5){
             <br>
             <div class="row">
                 <?php echo "<a href='Annonce.php?categorie=Tous Les Produits&?npage=$s&tri=$tri#c1' class='col-allproducts'>";?>
-                    <img src="assets/img/equipements1.png" style="width: 100%;" alt="Fitness Muscu">
-                    <h2>Tous Les Produits</h2>
+                    <img src="assets/img/equipements.png" style="width: 100%;" alt="Fitness Muscu">
+                    <h2>TOUS LES PRODUITS</h2>
                 </a>   
             </div>
 
@@ -201,7 +220,6 @@ if($tri==5){
                 <option value="0">Par défaut</option> 
                 <option value="1">Popularité</option> 
                 <option value="2">Nouveautés</option> 
-                <option value="3">Mieux notés</option> 
                 <option value="4">Prix le plus bas</option> 
                 <option value="5">Prix le plus élevé</option> 
                 
@@ -256,12 +274,12 @@ if($tri==5){
                     $id=$rows['id'];
                     ?>
                         <div class="col-4">
-            
-                        <?php echo "<a href=DetailsAnnonce.php?id=$id> <img src=".$rows['image']." ></a> "?>
+                        <?php $description=LimitCharacter($rows['description'],50); ?>
+                        <?php echo "<a href=DetailsAnnonce.php?id=$id> <img src=assets/img/".$rows['image1']." ></a> "?>
                         
                             <h4><?php echo $rows['titre']; ?></h4>
                             <p><?php echo $rows['prix'] . ' TND'; ?></p>
-                            <p><?php echo $rows['description']; ?></p>
+                            <p><?php echo $description; ?></p>
                             <p> <a href="" class="hoverprofile" title="Voir profil de vendeur" > Nada </a> </p>
 
                             
@@ -393,6 +411,7 @@ if($tri==5){
         </script>
 
 
+        
 
         
 

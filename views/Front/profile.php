@@ -33,6 +33,7 @@ $row=mysqli_fetch_assoc($result);
               <ul>
                   <li><a href="index.php">Acceuil</a></li>
                   <li><a href="annonce.php">Annonces</a></li>
+                  <li><a href='AjouterAnnonce.html'>Créer une annonce</a></li>
                   <li><a href="billets.php">Billets</a></li>
                   <li><a href="actualites.php">Actualités</a></li>
                   <li><a href="account.php">Profil</a></li>
