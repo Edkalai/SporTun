@@ -1,10 +1,13 @@
 <?php
 include 'DBconnection.php';
 session_start();
+$connected=0;
 if ($_SESSION["email"]=="")
 {
     header("Location: account.php");
     exit();
+}else{
+    $connected=1;
 }
 $sql='select * from panier where email="'.$_SESSION["email"].'";';
 $result=mysqli_query($conn,$sql);
@@ -34,9 +37,12 @@ $somme=mysqli_fetch_assoc($req);
               </div>
           
           <nav>
-              <ul>
+              <ul>    
                   <li><a href="index.php">Acceuil</a></li>
                   <li><a href="annonce.php">Annonces</a></li>
+                  <?php if($connected==1){ 
+                  echo"<li><a href='AjouterAnnonce.php'>Créer une annonce</a></li>";
+                  }?> 
                   <li><a href="billets.php">Billets</a></li>
                   <li><a href="actualites.php">Actualités</a></li>
                   <li><a href="account.php">Profil</a></li>
