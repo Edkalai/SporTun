@@ -51,6 +51,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="assets/img/logo.ico">
     <title>SporTun</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -173,7 +174,7 @@
                         <h4><?php echo $rows['titre']; ?></h4>
                         <p><?php echo $rows['prix'] . ' TND'; ?></p>
                         <p><?php echo $description ?></p>
-                        <p> <a href="" class="hoverprofile" title="Voir profil de vendeur" > Nada </a> </p>
+                        <!--<p> <a href="" class="hoverprofile" title="Voir profil de vendeur" > Nada </a> </p>-->
                         
                     </div>
 
