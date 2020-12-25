@@ -139,7 +139,7 @@ if($tri==5){
             </div>
         
         <nav>
-            <ul>
+            <ul id="MenuItems">
                 <li><a href="index.php">Acceuil</a></li>
                 <li><a href="Annonce.php">Annonces</a></li>
                 <?php if($compte=="Profil"){ 
@@ -151,6 +151,7 @@ if($tri==5){
             </ul>
         </nav>
         <a href="panier.php"><img src="assets/img/cart.png" class="cart" alt=""></a>
+        <img src="assets/img/menu.png" class="menu-icon" onclick="togglemenu()">
       </div>
 
       </div>
@@ -160,7 +161,7 @@ if($tri==5){
     
         <div class="small-container">
 
-            <h2 class="title">Catégories en vedette</h2>
+            <h2 class="title">Catégories</h2>
 
 
 
@@ -413,7 +414,20 @@ if($tri==5){
 
 
         
-
+<!-------js for toggle menu -------->
+<script>
+        var MenuItems= document.getElementById("MenuItems");
+        MenuItems.style.maxHeight="0px";
+        function togglemenu(){
+            if (MenuItems.style.maxHeight =="0px") {
+                MenuItems.style.maxHeight ="200px";
+            }
+            else
+            {
+                MenuItems.style.maxHeight ="0px";
+            }
+        }
+    </script>
         
 
 
