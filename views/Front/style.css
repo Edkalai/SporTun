@@ -544,7 +544,7 @@ ul{
     position:absolute;
     width: 15%;
     height:110%;
-    background:#ff523b;
+    background:#EC1B22;
     box-shadow: 3px 3px 10px
     rgba(119,119,119,.5);
     border: .1em solid #fff;
@@ -588,7 +588,7 @@ ul{
 
 .profile-container h1{
     font-family:"Montserrat",sans-serif;
-    color: #db5f4f;
+    color: #EC1B22;
     font-size:1.4rem;
     margin-top:40px;
     margin-bottom:35px;
@@ -606,7 +606,7 @@ ul{
 
 .input{
     border:0;
-    border-bottom: 1px solid #8d2f04;
+    border-bottom: 1px solid #EC1B22;
     width:80%;
     font-family:'montserrat',sans-serif;
     font-size:.8em;
