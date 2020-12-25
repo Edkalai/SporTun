@@ -40,6 +40,7 @@ if (isset($_SESSION["email"]))
                     </ul>
                 </nav>
                 <img src="assets/img/cart.png" class="cart" alt="">
+                
             </div>
             <!--- <div class="barre">
                 <nav>
@@ -163,5 +164,19 @@ if (isset($_SESSION["email"]))
             <p class="copyright">Copyright 2020 - SporTun</p>
         </div>
     </div>
+    <!-------js for toggle menu -------->
+    <script>
+        var MenuItems= document.getElementById("MenuItems");
+        MenuItems.style.maxHeight="0px";
+        function togglemenu(){
+            if (MenuItems.style.maxHeight =="0px") {
+                MenuItems.style.maxHeight ="200px";
+            }
+            else
+            {
+                MenuItems.style.maxHeight ="0px";
+            }
+        }
+    </script>
 </body>
 </html>

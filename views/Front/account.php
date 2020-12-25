@@ -30,7 +30,7 @@ if (isset($_SESSION["email"]))
         </div>
     
     <nav>
-        <ul>
+        <ul id="MenuItems">
             <li><a href="index.php">Acceuil</a></li>
             <li><a href="annonce.php">Annonces</a></li>
             <li><a href="billets.php">Billets</a></li>
@@ -39,6 +39,7 @@ if (isset($_SESSION["email"]))
         </ul>
     </nav>
     <a href="panier.php"><img src="assets/img/cart.png" class="cart" alt=""></a>
+    <img src="assets/img/menu.png" class="menu-icon" onclick="togglemenu()">
   </div>
   </div>
   
@@ -150,5 +151,19 @@ if (isset($_SESSION["email"]))
         <p class="copyright">Copyright 2020 - SporTun</p>
     </div>
 </div>
+ <!-------js for toggle menu -------->
+ <script>
+        var MenuItems= document.getElementById("MenuItems");
+        MenuItems.style.maxHeight="0px";
+        function togglemenu(){
+            if (MenuItems.style.maxHeight =="0px") {
+                MenuItems.style.maxHeight ="200px";
+            }
+            else
+            {
+                MenuItems.style.maxHeight ="0px";
+            }
+        }
+    </script>
 </body>
 </html>
