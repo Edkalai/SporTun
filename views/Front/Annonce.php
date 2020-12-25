@@ -119,6 +119,7 @@ if($tri==5){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SporTun</title>
+    <link rel="shortcut icon" href="assets/img/logo.ico">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -146,7 +147,7 @@ if($tri==5){
                 }?>
                 <li><a href="billets.php">Billets</a></li>
                 <li><a href="actualites.php">Actualités</a></li>
-                <li><a href="account.php">Compte</a></li>
+                <li><a href="account.php"><?php echo"$compte"?></a></li>
             </ul>
         </nav>
         <a href="panier.php"><img src="assets/img/cart.png" class="cart" alt=""></a>
@@ -281,7 +282,7 @@ if($tri==5){
                             <h4><?php echo $rows['titre']; ?></h4>
                             <p><?php echo $rows['prix'] . ' TND'; ?></p>
                             <p><?php echo $description; ?></p>
-                            <p> <a href="" class="hoverprofile" title="Voir profil de vendeur" > Nada </a> </p>
+                            <!--<p> <a href="" class="hoverprofile" title="Voir profil de vendeur" > Nada </a> </p>-->
 
                             
                         </div>

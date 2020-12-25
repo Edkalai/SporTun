@@ -2,6 +2,12 @@
     include_once 'DBconnection.php';
     session_start();
 
+    if ($_SESSION["email"]=="")
+    {
+        header("Location: account.php");
+        exit();
+    }
+
 
     $id = $_GET['id'];
     $quantite = $_GET['quantite'];
