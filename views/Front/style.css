@@ -761,7 +761,7 @@ select:focus{
 
 /* ------- Media query for menu ---------*/
 
-@media only screen and (max-width : 1000px){
+@media only screen and (max-width : 1150px){
     nav ul {
         position : absolute;
         z-index:1;
