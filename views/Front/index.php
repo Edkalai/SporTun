@@ -55,62 +55,7 @@ if (isset($_SESSION["email"]))
          </div>
       </div>
     </div>
-<!-------- featured categories -------->
-<div class="categories">
-    <div class="small-container">
-     <h2 class="title">Catégories en vedette</h2>
-    <div class="row">
-     <div class="col-3">
-         <img src="assets/img/category-1.png" alt="Fitness Muscu">
-     </div>
-     
-     <div class="col-3">
-         <img src="assets/img/category-2.png" alt="Cyclisme">
-     </div>
-     <div class="col-3">
-         <img src="assets/img/category-3.png" alt="Football">
-     </div>
-    </div>
- </div>
-</div>
- <!-------- featured products -------->
- <div class="small-container">
-     <h2 class="title">Produits en vedette</h2>
-     <div class="row">
-         <div class="col-4">
-             <img src="assets/img/product-1.jpg" alt="">
-             <h4>Raquette de tennis</h4>
-             <p> 40.00TND</p>
-             <p>Etat: comme neuf</p>
-             <p> <a href="" class="hoverprofile" title="Voir profil de vendeur" > Nada </a> </p>
-             
-         </div>
-         <div class="col-4">
-             <img src="assets/img/product-2.jpg" alt="">
-             <h4>Hatléres de musculation</h4>
-             <p> 50.00TND</p>
-             <p>Etat: comme neuf</p>
-             <p> <a href="" class="hoverprofile" title="Voir profil de vendeur" > Hedi </a> </p>
-             
-         </div>
-         <div class="col-4">
-             <img src="assets/img/product-3.jpg" alt="">
-             <h4>Vélo d'appartement</h4>
-             <p> 550.00TND</p>
-             <p>Etat: comme neuf</p>
-             <p> <a href="" class="hoverprofile" title="Voir profil de vendeur" > Elyes </a> </p>
-             
-         </div>
-         <div class="col-4">
-             <img src="assets/img/product-4.jpg" alt="">
-             <h4>Combinaison natation</h4>
-             <p> 120.00TND</p>
-             <p>Etat: comme neuf</p>
-             <p> <a href="" class="hoverprofile" title="Voir profil de vendeur" > Youssef </a> </p>
-             
-         </div>
-     </div>
- </div>
+
     <!---------- footer ------------>
     <div class="footer">
         <div class="container">
