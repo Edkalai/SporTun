@@ -41,9 +41,9 @@ $somme=mysqli_fetch_assoc($req);
               <ul id="MenuItems">
 
                   <li><a href="index.php">Acceuil</a></li>
-                  <li><a href="annonce.php">Annonces</a></li>
+                  <li><a href="annonce.php">Produits</a></li>
                   <?php if($connected==1){ 
-                  echo"<li><a href='AjouterAnnonce.php'>Créer une annonce</a></li>";
+                  echo"<li><a href='AjouterAnnonce.php'>Vendre un produit</a></li>";
                   }?> 
                   <li><a href="billets.php">Billets</a></li>
                   <li><a href="actualites.php">Actualités</a></li>

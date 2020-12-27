@@ -32,7 +32,7 @@ if (isset($_SESSION["email"]))
     <nav>
         <ul id="MenuItems">
             <li><a href="index.php">Acceuil</a></li>
-            <li><a href="annonce.php">Annonces</a></li>
+            <li><a href="annonce.php">Produits</a></li>
             <li><a href="billets.php">Billets</a></li>
             <li><a href="actualites.php">Actualités</a></li>
             <li><a href="account.php">Compte</a></li>

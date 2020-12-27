@@ -60,7 +60,7 @@ $resultatprix=mysqli_query($conn,$sql);
                             <li>
                                 <a href="#">
                                     <i class="fas fa-bullhorn"></i>
-                                    <span class="bot-line"></span>Gestion des annonces</a>
+                                    <span class="bot-line"></span>Gestion des produits</a>
                             </li>
                             <li>
                                 <a href="table.html">

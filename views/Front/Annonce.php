@@ -33,12 +33,12 @@ $npage = ($_GET['npage']);
 }
 
 
-$sql1='SELECT * from annonces;';
+$sql1='SELECT * from miseenvente;';
 $result1=mysqli_query($conn,$sql1);
 $NbAnnonces=mysqli_num_rows($result1);
 
 if($categorie!='Tous Les Produits'){
-    $sql1 = "SELECT * FROM annonces WHERE categorie ='" . $categorie. " ';"; 
+    $sql1 = "SELECT * FROM miseenvente WHERE categorie ='" . $categorie. " ';"; 
     $result1=mysqli_query($conn,$sql1);
     $NbAnnonces=mysqli_num_rows($result1);
 }
@@ -49,7 +49,7 @@ if($categorie!='Tous Les Produits'){
     //Par défaut
 if($tri==0){
 
-    $sql="SELECT * from annonces  ;";
+    $sql="SELECT * from miseenvente  ;";
     $result=mysqli_query($conn,$sql);
     $choix='Par défaut';
 
@@ -58,7 +58,7 @@ if($tri==0){
     //Popularité
 if($tri==1){
 
-    $sql="SELECT * from annonces ORDER BY vues DESC;";
+    $sql="SELECT * from miseenvente ORDER BY vues DESC;";
     $result=mysqli_query($conn,$sql);
     $choix='Popularité';
 
@@ -67,7 +67,7 @@ if($tri==1){
     //Nouveautés
 if($tri==2){
 
-    $sql="SELECT * FROM annonces ORDER BY date_time DESC ;";
+    $sql="SELECT * FROM miseenvente ORDER BY date_time DESC ;";
     $result=mysqli_query($conn,$sql);
     $choix='Nouveautés';
 
@@ -76,7 +76,7 @@ if($tri==2){
     //Mieux notés
 if($tri==3){
 
-    $sql="SELECT * from annonces ;";
+    $sql="SELECT * from miseenvente ;";
     $result=mysqli_query($conn,$sql);
     $choix='Mieux notés';
 
@@ -85,7 +85,7 @@ if($tri==3){
     //Prix le plus bas
 if($tri==4){
 
-    $sql="SELECT * FROM annonces ORDER BY prix ASC ;";
+    $sql="SELECT * FROM miseenvente ORDER BY prix ASC ;";
     //echo $sql; die;
     $result=mysqli_query($conn,$sql);
     $choix='Prix le plus bas';
@@ -95,7 +95,7 @@ if($tri==4){
     //Prix le plus élevé
 if($tri==5){
 
-    $sql="SELECT * FROM annonces ORDER BY prix DESC ;";
+    $sql="SELECT * FROM miseenvente ORDER BY prix DESC ;";
     $result=mysqli_query($conn,$sql);
     $choix='Prix le plus élevé';
 
@@ -141,9 +141,9 @@ if($tri==5){
         <nav>
             <ul id="MenuItems">
                 <li><a href="index.php">Acceuil</a></li>
-                <li><a href="Annonce.php">Annonces</a></li>
+                <li><a href="Annonce.php">Produits</a></li>
                 <?php if($compte=="Profil"){ 
-                echo"<li><a href='AjouterAnnonce.php'>Créer une annonce</a></li>";
+                echo"<li><a href='AjouterAnnonce.php'>Vendre un produit</a></li>";
                 }?>
                 <li><a href="billets.php">Billets</a></li>
                 <li><a href="actualites.php">Actualités</a></li>
@@ -201,10 +201,11 @@ if($tri==5){
                     <h2>TOUS LES PRODUITS</h2>
                 </a>   
             </div>
-
-
+            
 
         </div>
+
+        
 
 
      </div> 
@@ -323,7 +324,11 @@ if($tri==5){
 
         for($i=0;$i<$nbpages;$i++){
             $s=$i+1;
-            echo"<a href='Annonce.php?categorie=$categorie&npage=$i&tri=$tri#c1'><span>$s</span></a>";
+            if($npage==$i){
+                echo"<a class='active' href='Annonce.php?categorie=$categorie&npage=$i&tri=$tri#c1'><span>$s</span></a>";
+            }else{
+                echo"<a href='Annonce.php?categorie=$categorie&npage=$i&tri=$tri#c1'><span>$s</span></a>";
+            }
             
         }
 

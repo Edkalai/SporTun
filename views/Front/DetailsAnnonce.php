@@ -22,10 +22,10 @@
         }
 
     $id = $_GET['id'];
-    $sql = "SELECT * FROM annonces WHERE id=". $id .";";
+    $sql = "SELECT * FROM miseenvente WHERE id=". $id .";";
     
     /********** inc vues****************/ 
-    $vues = "UPDATE annonces SET vues = vues +1 WHERE id =" . $id .";";
+    $vues = "UPDATE miseenvente SET vues = vues +1 WHERE id =" . $id .";";
     $conn->query($vues);
 
     $result=mysqli_query($conn,$sql);
@@ -36,7 +36,7 @@
 
 
     
-    $sql1 = "SELECT * FROM annonces WHERE categorie ='" . $row['categorie']. " ' and id !=". $id ." LIMIT 4 ;";
+    $sql1 = "SELECT * FROM miseenvente WHERE categorie ='" . $row['categorie']. " ' and id !=". $id ." LIMIT 4 ;";
     $categorie= $row['categorie'];
     //echo $sql1; die;
     $result1 = mysqli_query($conn,$sql1);
@@ -67,9 +67,9 @@
         <nav>
             <ul id="MenuItems">
                 <li><a href="index.php">Acceuil</a></li>
-                <li><a href="annonce.php">Annonces</a></li>
+                <li><a href="annonce.php">Produits</a></li>
                 <?php if($compte=="Profil"){ 
-                echo"<li><a href='AjouterAnnonce.php'>Créer une annonce</a></li>";
+                echo"<li><a href='AjouterAnnonce.php'>Vendre un produit</a></li>";
                 }?>
                 <li><a href="billets.php">Billets</a></li>
                 <li><a href="actualites.php">Actualités</a></li>
