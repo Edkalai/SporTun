@@ -41,8 +41,8 @@
         <nav>
             <ul id="MenuItems">
                 <li><a href="index.php">Acceuil</a></li>
-                <li><a href="Annonce.php">Annonces</a></li>
-                <li><a href='AjouterAnnonce.php'>Créer une annonce</a></li>
+                <li><a href="Annonce.php">Produits</a></li>
+                <li><a href='AjouterAnnonce.php'>Vendre un produit</a></li>
                 <li><a href="billets.php">Billets</a></li>
                 <li><a href="actualites.php">Actualités</a></li>
                 <li><a href="account.php">Profil</a></li>
@@ -75,7 +75,7 @@
                             <a href="mdp.html">Mot de passe oublié ?</a>
                         </form>
                 -->        
-                    <div class="reg-container">
+                    <div class="vendreproduit-container">
                         <form action="AjouterAnnonce.php" method="POST" id="AnnForm" name="f" enctype="multipart/form-data">
                             <label for="titre">Titre</label>
                             <input type="text" name="titre" placeholder="Saisissez un titre descriptif">
@@ -143,6 +143,9 @@
                                 <option value="Zaghouan">Zaghouan</option>
 
                             </select>
+                            <br><br>
+                            <label for="numtel">Numero telephone</label>
+                            <input type="number" name="numtel" placeholder="numero telephone">
 
                             </br></br>
 

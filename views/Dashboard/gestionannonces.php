@@ -8,13 +8,31 @@ if(isset($_GET['id'])) {
         $id = 0;
     }
 
-mysqli_query($conn,"DELETE FROM annonces WHERE id='".$id."'");
+
+if(isset($_GET['choix'])){
+    $choix = $_GET['choix'];
+    }else{
+        $choix = 0;
+    }
+
+if($choix!=2){
+
+if($choix==0){
+mysqli_query($conn,"DELETE FROM demandesdevente WHERE id='".$id."'");
+$sql='select * from demandesdevente;';
+}
+
+if($choix==1){
+mysqli_query($conn,"DELETE FROM miseenvente WHERE id='".$id."'");
+$sql='select * from miseenvente;';
+}
+
+
 //mysqli_close($conn);
 
-$sql='select * from annonces;';
 $result=mysqli_query($conn,$sql);
 $NbAnnonces=mysqli_num_rows($result);
-
+}
 
 
 
@@ -30,7 +48,7 @@ $NbAnnonces=mysqli_num_rows($result);
 
 
     <!-- Title Page-->
-    <title>gestion des annonces</title>
+    <title>gestion des produits</title>
 
     <!-- Fontfaces CSS-->
     
@@ -44,10 +62,30 @@ $NbAnnonces=mysqli_num_rows($result);
 
 
     <!-- Main CSS-->
+
     <link href="css/styles.css" rel="stylesheet" media="all">
 
     <link rel="shortcut icon" href="../front/assets/img/logo.ico">
 
+    <?php if($choix==2){
+    echo"<link href='../Front/style.css' rel='stylesheet' media='all'>
+    
+    <style>
+        .reg-container {
+          max-width: 450px;
+        }
+        .imgGallery img {
+          padding: 8px;
+          max-width: 100px;
+        }    
+    </style>
+    
+    ";
+    }
+    ?>
+
+
+    
 
 
     
@@ -73,9 +111,9 @@ $NbAnnonces=mysqli_num_rows($result);
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="#gestionannonces.php">
                                     <i class="fas fa-bullhorn"></i>
-                                    <span class="bot-line"></span>Gestion des annonces</a>
+                                    <span class="bot-line"></span>Gestion des produits</a>
                             </li>
                             <li>
                                 <a href="table.html">
@@ -262,11 +300,13 @@ $NbAnnonces=mysqli_num_rows($result);
         <!-- END HEADER MOBILE -->
 
         <!-- PAGE CONTENT-->
-
-
+        <?php if($choix!=2){?>
+            
                 <?php
                 if($NbAnnonces==0){
                 ?>
+
+
                                 
                                 </br></br></br></br></br>
                                 <h2 style='text-align:center;'> Aucune annonce trouvée!</h2>
@@ -278,11 +318,41 @@ $NbAnnonces=mysqli_num_rows($result);
                                 <div class='page-content--bgf7'>
                                 <br><br><br>
 
+                                
+
+
+                                    <div class=choose-btn>
+                                        <div>
+                                            <?php if($choix==0){
+                                            echo "<a href='gestionannonces.php?choix=0' class='button button5 active'  > <strong>Demandes de vente</strong> </a>";
+                                            }else{
+                                            echo "<a href='gestionannonces.php?choix=0' class='button button5 '  > <strong>Demandes de vente</strong> </a>";
+                                            }
+                                            ?>
+                                        </div>
+                                        <div>
+                                            <?php if($choix==1){
+                                            echo "<a href='gestionannonces.php?choix=1' class='button button5 active'  > <strong>Produits en vente</strong> </a>";
+                                            }else{
+                                            echo "<a href='gestionannonces.php?choix=1' class='button button5 '  > <strong>Produits en vente</strong> </a>";
+                                            }
+                                            ?>
+                                        </div>
+                                        <div>
+
+                                            <a href="gestionannonces.php?choix=2" class="button button5"  id=<?php echo 'button button5'; ?> > <strong>Mettre en vente</strong> </a>
+
+
+                                        </div>
+
+
+                                    </div>
+
 
 
                                     <div class='stat'>
                                         <div class='title'>
-                                            <h4>nombre total d'annonces: </h4>
+                                            <h4>nombre total de produits: </h4>
                                             <?php echo "<p>$NbAnnonces</p>" ?>
                                         </div>
 
@@ -307,8 +377,12 @@ $NbAnnonces=mysqli_num_rows($result);
                                                 <th>Categories</th>
                                                 <th>Image</th>
                                                 <th>Prix</th>
-                                                <th>Emplacement</th>
-                                                <th>Propriétaire</th>
+                                                <?php
+                                                if($choix==0){ 
+                                                echo "<th> emplacement </th>";
+                                                echo "<th> numTel </th>";
+                                                }?>
+
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -316,6 +390,7 @@ $NbAnnonces=mysqli_num_rows($result);
                             <?php
                             while($rows=mysqli_fetch_assoc($result))
                             {
+                            $id=$rows['id'];
                             ?>
 
                             <tr class="tr-shadow">
@@ -323,11 +398,13 @@ $NbAnnonces=mysqli_num_rows($result);
                                 <td><?php echo $rows['titre']; ?></td>
                                 <td><?php echo $rows['description']; ?></td>
                                 <td><?php echo $rows['categorie']; ?></td>
-                                <td><?php echo "<img src='../Front/assets/img/".$rows['image1']."' style='width:150px' >"; ?></td>
+                                <td><?php echo "<a href=imagesproduit.php?id=$id&choix=$choix> <img src='../Front/assets/img/".$rows['image1']."' style='width:150px' >"; ?></td>
                                 <td><?php echo $rows['prix']; ?></td>
-                                <td><?php echo $rows['emplacement']; ?></td>
-                                <td><?php echo $rows['email']; ?></td>
-
+                                <?php
+                                if($choix==0){ 
+                                echo "<td> ".$rows['emplacement']." </td>";
+                                echo "<td> ".$rows['numtel']." </td>";
+                                }?>
 
 
                                 <td>
@@ -336,7 +413,7 @@ $NbAnnonces=mysqli_num_rows($result);
                                     <div class="table-data-feature">
                                     <?php $id=$rows['id'];?>
                                     <?php echo"<a href='gestionannonces.php?id=$id'>
-                                                <button class='item' data-toggle='tooltip' data-placement='top' title='Supprimer cette annonce'>
+                                                <button class='item' data-toggle='tooltip' data-placement='top' title='Supprimer'>
                                                     <i class='zmdi zmdi-delete'></i>
                                                 </button>
                                                </a>"; ?>
@@ -362,6 +439,195 @@ $NbAnnonces=mysqli_num_rows($result);
         </div>
     </div>
 
+
+    <?php
+        }else{
+    ?>
+                                <div class='page-content--bgf7'>
+                                <br><br><br>
+
+
+
+                                    <div class=choose-btn>
+                                        <div>
+
+                                            <a href="gestionannonces.php?choix=0" class="button button5"> <strong>Demandes de vente</strong> </a>
+
+
+                                        </div>
+                                        <div>
+
+                                            <a href="gestionannonces.php?choix=1" class="button button5"> <strong>Produits en vente</strong> </a>
+
+
+                                        </div>
+                                        <div>
+
+                                            <a href="gestionannonces.php?choix=2" class="button button5 active"> <strong>Mettre en vente</strong> </a>
+
+
+                                        </div>
+
+
+                                    </div>
+
+
+
+                                    <div class="account-page">
+        <div class="container">
+            <div class="row">
+                <!--<div class="col-2">
+                    <img src="assets/img/image1.png" alt="" width="100%">
+                </div> -->
+                <!--<div class="col-2">
+                    <div class="form-container">
+                        <div class="form-btn">
+                            <span onclick="login()">Connexion</span>
+                            <span onclick="register()">Inscription</span>
+                            <hr id="indicator">
+                        </div>
+                        <form action="login.php" method="POST" id="LoginForm">
+                            <input type="email" name="email" placeholder="Email">
+                            <input type="password" name="mdp" placeholder="password">
+                            <button type="submit" class="btn">Connexion</button>
+                            <a href="mdp.html">Mot de passe oublié ?</a>
+                        </form>
+                -->        
+                    <div class="vendreproduit-container">
+                        <form action="AjouterAnnonce.php" method="POST" id="AnnForm" name="f" enctype="multipart/form-data">
+                            <label for="titre">Titre</label>
+                            <input type="text" name="titre" placeholder="Saisissez un titre descriptif">
+                            </br></br>
+                            <label for="description">Description</label>
+                            </br>
+                            <textarea name="description" id="description" placeholder=" Description" cols="70" rows="5"></textarea>
+                            </br></br>
+
+                            <label for="cars">Catégorie</label>
+                            </br>
+                            <select name="categorie" id="categorie">
+                                <option value="Sélectionner">Sélectionner</option>
+                                <option value="Equitation">EQUITATION</option>
+                                <option value="Fitness Muscu">FITNESS MUSCU</option>
+                                <option value="Cyclisme">CYCLISME</option>
+                                <option value="Golf">GOLF</option>
+                                <option value="Nautique">NAUTIQUE</option>
+                                <option value="Autre">AUTRE</option>
+
+                            </select>
+                            </br></br>
+                            <label for="photos">Photos (5 maximum)</label>
+
+                            <div class="user-image mb-3 text-center">
+                                <div class="imgGallery"> 
+                                  <!-- Image preview -->
+                                </div>
+                            </div>
+
+                            <div class="custom-file">
+                                <input type="file" name="fileUpload[]" class="customfile-input" id="chooseFile" multiple>
+                            </div>
+                            </br></br>
+                            <label for="prix">Prix (TND)</label>
+                            <input type="number" name="prix" placeholder="prix">
+                            </br></br>
+                            </br>
+                            
+
+
+                            <button type="submit" name="submit" class="btn">Ajouter l'annonce</button>
+                             
+                        </form>
+
+
+                    
+
+                        <p style="color: rgb(255, 0, 0);" id="erreur"></p>
+                        <script src="login.js"></script>
+    
+                    </div>
+    
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+
+
+    <script>
+        function register(){
+            document.getElementById("RegForm").style.transform="translateX(0px)";
+            document.getElementById("LoginForm").style.transform="translateX(0px)";
+            document.getElementById("indicator").style.transform="translateX(100px)";
+                    }
+        function login(){
+            document.getElementById("RegForm").style.transform="translateX(300px)";
+            document.getElementById("LoginForm").style.transform="translateX(300px)";
+            document.getElementById("indicator").style.transform="translateX(0px)";
+        }
+   </script>
+
+        <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+    <script>
+        $(function() {
+        // Multiple images preview with JavaScript
+        var multiImgPreview = function(input, imgPreviewPlaceholder) {
+
+            if (input.files) {
+                var filesAmount = input.files.length;
+
+                for (i = 0; i < filesAmount; i++) {
+                    var reader = new FileReader();
+
+                    reader.onload = function(event) {
+                        $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(imgPreviewPlaceholder);
+                    }
+
+                    reader.readAsDataURL(input.files[i]);
+                }
+            }
+
+        };
+
+        $('#chooseFile').on('change', function() {
+            multiImgPreview(this, 'div.imgGallery');
+        });
+        });    
+    </script>
+
+    <!-------js for toggle menu -------->
+    <script>
+        var MenuItems= document.getElementById("MenuItems");
+        MenuItems.style.maxHeight="0px";
+        function togglemenu(){
+            if (MenuItems.style.maxHeight =="0px") {
+                MenuItems.style.maxHeight ="250px";
+            }
+            else
+            {
+                MenuItems.style.maxHeight ="0px";
+            }
+        }
+    </script>
+                                    
+
+
+
+
+
+
+
+<?php
+        }
+
+?>
 
     
 

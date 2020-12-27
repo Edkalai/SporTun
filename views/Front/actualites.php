@@ -30,9 +30,9 @@ if (isset($_SESSION["email"]))
                 <nav>
                     <ul>
                         <li><a href="index.php">Acceuil</a></li>
-                        <li><a href="annonce.php">Annonces</a></li>
+                        <li><a href="annonce.php">Produits</a></li>
                         <?php if($compte=="Profil"){ 
-                        echo"<li><a href='AjouterAnnonce.html'>Créer une annonce</a></li>";
+                        echo"<li><a href='AjouterAnnonce.html'>Vendre un produit</a></li>";
                         }?>
                         <li><a href="billets.php">Billets</a></li>
                         <li><a href="actualites.php">Actualités</a></li>

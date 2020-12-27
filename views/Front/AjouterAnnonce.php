@@ -8,10 +8,18 @@
     //exit();
     }
 
+    
 
 
 
     if(isset($_POST['submit'])){
+
+        $insert1=null;
+        $insert2=null;
+        $insert3=null;
+        $insert4=null;
+        $insert5=null;
+
 
 
         $titre = $_POST['titre'];
@@ -20,6 +28,7 @@
         //$image = $_POST['$target_file'];
         $prix = $_POST['prix'];
         $emplacement = $_POST['emplacement'];
+        $numtel = $_POST['numtel'];
       
 
         $uploadsDir = "assets/img/";
@@ -139,8 +148,8 @@
 
 
 
-            mysqli_query($conn,"INSERT INTO annonces (titre, description, categorie, image1, image2, image3, image4, image5, prix, emplacement,email)
-            VALUES ('$titre', '$description', '$categorie', '$insert1', '$insert2', '$insert3', '$insert4', '$insert5', '$prix', '$emplacement','$email');");
+            mysqli_query($conn,"INSERT INTO demandesdevente (titre, description, categorie, image1, image2, image3, image4, image5, prix, emplacement,email,numtel)
+            VALUES ('$titre', '$description', '$categorie', '$insert1', '$insert2', '$insert3', '$insert4', '$insert5', '$prix', '$emplacement','$email','$numtel');");
 
 
 
