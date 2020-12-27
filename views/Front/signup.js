@@ -42,7 +42,7 @@ var dates = {
     for ( var i = 0; i < nom.length; i++ )
     {
         ch = nom.charAt(i);
-            if ( (ch < 'A') || (ch > 'Z')) {            
+            if ( ( (ch < 'A') || (ch > 'Z') ) && (ch!=' ')) {            
             xnom= false;
             }
     }
@@ -50,7 +50,7 @@ var dates = {
     for ( var i = 0; i < prenom.length; i++ )
     {
         ch = prenom.charAt(i);
-        if ( (ch < 'A') || (ch > 'Z')) {            
+        if ( ( (ch < 'A') || (ch > 'Z') ) && (ch!=' ')) {            
         xprenom= false;
         }
     }

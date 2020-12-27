@@ -1,5 +1,6 @@
 <?php
     include_once 'DBconnection.php';
+    session_start();
 
     $nom = $_POST['nom'];
     $prenom = $_POST['prenom'];
@@ -16,5 +17,5 @@
     VALUES ('$nom', '$prenom', '$email', '$hashed_password', '$datenaissance', '$sexe' , '$numtel', '$adresse', '0');";
 
     mysqli_query($conn,$sql);
-
-    header("Location: account.php?signup=success");
+    $_SESSION["email"] = $email;
+    header("Location: annonce.php?signup=success");

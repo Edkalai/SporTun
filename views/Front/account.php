@@ -6,6 +6,10 @@ if (isset($_SESSION["email"]))
     header("Location: profile.php");
     exit();
 }
+$error="";
+if ( isset($_GET['msg']) ){
+$error=$_GET['msg'];
+}
 
 ?>
 
@@ -57,10 +61,11 @@ if (isset($_SESSION["email"]))
                         <span onclick="login()">Connexion</span>
                         <hr id="indicator">
                     </div>
-                    <form action="login.php" method="POST" id="LoginForm">
+                    <form  action="login.php" method="POST" id="LoginForm">
                         <input type="email" name="email" placeholder="Email">
                         <input type="password" name="mdp" placeholder="password">
-                        <button type="submit" class="btn">Connexion</button>
+                        <p style="color :#ff523b; margin:10px 0px;"> <?php echo $error ?> </p>
+                        <button type="submit" class="btn" onclick="">Connexion</button>
                         <a href="mdp.html">Mot de passe oublié ?</a>
                     </form>
                     
