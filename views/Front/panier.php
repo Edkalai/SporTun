@@ -57,6 +57,19 @@ $somme=mysqli_fetch_assoc($req);
             <!-------cart items details  -------->
   
         <div class="small-container cart-page">
+        <?php 
+              if (mysqli_num_rows($result)==0)
+              {
+                  ?>
+                  <div style="text-align:center;">
+                  <?php
+                  echo ("<h1> Votre panier est vide !</h1> ") ?>
+                  <a href='annonce.php' class='btn paniervide-btn'>Explorer Nos Produits &#8594; </a>
+              </div>
+                  <?php
+              }
+              else { 
+                  ?>
             <table>
                 <tr>
                     <th>Produit</th>
@@ -69,6 +82,7 @@ $somme=mysqli_fetch_assoc($req);
                             {
                                 $id=$rows['id']
                                 ?>
+
                     <tr>
                      <td>
                 <div class="cart-info">
@@ -100,8 +114,14 @@ $somme=mysqli_fetch_assoc($req);
                 </table>
             </div>
             <button  class="btn checkout-btn"><a href="payer.php" style="color:white;" > Payer </a> </button> 
+            <?php
+              }
+              ?>
         </div>
     </div>
+    
+
+   
   
 <!---------- footer ------------>
     <div class="footer" style="padding : 1px 0 20px">

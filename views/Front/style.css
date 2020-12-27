@@ -468,6 +468,14 @@ th:last-child{
     position:relative;
     left:930px;
 }
+.cart-page h1 {
+    text-align:center;
+}
+.paniervide-btn{
+    position :relative;
+    top:50px;
+    
+}
 
 /*---------footer------------*/
 
