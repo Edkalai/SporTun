@@ -1,6 +1,9 @@
 <?php
 include 'DBconnection.php';
 
+/***********js error msg********/
+$error="";
+
 
 if(isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -88,7 +91,8 @@ $NbAnnonces=mysqli_num_rows($result);
     
 
 
-    
+    <script src="AjouterAnnonce1.js"> </script>
+
 
 </head>
 <body>
@@ -412,7 +416,7 @@ $NbAnnonces=mysqli_num_rows($result);
 
                                     <div class="table-data-feature">
                                     <?php $id=$rows['id'];?>
-                                    <?php echo"<a href='gestionannonces.php?id=$id'>
+                                    <?php echo"<a href='gestionannonces.php?choix=$choix&id=$id'>
                                                 <button class='item' data-toggle='tooltip' data-placement='top' title='Supprimer'>
                                                     <i class='zmdi zmdi-delete'></i>
                                                 </button>
@@ -494,9 +498,9 @@ $NbAnnonces=mysqli_num_rows($result);
                         </form>
                 -->        
                     <div class="vendreproduit-container">
-                        <form action="AjouterAnnonce.php" method="POST" id="AnnForm" name="f" enctype="multipart/form-data">
+                        <form action="AjouterAnnonce1.php" method="POST" id="AnnForm" name="f1" enctype="multipart/form-data">
                             <label for="titre">Titre</label>
-                            <input type="text" name="titre" placeholder="Saisissez un titre descriptif">
+                            <input type="text" name="titre" id="titre" placeholder="Saisissez un titre descriptif">
                             </br></br>
                             <label for="description">Description</label>
                             </br>
@@ -534,16 +538,14 @@ $NbAnnonces=mysqli_num_rows($result);
                             </br>
                             
 
-
-                            <button type="submit" name="submit" class="btn">Ajouter l'annonce</button>
+                            </br>
+                            <p style="color: rgb(255, 0, 0);" id="erreur"></p>
+                            <br>
+                            <button type="submit" name="submit" class="btn" value="AnnForm" onclick="return verif()">Ajouter le produit</button>
                              
                         </form>
 
 
-                    
-
-                        <p style="color: rgb(255, 0, 0);" id="erreur"></p>
-                        <script src="login.js"></script>
     
                     </div>
     
@@ -559,18 +561,7 @@ $NbAnnonces=mysqli_num_rows($result);
 
 
 
-    <script>
-        function register(){
-            document.getElementById("RegForm").style.transform="translateX(0px)";
-            document.getElementById("LoginForm").style.transform="translateX(0px)";
-            document.getElementById("indicator").style.transform="translateX(100px)";
-                    }
-        function login(){
-            document.getElementById("RegForm").style.transform="translateX(300px)";
-            document.getElementById("LoginForm").style.transform="translateX(300px)";
-            document.getElementById("indicator").style.transform="translateX(0px)";
-        }
-   </script>
+
 
         <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

@@ -1,3 +1,13 @@
+<?php
+
+
+$error="";
+
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +34,7 @@
         }    
     </style>
 
-
+<script src="AjouterAnnonce.js"> </script>
 </head>
 
 <body>
@@ -42,7 +52,7 @@
             <ul id="MenuItems">
                 <li><a href="index.php">Acceuil</a></li>
                 <li><a href="Annonce.php">Produits</a></li>
-                <li><a href='AjouterAnnonce.php'>Vendre un produit</a></li>
+                <li><a href='htmlAjouterAnnonce.php'>Vendre un produit</a></li>
                 <li><a href="billets.php">Billets</a></li>
                 <li><a href="actualites.php">Actualités</a></li>
                 <li><a href="account.php">Profil</a></li>
@@ -74,18 +84,18 @@
                             <button type="submit" class="btn">Connexion</button>
                             <a href="mdp.html">Mot de passe oublié ?</a>
                         </form>
-                -->        
+                -->  
                     <div class="vendreproduit-container">
-                        <form action="AjouterAnnonce.php" method="POST" id="AnnForm" name="f" enctype="multipart/form-data">
+                        <form action="AjouterAnnonce.php" method="POST" id="AnnForm" name="f1" enctype="multipart/form-data">
                             <label for="titre">Titre</label>
-                            <input type="text" name="titre" placeholder="Saisissez un titre descriptif">
+                            <input type="text" name="titre" id="titre" placeholder="Saisissez un titre descriptif">
                             </br></br>
                             <label for="description">Description</label>
                             </br>
                             <textarea name="description" id="description" placeholder=" Description" cols="70" rows="5"></textarea>
                             </br></br>
 
-                            <label for="cars">Catégorie</label>
+                            <label for="Catégorie">Catégorie</label>
                             </br>
                             <select name="categorie" id="categorie">
                                 <option value="Sélectionner">Sélectionner</option>
@@ -147,17 +157,17 @@
                             <label for="numtel">Numero telephone</label>
                             <input type="number" name="numtel" placeholder="numero telephone">
 
-                            </br></br>
+                            </br>
+                            <p style="color: rgb(255, 0, 0);" id="erreur"></p>
+                            <br>
+                            <button type="submit" name="submit" class="btn" value="AnnForm" onclick="return verif()">Ajouter le produit</button>
+                            <!--<a href="href="#RegForm"></a><button  type="submit" class="btn" value="RegForm" onclick="return verif()">S'inscrire</button></a>-->
 
-                            <button type="submit" name="submit" class="btn">Ajouter l'annonce</button>
                              
                         </form>
 
 
-                    
-
-                        <p style="color: rgb(255, 0, 0);" id="erreur"></p>
-                        <script src="login.js"></script>
+                      
     
                     </div>
     
@@ -212,18 +222,7 @@
 
 
 
-    <script>
-        function register(){
-            document.getElementById("RegForm").style.transform="translateX(0px)";
-            document.getElementById("LoginForm").style.transform="translateX(0px)";
-            document.getElementById("indicator").style.transform="translateX(100px)";
-                    }
-        function login(){
-            document.getElementById("RegForm").style.transform="translateX(300px)";
-            document.getElementById("LoginForm").style.transform="translateX(300px)";
-            document.getElementById("indicator").style.transform="translateX(0px)";
-        }
-   </script>
+
 
         <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
