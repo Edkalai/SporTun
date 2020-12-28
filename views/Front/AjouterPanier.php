@@ -14,7 +14,7 @@
     $email = $_SESSION['email'];
 
     
-    $sql = "SELECT * FROM annonces WHERE id=". $id .";";
+    $sql = "SELECT * FROM miseenvente WHERE id=". $id .";";
     $result=mysqli_query($conn,$sql);
     $row=mysqli_fetch_assoc($result);
 
