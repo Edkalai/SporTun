@@ -213,13 +213,21 @@ margin-top: 70px;
 
 
 
-.small-container{
+.small-container-panier{
  max-width:1080px;
  margin:auto;
  padding-left:25px;
  padding-right: 25px;
  min-height: 40.5vh;
 }
+
+.small-container{
+    max-width:1080px;
+    margin:auto;
+    padding-left:25px;
+    padding-right: 25px;
+   }
+   
 
 
 

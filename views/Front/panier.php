@@ -56,7 +56,7 @@ $somme=mysqli_fetch_assoc($req);
       
             <!-------cart items details  -------->
   
-        <div class="small-container cart-page">
+        <div class="small-container-panier cart-page">
         <?php 
               if (mysqli_num_rows($result)==0)
               {
