@@ -384,6 +384,7 @@ $NbAnnonces=mysqli_num_rows($result);
                                                 <?php
                                                 if($choix==0){ 
                                                 echo "<th> emplacement </th>";
+                                                echo "<th> email </th>";
                                                 echo "<th> numTel </th>";
                                                 }?>
 
@@ -407,6 +408,7 @@ $NbAnnonces=mysqli_num_rows($result);
                                 <?php
                                 if($choix==0){ 
                                 echo "<td> ".$rows['emplacement']." </td>";
+                                echo "<td> ".$rows['email']." </td>";
                                 echo "<td> ".$rows['numtel']." </td>";
                                 }?>
 
