@@ -167,4 +167,4 @@
 
 
     }
-    header("Location: AjouterAnnonce.html");
+    header("Location: htmlAjouterAnnonce.php?");

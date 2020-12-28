@@ -45,6 +45,8 @@
     <title>SporTun</title>
     <link rel="stylesheet" href="../Front/style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="shortcut icon" href="../front/assets/img/logo.ico">
+
 </head>
 <body>
       
