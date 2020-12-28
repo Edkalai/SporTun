@@ -7,7 +7,7 @@ if (isset($_SESSION["email"]))
     exit();
 }
 $error="";
-if ( isset($_GET['msg']) ){
+if (isset($_GET['msg']) ){
 $error=$_GET['msg'];
 }
 

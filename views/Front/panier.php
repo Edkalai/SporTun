@@ -14,6 +14,10 @@ $result=mysqli_query($conn,$sql);
 $sql='select SUM(prix) as total from panier where email="'.$_SESSION["email"].'";';
 $req=mysqli_query($conn,$sql);
 $somme=mysqli_fetch_assoc($req);
+$error="";
+if (isset($_GET['msg']) ){
+$error=$_GET['msg'];
+}
 ?>
 
 
@@ -95,7 +99,7 @@ $somme=mysqli_fetch_assoc($req);
                       </div>
                 </div>
                   
-                  <td><input type="number" value="<?php echo $rows['quantite']?>" min="1"></td>
+                  <td><input type="number" value="<?php echo $rows['quantite']?>" min="<?php echo $rows['quantite']?>" max="<?php echo $rows['quantite']?>"></td>
                   <td><?php echo $rows['prix']; ?> TND</td>
               </td>
               </tr>
@@ -113,6 +117,7 @@ $somme=mysqli_fetch_assoc($req);
                   </tr>
                 </table>
             </div>
+            <p style="color :#ff523b; margin:10px 0px;  text-align:right; font-size:18px;"> <?php echo $error ?> </p>
             <button  class="btn checkout-btn"><a href="payer.php" style="color:white;" > Payer </a> </button> 
             <?php
               }

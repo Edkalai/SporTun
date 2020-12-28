@@ -12,7 +12,8 @@ $solde=$req['solde'];
 $useremail=$_SESSION["email"];
 if ($total>$solde)
 {
-    echo("Solde insuffisant");
+     $error="Solde insuffisant";
+     header("Location: panier.php?msg=$error");
 }
 else{
     $nvsolde=$solde-$total;
