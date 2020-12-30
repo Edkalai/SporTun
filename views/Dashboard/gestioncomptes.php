@@ -33,7 +33,7 @@ $result=mysqli_query($conn,$sql);
             <div class="section__content section__content--p35">
                 <div class="header3-wrap">
                     <div class="header__logo">
-                        <a href="#">
+                        <a href="index.html">
                             <img src="images/icon/logo-white.png" alt="CoolAdmin" />
                         </a>
                     </div>
@@ -51,7 +51,7 @@ $result=mysqli_query($conn,$sql);
                                     <span class="bot-line"></span>Gestion des annonces</a>
                             </li>
                             <li>
-                                <a href="table.html">
+                                <a href="gestionbillets.php">
                                     <i class="fas fa-tag"></i>
                                     <span class="bot-line"></span>Gestion des billets</a>
                             </li>   
