@@ -1,9 +1,23 @@
 <?php
-include '../Dashboard/DBconnection.php';
-$sql='select * from events;';
-$result=mysqli_query($conn,$sql);
-$r=mysqli_query($conn,$sql);
+
+    include '../Dashboard/DBconnection.php';
+    $id = $_GET['id'];
+    $sql = "SELECT * FROM events WHERE id=". $id .";";
+    $result=mysqli_query($conn,$sql);
+    $row=mysqli_fetch_assoc($result);
+
+
+       //Produits Connexes
+
+    //  $sql1 = "SELECT * FROM events WHERE categorie=" . $row['categorie']. " ;"; 
+     // $result1 = mysqli_query($conn,$sql1);
+ //    $rows = mysqli_fetch_assoc($result1);
+
+    //echo $row['categorie']
+
+    
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,61 +54,89 @@ $r=mysqli_query($conn,$sql);
    
 <br>
 
- <div class="container">
-    
-    <?php 
-                            while($rows=mysqli_fetch_assoc($result))
-                            { $id=$rows['id'];
-                                ?>
-    <div class="col-xs-12 col-md-6">
-    <!-- First product box start here-->
-        <div class="prod-info-main prod-wrap clearfix">
+<div class="small-container">
+
+<div class="row">
+
+
+
+<div class="small-container single-product" >
             <div class="row">
-                    <div class="col-md-5 col-sm-12 col-xs-12">
+                <div class="col-2">
+               
+                <?php echo " <img src=../Dashboard/".$row['image']." > "?>
+                
+            <!--        <div class="small-img-row">
+                        <div class="small-img-col">
+                            <img src="assets/img/product-1.jpg" width="100%" class="small-img">
+                        </div>
+                        <div class="small-img-col">
+                            <img src="assets/img/product-2.jpg" width="100%" class="small-img">
+                        </div>
+                        <div class="small-img-col">
+                            <img src="assets/img/product-1.jpg" width="100%" class="small-img">
+                        </div>
+                        <div class="small-img-col">
+                            <img src="assets/img/product-1.jpg" width="100%" class="small-img">
+                        </div>
+                    </div>     -->
+                
+                </div> 
+                <div class="col-2">
+                    <h1><?php echo $row['titre']; ?></h1>
                     
-                        <div class="product-image"> 
-                        <div class="col-4"> 
-                        <?php echo "<a href=Detailevent.php?id=$id> <img src=../Dashboard/".$rows['image']." ></a> "?>
-                            <span class="tag3 special">
-                                Special
-                            </span> 
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-7 col-sm-12 col-xs-12">
-                    <div class="product-deatil">
-                            <h5 class="name">
-                                <a href="#">
-                                <?php echo $rows['titre']; ?> <span><?php echo $rows['date']; ?></span>
-                                </a>
-                            </h5>
-                            <p class="price-container">
-                                <span><?php echo $rows['prix']; ?> DT</span>
-                            </p>
-                            <span class="tag1"></span> 
-                    </div>
-                    <div class="description">
-                        <p><?php echo $rows['descourte']; ?> </p>
-                    </div>
-                    <div class="product-info smart-form">
-                        <div class="row">
-                            <div class="col-md-12"> 
-                                <a href="javascript:void(0);" class="btn btn-danger">Ajouter au panier</a>
-                                <a href="javascript:void(0);" class="btn btn-info">Plus d'informations</a>
-                            </div>
-                            
-                        </div>
-                    </div>
+                    <h4><?php echo $row['prix']; ?></h4>
+                    <input type="number" value="1" min="1">
+                    <a href='' onclick="this.href='AjouterPanier.php?id=<?php echo$id?>&quantite='+document.getElementById('quantite').value" class='btn'>Ajouter Au Panier</a>
+                    <h3>Description <i class="fa fa-indent"></i></h3>
+                    <br>
+                    <p><?php echo $row['descourte']; ?></p>
+
                 </div>
             </div>
         </div>
-        <!-- end product --><?php
-                            }
-                            ?>
+
+
+    <!--
+    <div class="col-4">
+        <img src="assets/img/product-2.jpg" alt="">
+        <h4>Hatléres de musculation</h4>
+        <p> 50.00TND</p>
+        <p>Etat: comme neuf</p>
+        <p> <a href="" class="hoverprofile" title="Voir profil de vendeur" > Hedi </a> </p>
+        
     </div>
-    
-        <!-- end product -->
-    
+    <div class="col-4">
+        <img src="assets/img/product-3.jpg" alt="">
+        <h4>Vélo d'appartement</h4>
+        <p> 550.00TND</p>
+        <p>Etat: comme neuf</p>
+        <p> <a href="" class="hoverprofile" title="Voir profil de vendeur" > Elyes </a> </p>
+        
+    </div>
+    <div class="col-4">
+        <img src="assets/img/product-4.jpg" alt="">
+        <h4>Combinaison natation</h4>
+        <p> 120.00TND</p>
+        <p>Etat: comme neuf</p>
+        <p> <a href="" class="hoverprofile" title="Voir profil de vendeur" > Youssef </a> </p>
+        
+    </div>
+    -->
+
+
+
+
+
+
+
+
+</div>
+
+
+
+</div>
+
     
             
     </div>

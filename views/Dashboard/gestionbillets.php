@@ -1,9 +1,14 @@
+<?php
+include 'DBconnection.php';
+$sql='select * from events;';
+$result=mysqli_query($conn,$sql);
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <head>
+        
 
-
+        <meta charset="UTF-8">
             <!-- Title Page-->
             <title>gestion des comptes</title>
         
@@ -18,7 +23,7 @@
         
             <!-- Main CSS-->
             <link href="css/styles.css" rel="stylesheet" media="all">
-        </head>
+        
     </head>
 
 <body class="animsition">
@@ -27,7 +32,7 @@
     <div class="section__content section__content--p35">
         <div class="header3-wrap">
             <div class="header__logo">
-                <a href="#">
+                <a href="index.html">
                     <img src="images/icon/logo-white.png" alt="CoolAdmin" />
                 </a>
             </div>
@@ -247,11 +252,11 @@
                         <label for="file-input" class=" form-control-label">Choisir L'image</label>
                     </div>
                     <div class="col-12 col-md-9">
-                        <input type="file" id="file-input" name="photo" class="form-control-file">
+                    <input type="file" name="image" accept="images/*" multiple>
                     </div>
                 <br> <br> <br> <br> 
         <div class="card-footer">
-            <button type="submit" class="btn btn-primary btn-sm">
+            <button type="submit" name="submit" class="btn btn-primary btn-sm">
                 <i class="fa fa-dot-circle-o"></i> Publier
             </button>
             <button type="reset" class="btn btn-danger btn-sm">
@@ -277,13 +282,34 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>1</td>
-            <td>Tournoi foot junior</td>
-            <td>2020-09-29</td>
-            <td>tournoi football junoir a el ghazela</td>
-            <td class="text-right">15</td>
-        </tr>
+       
+                            <?php 
+                            while($rows=mysqli_fetch_assoc($result))
+                            {
+                                ?>
+
+                            <tr class="tr-shadow">
+
+                                <td><?php echo $rows['id']; ?></td>
+                                <td><?php echo $rows['titre']; ?></td>
+                                <td><?php echo $rows['date']; ?></td>
+                                <td><?php echo $rows['descourte']; ?></td>
+                                <td><?php echo $rows['prix']; ?></td>
+                              
+
+                                
+
+                            </tr>
+
+                            <?php
+                            }
+                            ?>
+
+                           
+                            
+
+
+                        </tbody>
         
         
         </tbody>
