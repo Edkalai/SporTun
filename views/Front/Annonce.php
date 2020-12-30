@@ -264,7 +264,7 @@ if(isset($_POST['submit_search'])){
             
             <form action=<?php echo "'Annonce.php?categorie=$categorie#c1'";?> class="search-form" method="POST" role="search">
             <input id="search" type="search" name="search" value="<?php echo $search; ?>" placeholder="chercher..." />
-            <button type="submit" name="submit_search"><i class="fas fa-search"></i></button>    
+            <button type="submit" name="submit_search" class="search-button"><i class="fas fa-search"></i></button>    
             </form>
 
 
