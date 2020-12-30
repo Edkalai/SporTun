@@ -1,8 +1,14 @@
 <?php
 include '../Dashboard/DBconnection.php';
+session_start();
 $sql='select * from events;';
 $result=mysqli_query($conn,$sql);
 $r=mysqli_query($conn,$sql);
+$compte="Compte";
+if (isset($_SESSION["email"]))
+{
+    $compte="Profil";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,11 +32,14 @@ $r=mysqli_query($conn,$sql);
         
         <nav>
             <ul>
-                <li><a href="index.html">Acceuil</a></li>
-                <li><a href="annonce.html">Annonces</a></li>
-                <li><a href="billets.html">Billets</a></li>
-                <li><a href="actualites.html">Actualités</a></li>
-                <li><a href="account.html">Compte</a></li>
+                <li><a href="index.php">Acceuil</a></li>
+                <li><a href="annonce.php">Annonces</a></li>
+                <?php if($compte=="Profil"){ 
+                echo"<li><a href='htmlAjouterAnnonce.php'>Vendre un produit</a></li>";
+                }?>
+                <li><a href="billets.php">Billets</a></li>
+                <li><a href="actualites.php">Actualités</a></li>
+                <li><a href="account.php"><?php echo $compte ?></a></li>
             </ul>
         </nav>
         <a href="panier.php"><img src="assets/img/cart.png" class="cart" alt=""></a>
