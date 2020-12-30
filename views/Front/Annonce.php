@@ -5,6 +5,11 @@ include 'PHPfunctions.php';
 
 
 session_start();
+
+$choix='Par défaut';
+$noresultmsg='Désolé, il n’y a aucun produit actuellement.';
+
+
 $compte="Compte";
 if (isset($_SESSION["email"]))
 {
@@ -33,74 +38,96 @@ $npage = ($_GET['npage']);
 }
 
 
-$sql1='SELECT * from miseenvente;';
-$result1=mysqli_query($conn,$sql1);
-$NbAnnonces=mysqli_num_rows($result1);
 
-if($categorie!='Tous Les Produits'){
-    $sql1 = "SELECT * FROM miseenvente WHERE categorie ='" . $categorie. " ';"; 
-    $result1=mysqli_query($conn,$sql1);
-    $NbAnnonces=mysqli_num_rows($result1);
+if(isset($_POST['submit_search'])){
+    $search=mysqli_real_escape_string($conn,$_POST['search']);
+}else{
+    if(isset($_GET['search']))
+    $search=$_GET['search'];
+    else{
+    $search='';
+    }
 }
 
+/********************nombre des produits à afficher pour tous les critères sélectionnés ***********************/
+
+            if($categorie == 'Tous Les Produits'){
+            $sql1 = "SELECT * FROM miseenvente WHERE (titre LIKE '%$search%' OR description LIKE '%$search%' OR 
+            categorie LIKE '%$search%' OR prix LIKE '%$search%') ;"; 
+            }else{
+            $sql1 = "SELECT * FROM miseenvente WHERE (titre LIKE '%$search%' OR description LIKE '%$search%' OR 
+            categorie LIKE '%$search%' OR prix LIKE '%$search%') AND categorie ='" . $categorie. "';";
+            }
+            $result1=mysqli_query($conn,$sql1);
+            $NbAnnonces=mysqli_num_rows($result1);
+            if($NbAnnonces==0){
+                if($search==''){
+                $noresultmsg= "Désolé, Il n'y a aucun produit qui correspond à la categorie sélectionnée .";
+                }else{
+                $noresultmsg= "Désolé, aucun résultat ne correspond à vos critères de recherche.";
+                }
+                }
+                
+    
+/*******************Triage ************************/
+
+
+        //Par défaut
+    if($tri==0){
+
+        $sql="SELECT * from miseenvente WHERE titre LIKE '%$search%' OR description LIKE '%$search%' OR 
+        categorie LIKE '%$search%' OR prix LIKE '%$search%'  ;";
+        //echo $sql; die;
+        $result=mysqli_query($conn,$sql);
+        $choix='Par défaut';
+
+
+    }
+        //Popularité
+    if($tri==1){
+
+        $sql="SELECT * from miseenvente WHERE titre LIKE '%$search%' OR description LIKE '%$search%' OR 
+        categorie LIKE '%$search%' OR prix LIKE '%$search%' ORDER BY vues DESC;";
+        $result=mysqli_query($conn,$sql);
+        $choix='Popularité';
+
+    }
+
+        //Nouveautés
+    if($tri==2){
+
+        $sql="SELECT * FROM miseenvente WHERE titre LIKE '%$search%' OR description LIKE '%$search%' OR 
+        categorie LIKE '%$search%' OR prix LIKE '%$search%' ORDER BY date_time DESC ;";
+        $result=mysqli_query($conn,$sql);
+        $choix='Nouveautés';
+
+
+    }
+
+        //Prix le plus bas
+    if($tri==4){
+
+        $sql="SELECT * FROM miseenvente WHERE titre LIKE '%$search%' OR description LIKE '%$search%' OR 
+        categorie LIKE '%$search%' OR prix LIKE '%$search%' ORDER BY prix ASC ;";
+        //echo $sql; die;
+        $result=mysqli_query($conn,$sql);
+        $choix='Prix le plus bas';
+
+
+    }
+        //Prix le plus élevé
+    if($tri==5){
+
+        $sql="SELECT * FROM miseenvente WHERE titre LIKE '%$search%' OR description LIKE '%$search%' OR 
+        categorie LIKE '%$search%' OR prix LIKE '%$search%' ORDER BY prix DESC ;";
+        $result=mysqli_query($conn,$sql);
+        $choix='Prix le plus élevé';
+
+
+    }
 
 
 
-    //Par défaut
-if($tri==0){
-
-    $sql="SELECT * from miseenvente  ;";
-    $result=mysqli_query($conn,$sql);
-    $choix='Par défaut';
-
-
-}
-    //Popularité
-if($tri==1){
-
-    $sql="SELECT * from miseenvente ORDER BY vues DESC;";
-    $result=mysqli_query($conn,$sql);
-    $choix='Popularité';
-
-}
-
-    //Nouveautés
-if($tri==2){
-
-    $sql="SELECT * FROM miseenvente ORDER BY date_time DESC ;";
-    $result=mysqli_query($conn,$sql);
-    $choix='Nouveautés';
-
-
-}
-    //Mieux notés
-if($tri==3){
-
-    $sql="SELECT * from miseenvente ;";
-    $result=mysqli_query($conn,$sql);
-    $choix='Mieux notés';
-
-
-}
-    //Prix le plus bas
-if($tri==4){
-
-    $sql="SELECT * FROM miseenvente ORDER BY prix ASC ;";
-    //echo $sql; die;
-    $result=mysqli_query($conn,$sql);
-    $choix='Prix le plus bas';
-
-
-}
-    //Prix le plus élevé
-if($tri==5){
-
-    $sql="SELECT * FROM miseenvente ORDER BY prix DESC ;";
-    $result=mysqli_query($conn,$sql);
-    $choix='Prix le plus élevé';
-
-
-}
 
 
 
@@ -123,6 +150,7 @@ if($tri==5){
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
 </head>
 <body>
@@ -156,6 +184,9 @@ if($tri==5){
 
       </div>
 
+
+
+
      <!-------- featured categories -------->
     <div class="categories">
     
@@ -167,7 +198,7 @@ if($tri==5){
 
             <div class="row">
                 <?php $s=$npage+1;?>
-                <?php echo "<a href='Annonce.php?categorie=Fitness Muscu&?npage=$s&tri=$tri#c1' class='col-categories'>";?>
+                <?php echo "<a href='Annonce.php?categorie=Fitness Muscu&?npage=$s&tri=$tri&#c1' class='col-categories'>";?>
                     <img src="assets/img/20_thumb.png" alt="Fitness Muscu">
                     <h2>FITNESS MUSCU</h2>
                 </a>
@@ -225,15 +256,16 @@ if($tri==5){
                 <option value="2">Nouveautés</option> 
                 <option value="4">Prix le plus bas</option> 
                 <option value="5">Prix le plus élevé</option> 
-                
+                </select> 
 
-            </select> 
-
-        </div>
-
+            </div>
 
 
             
+            <form action=<?php echo "'Annonce.php?categorie=$categorie#c1'";?> class="search-form" method="POST" role="search">
+            <input id="search" type="search" name="search" value="<?php echo $search; ?>" placeholder="chercher..." />
+            <button type="submit" name="submit_search"><i class="fas fa-search"></i></button>    
+            </form>
 
 
 
@@ -259,7 +291,7 @@ if($tri==5){
         if($NbAnnonces==0){
         
             echo "</br></br></br></br></br>";
-            echo "<h1 style='text-align:center;'> Il n'y a pas d'annonce actuellement!</h1>";
+            echo "<h1 style='text-align:center;'> $noresultmsg </h1>";
             echo "</br></br></br>";
             
         }else{
@@ -311,7 +343,7 @@ if($tri==5){
 
         if($npage!=0){
             $s=$npage-1;
-            echo"<a href='Annonce.php?categorie=$categorie&npage=$s&tri=$tri#c1'><span>&#8592;</span></a>"; 
+            echo"<a href='Annonce.php?categorie=$categorie&npage=$s&tri=$tri&search=$search#c1'><span>&#8592;</span></a>"; 
         }
 
 
@@ -325,9 +357,10 @@ if($tri==5){
         for($i=0;$i<$nbpages;$i++){
             $s=$i+1;
             if($npage==$i){
-                echo"<a class='active' href='Annonce.php?categorie=$categorie&npage=$i&tri=$tri#c1'><span>$s</span></a>";
+                if($nbpages>1)
+                echo"<a class='active' href='Annonce.php?categorie=$categorie&npage=$i&tri=$tri&search=$search#c1'><span>$s</span></a>";
             }else{
-                echo"<a href='Annonce.php?categorie=$categorie&npage=$i&tri=$tri#c1'><span>$s</span></a>";
+                echo"<a href='Annonce.php?categorie=$categorie&npage=$i&tri=$tri&search=$search#c1'><span>$s</span></a>";
             }
             
         }
@@ -337,7 +370,7 @@ if($tri==5){
 
             if($NbAnnonces>12){
                 $s=$npage+1;
-                echo"<a href='Annonce.php?categorie=$categorie&npage=$s&tri=$tri#c1'><span>&#8594;</span></a>"; 
+                echo"<a href='Annonce.php?categorie=$categorie&npage=$s&tri=$tri&search=$search#c1'><span>&#8594;</span></a>"; 
             }      
         
         }
@@ -411,7 +444,8 @@ if($tri==5){
             function handleSelect(elm) 
             {
             var categorie = "<?php echo $categorie; ?>";
-            window.location = "Annonce.php?&categorie="+categorie+"&npage=0&tri="+elm.value+"#c1"; 
+            var search = "<?php echo $search; ?>";
+            window.location = "Annonce.php?&categorie="+categorie+"&npage=0&tri="+elm.value+"&search="+search+"#c1"; 
             //window.location = "AjouterAnnonce.html?tri=1"; 
             //window.location = elm.value+".php"; 
             } 

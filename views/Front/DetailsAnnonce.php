@@ -176,14 +176,13 @@
                         <p><?php echo $rows['prix'] . ' TND'; ?></p>
                         <p><?php echo $description ?></p>
                         <!--<p> <a href="" class="hoverprofile" title="Voir profil de vendeur" > Nada </a> </p>-->
-                        
+                        <br><br><br><br>
                     </div>
 
             <?php
                 }
         
             ?>
-
 
 
 
