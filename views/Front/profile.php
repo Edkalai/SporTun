@@ -4,6 +4,8 @@ session_start();
 $sql='select * from utilisateurs where email="'.$_SESSION["email"].'";';
 $result=mysqli_query($conn,$sql);
 $row=mysqli_fetch_assoc($result);
+$sql='select * from vente where email="'.$_SESSION["email"].'" order by datevente desc;';
+$resultat=mysqli_query($conn,$sql);
 ?>
 
 
@@ -55,7 +57,7 @@ $row=mysqli_fetch_assoc($result);
         <i class="fa fa-credit-card"></i>
         </a>
         <a onclick="tabs(2)" class="tab">
-        <i class="fa fa-cog"></i>
+        <i class="fa fa-history"></i>
         </a>
         
         </nav>
@@ -63,7 +65,7 @@ $row=mysqli_fetch_assoc($result);
     <div class="rightbox">
         <div class="profile tabShow">
             <form action="modif.php" name="f2" method="POST" id="modifform">
-            <h1>Informations Personnelles</h1>
+            <h1>Informations personnelles</h1>
             <h2>Nom</h2>
             <input type="text" class="input" name="nom" id="esm" value="<?php echo $row['nom']; ?>" >
             <h2>Prénom</h2>
@@ -94,7 +96,37 @@ $row=mysqli_fetch_assoc($result);
             <button class="btn">Ajouter à votre solde</button>
         
         </div>
-     
+        <div class="historique tabShow">
+            <h1>Historique d'achats</h1>
+            <table class="historiqueachat">
+            <tr> 
+            <th> ID </th>
+            <th> Titre </th>
+            <th>Prix</th>
+            <th>Date d'achat</th>
+            </tr>
+            <?php 
+                            while($rows=mysqli_fetch_assoc($resultat))
+                            {
+                                ?>
+
+                            <tr class="tr-shadow">
+
+                                <td><?php echo $rows['idvente']; ?></td>
+                                <td><?php echo $rows['titre']; ?></td>
+                                <td><?php echo $rows['prix']; ?></td>
+                                <td><?php echo $rows['datevente']; ?></td>
+
+                            </tr>
+                            <?php
+                            }
+                            ?>
+                                
+           
+            
+            </table>
+        
+        </div>
         </div>
 
 </div>
