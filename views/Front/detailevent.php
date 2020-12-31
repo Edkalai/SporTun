@@ -1,21 +1,46 @@
-<?php
+ <?php
 
-    include '../Dashboard/DBconnection.php';
-    $id = $_GET['id'];
-    $sql = "SELECT * FROM events WHERE id=". $id .";";
-    $result=mysqli_query($conn,$sql);
-    $row=mysqli_fetch_assoc($result);
+include '../Dashboard/DBconnection.php';
+include 'PHPfunctions.php';
 
 
-       //Produits Connexes
 
-    //  $sql1 = "SELECT * FROM events WHERE categorie=" . $row['categorie']. " ;"; 
-     // $result1 = mysqli_query($conn,$sql1);
- //    $rows = mysqli_fetch_assoc($result1);
+session_start();
+$compte="Compte";
+if (isset($_SESSION["email"]))
+{
+    $compte="Profil";
+    $email=$_SESSION['email'];
+}
 
-    //echo $row['categorie']
 
+if(isset($_GET['image'])) {
+    $image = ($_GET['image']);
     
+    }else{
+        $image = 'image';
+    }
+
+$id = $_GET['id'];
+$sql = "SELECT * FROM events WHERE id=". $id .";";
+
+/********** inc vues****************/ 
+$vues = "UPDATE events SET vues = vues +1 WHERE id =" . $id .";";
+$conn->query($vues);
+
+$result=mysqli_query($conn,$sql);
+$row=mysqli_fetch_assoc($result);
+
+
+//Produits Connexes
+
+
+
+
+//echo $sql1; die;
+//echo $row['categorie']
+
+
 ?>
 
 <!DOCTYPE html>
@@ -23,15 +48,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="assets/img/logo.ico">
     <title>SporTun</title>
-    <link rel="stylesheet" href="billets.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="shortcut icon" href="logo.ico">
-    
- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="header">
       <div class="container">
         <div class="navbar">
             <div class="logo">
@@ -39,110 +62,72 @@
             </div>
         
         <nav>
-            <ul>
-                <li><a href="index.html">Acceuil</a></li>
-                <li><a href="annonce.html">Annonces</a></li>
-                <li><a href="billets.html">Billets</a></li>
-                <li><a href="actualites.html">Actualités</a></li>
-                <li><a href="account.html">Compte</a></li>
+            <ul id="MenuItems">
+                <li><a href="index.php">Acceuil</a></li>
+                <li><a href="annonce.php">Produits</a></li>
+                <?php if($compte=="Profil"){ 
+                echo"<li><a href='AjouterAnnonce.php'>Vendre un produit</a></li>";
+                }?>
+                <li><a href="billets.php">Billets</a></li>
+                <li><a href="actualites.php">Actualités</a></li>
+                <li><a href="account.php"><?php echo $compte ?></a></li>
             </ul>
         </nav>
         <a href="panier.php"><img src="assets/img/cart.png" class="cart" alt=""></a>
+        <img src="assets/img/menu.png" class="menu-icon" onclick="togglemenu()">
       </div>
-     
- <!-------- featured categories -------->
-   
-<br>
 
-<div class="small-container">
-
-<div class="row">
+      </div>
 
 
 
-<div class="small-container single-product" >
+      <!----------single product details------>
+
+      
+        <div class="small-container single-product" >
             <div class="row">
                 <div class="col-2">
-               
                 <?php echo " <img src=../Dashboard/".$row['image']." > "?>
                 
-            <!--        <div class="small-img-row">
-                        <div class="small-img-col">
-                            <img src="assets/img/product-1.jpg" width="100%" class="small-img">
-                        </div>
-                        <div class="small-img-col">
-                            <img src="assets/img/product-2.jpg" width="100%" class="small-img">
-                        </div>
-                        <div class="small-img-col">
-                            <img src="assets/img/product-1.jpg" width="100%" class="small-img">
-                        </div>
-                        <div class="small-img-col">
-                            <img src="assets/img/product-1.jpg" width="100%" class="small-img">
-                        </div>
-                    </div>     -->
+                    <div class="small-img-row">
+                        <?php
+
+                            echo "<div class='small-img-col'>";
+                                echo "<a href=detailevent.php?id=$id&image=image> <img src=assets/img/".$row['image']. " width='100%' ></a> ";
+                            echo "</div>";
+                            
+                           
+                            
+
+                        ?>
+                    </div>     
                 
                 </div> 
                 <div class="col-2">
                     <h1><?php echo $row['titre']; ?></h1>
                     
-                    <h4><?php echo $row['prix']; ?></h4>
-                    <input type="number" value="1" min="1">
-                    <a href='' onclick="this.href='AjouterPanier.php?id=<?php echo$id?>&quantite='+document.getElementById('quantite').value" class='btn'>Ajouter Au Panier</a>
+                    <h4><?php echo $row['prix'] . ' TND'; ?></h4>
+                    <input id="quantite" type="number" value="1" min="1">
+                              
+                    <a href='' onclick="this.href='AjouterPanierbis.php?id=<?php echo$id?>&quantite='+document.getElementById('quantite').value" class='btn'>Ajouter Au Panier</a>
+                
                     <h3>Description <i class="fa fa-indent"></i></h3>
                     <br>
-                    <p><?php echo $row['descourte']; ?></p>
+                    <p><?php echo $row['deslongue']; ?></p>
 
                 </div>
             </div>
         </div>
 
 
-    <!--
-    <div class="col-4">
-        <img src="assets/img/product-2.jpg" alt="">
-        <h4>Hatléres de musculation</h4>
-        <p> 50.00TND</p>
-        <p>Etat: comme neuf</p>
-        <p> <a href="" class="hoverprofile" title="Voir profil de vendeur" > Hedi </a> </p>
-        
-    </div>
-    <div class="col-4">
-        <img src="assets/img/product-3.jpg" alt="">
-        <h4>Vélo d'appartement</h4>
-        <p> 550.00TND</p>
-        <p>Etat: comme neuf</p>
-        <p> <a href="" class="hoverprofile" title="Voir profil de vendeur" > Elyes </a> </p>
-        
-    </div>
-    <div class="col-4">
-        <img src="assets/img/product-4.jpg" alt="">
-        <h4>Combinaison natation</h4>
-        <p> 120.00TND</p>
-        <p>Etat: comme neuf</p>
-        <p> <a href="" class="hoverprofile" title="Voir profil de vendeur" > Youssef </a> </p>
-        
-    </div>
-    -->
+    <!-----------------title------------------------->
+       
 
+    <!-------------------products-------------------->
 
-
-
-
-
-
-
-</div>
-
-
-
-</div>
 
     
-            
-    </div>
-</div></div>
 
-  
     
 
     <!---------- footer ------------>
@@ -182,7 +167,49 @@
             </div>
             <hr>
             <p class="copyright">Copyright 2020 - SporTun</p>
+        </div>
+    </div>
+
+
+
+<!---------------js for product gallery------------>
+
+<script>
+     var ProductImg = document.getElementById("ProductImg");
+     var SmallImg = document.getElementsByClassName("small-img");
+
+        SmallImg[0].onclick = function()
+        {
+            ProductImg.src = SmallImg[0].src;
+        }
+        SmallImg[1].onclick = function()
+        {
+            ProductImg.src = SmallImg[1].src;
+        }
+        SmallImg[2].onclick = function()
+        {
+            ProductImg.src = SmallImg[2].src;
+        }
+        SmallImg[3].onclick = function()
+        {
+            ProductImg.src = SmallImg[3].src;
+        }
+
         
-   
+</script>
+  <!-------js for toggle menu -------->
+  <script>
+        var MenuItems= document.getElementById("MenuItems");
+        MenuItems.style.maxHeight="0px";
+        function togglemenu(){
+            if (MenuItems.style.maxHeight =="0px") {
+                MenuItems.style.maxHeight ="250px";
+            }
+            else
+            {
+                MenuItems.style.maxHeight ="0px";
+            }
+        }
+    </script>
 </body>
 </html>
