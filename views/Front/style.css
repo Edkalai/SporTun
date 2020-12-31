@@ -644,6 +644,20 @@ ul{
     left: 100px;
 }
 
+.historiqueachat{
+    width: 430px;
+}
+.historiqueachat tr,.historiqueachat td {
+    border:1px solid black;
+
+    
+}
+.historiqueachat th {
+    border:1px solid rgb(124, 120, 120);
+
+    
+}
+
 
 
 
@@ -860,6 +874,9 @@ select:focus{
         width:560px;
         
     }
+    .historiqueachat{
+        width: 380px;
+    }
 }
 /* ------- Media query for less than 600 screen size---------*/
 @media only screen and (max-width : 600px){
@@ -870,6 +887,9 @@ select:focus{
     .logout-btn
     {
         margin-left:50px;
+    }
+    .historiqueachat{
+        width: 350px;
     }
 }
 
@@ -889,13 +909,16 @@ select:focus{
         position :relative;
         right :10px;
     }
+    .historiqueachat{
+        width: 250px;
+    }
 }
     /* ------- Media query for less than 400 screen size---------*/
     @media only screen and (max-width : 420px){
         .profile-container{
             width:300px;
             bottom:40px;
-
+            overflow-x:scroll;
             
         }
         .leftbox i{
@@ -910,6 +933,9 @@ select:focus{
         .profile-btn {
             position:relative;
             left:20px;
+        }
+        .historiqueachat{
+            width: 150px;
         }
     }
 
@@ -935,7 +961,7 @@ input[type="search"] {
 
 
 input[type="search"] {
-  outline: 0; // <-- shold probably remove this for better accessibility, adding for demo aesthetics for now.
+  outline: 0; 
   width: 100%;
   background: #E6E6E6 ;
   padding: 0 1.6rem;
