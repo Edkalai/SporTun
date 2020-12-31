@@ -17,7 +17,8 @@ if (isset($_SESSION["email"]))
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SporTun</title>
     <link rel="stylesheet" href="billets.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="shortcut icon" href="assets/img/logo.ico">
+   <!-- <link rel="preconnect" href="https://fonts.gstatic.com">   -->
     <link rel="shortcut icon" href="logo.ico">
     
  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -27,13 +28,13 @@ if (isset($_SESSION["email"]))
       <div class="container">
         <div class="navbar">
             <div class="logo">
-                <a href="index.html"> <img src="assets/img/logo.png"> </a>
+                <a href="index.php"> <img src="assets/img/logo.png"> </a>
             </div>
         
         <nav>
             <ul>
                 <li><a href="index.php">Acceuil</a></li>
-                <li><a href="annonce.php">Annonces</a></li>
+                <li><a href="annonce.php">Produits</a></li>
                 <?php if($compte=="Profil"){ 
                 echo"<li><a href='htmlAjouterAnnonce.php'>Vendre un produit</a></li>";
                 }?>
@@ -88,8 +89,9 @@ if (isset($_SESSION["email"]))
                     <div class="product-info smart-form">
                         <div class="row">
                             <div class="col-md-12"> 
-                                <a href="javascript:void(0);" class="btn btn-danger">Ajouter au panier</a>
-                                <a href="javascript:void(0);" class="btn btn-info">Plus d'informations</a>
+                               
+                               
+                                <?php echo "<a href=Detailevent.php?id=$id class=btn btn-info> Plus d'informations</a> "?>
                             </div>
                             
                         </div>

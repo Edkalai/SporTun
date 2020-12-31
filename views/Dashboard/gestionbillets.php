@@ -278,7 +278,8 @@ $result=mysqli_query($conn,$sql);
              <th>Titre</th>
             <th>Date </th>
             <th>Description courte</th>
-            <th class="text-right">Prix (en DT)</th>
+            <th>Prix (en DT)</th>
+            <th>Vues</th>
         </tr>
         </thead>
         <tbody>
@@ -295,6 +296,7 @@ $result=mysqli_query($conn,$sql);
                                 <td><?php echo $rows['date']; ?></td>
                                 <td><?php echo $rows['descourte']; ?></td>
                                 <td><?php echo $rows['prix']; ?></td>
+                                <td><?php echo $rows['vues']; ?></td>
                               
 
                                 
