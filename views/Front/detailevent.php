@@ -93,7 +93,7 @@ $row=mysqli_fetch_assoc($result);
                         <?php
 
                             echo "<div class='small-img-col'>";
-                                echo "<a href=detailevent.php?id=$id&image=image> <img src=assets/img/".$row['image']. " width='100%' ></a> ";
+                                echo "<a href=detailevent.php?id=$id&image=image> <img src=/".$row['image']. " width='100%' ></a> ";
                             echo "</div>";
                             
                            

@@ -235,11 +235,11 @@ margin-top: 70px;
 
 
         flex-basis:25%;
-        padding:10px;
-        width:300px;
+        padding:0px;
+        
 
         min-width:200px;
-        margin-bottom:50px;
+        
 
         display: inline-block;
         vertical-align: middle;
