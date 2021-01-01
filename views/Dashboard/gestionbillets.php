@@ -204,7 +204,7 @@ $result=mysqli_query($conn,$sql);
             <strong>Ajout des évènements:</strong>
         </div>
         <div class="card-body card-block">
-            <form action="ajoutbillets.php" method="post" enctype="multipart/form-data" class="form-horizontal">
+            <form action="ajoutbillets.php" method="POST" enctype="multipart/form-data" id="AnnForm" name="f1" class="form-horizontal">
                 <div class="row form-group">
                     <div class="col col-md-3">
                         <label for="text-input" class=" form-control-label">Titre</label>
@@ -245,6 +245,22 @@ $result=mysqli_query($conn,$sql);
                             <small class="form-text text-muted">Tapez la date de l'évènement</small>
 
                     </div>
+                    <div class="col col-md-3">
+                        <label for="text-input" class=" form-control-label">Catégorie</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                    <select name="categorie" id="categorie">
+                                <option value="Sélectionner">Sélectionner</option>
+                                <option value="Equitation">Carritatif</option>
+                                <option value="Fitness Muscu">Tournoi</option>
+                                <option value="Cyclisme">Commercial</option>
+                                <option value="Golf">Conf</option>
+                                <option value="Nautique">NAUTIQUE</option>
+                                <option value="Autre">AUTRE</option>
+
+                            </select>
+                        <small class="form-text text-muted">Catégorie de l'évènement</small>
+                    </div>
                        
                             
                 
@@ -279,6 +295,7 @@ $result=mysqli_query($conn,$sql);
             <th>Date </th>
             <th>Description courte</th>
             <th>Prix (en DT)</th>
+            <th>Catégorie</th>
             <th>Vues</th>
         </tr>
         </thead>
@@ -296,6 +313,7 @@ $result=mysqli_query($conn,$sql);
                                 <td><?php echo $rows['date']; ?></td>
                                 <td><?php echo $rows['descourte']; ?></td>
                                 <td><?php echo $rows['prix']; ?></td>
+                                <td><?php echo $rows['categorie']; ?></td>
                                 <td><?php echo $rows['vues']; ?></td>
                               
 
