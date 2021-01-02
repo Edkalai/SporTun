@@ -485,6 +485,12 @@ th:last-child{
     
 }
 
+.ajouterannoncesucceeded-btn{
+    position: relative;
+    top: 50px;
+    margin-bottom: 300px;
+}
+
 /*---------footer------------*/
 
 .footer {

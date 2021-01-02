@@ -9,7 +9,7 @@
     }
 
 
-    $msg="Produit mis en vente avec succès!";
+    
 
     
 
@@ -37,6 +37,7 @@
         
         // Velidate if files exist
         if (!empty(array_filter($_FILES['fileUpload']['name']))) {
+        $msg="Produit mis en vente avec succès!";
         
         // Loop through file items
             $i=0;
