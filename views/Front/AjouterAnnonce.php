@@ -8,7 +8,10 @@
     //exit();
     }
 
-    
+    $msg="Demande envoyée avec succès.";
+
+
+
 
 
 
@@ -53,98 +56,36 @@
                 if(in_array($fileType, $allowedFileType)){
                         if(move_uploaded_file($tempLocation, $targetFilePath)){
                             $sqlVal = "('".$fileName."', '".$uploadDate."')";
-                        } else {
-                            $response = array(
-                                "status" => "alert-danger",
-                                "message" => "File coud not be uploaded."
-                            );
                         }
-                    
-                } else {
-                    $response = array(
-                        "status" => "alert-danger",
-                        "message" => "Only .jpg, .jpeg and .png file formats allowed."
-                    );
-                }
                 // Add into MySQL database
                 if(!empty($sqlVal)) {
 
 
 
-                    //$insert = $conn->query("INSERT INTO user (imagefileUpload, date_time) VALUES $sqlVal");
                     if($i==1){
                         $insert1 = $fileName;
-                        if($insert1) {
-                            $response = array(
-                                "status" => "alert-success",
-                                "message" => "Files successfully uploaded."
-                            );
-                        } else {
-                            $response = array(
-                                "status" => "alert-danger",
-                                "message" => "Files coudn't be uploaded due to database error."
-                            );
                         }
-                    }
+                    
                     if($i==2){
                         $insert2 = $fileName;
-                        if($insert2) {
-                            $response = array(
-                                "status" => "alert-success",
-                                "message" => "Files successfully uploaded."
-                            );
-                        } else {
-                            $response = array(
-                                "status" => "alert-danger",
-                                "message" => "Files coudn't be uploaded due to database error."
-                            );
                         }
-                    }
+                    
                     if($i==3){
                         $insert3 = $fileName;
-                        if($insert3) {
-                            $response = array(
-                                "status" => "alert-success",
-                                "message" => "Files successfully uploaded."
-                            );
-                        } else {
-                            $response = array(
-                                "status" => "alert-danger",
-                                "message" => "Files coudn't be uploaded due to database error."
-                            );
                         }
-                    }
+                    
                     if($i==4){
                         $insert4 = $fileName;
-                        if($insert4) {
-                            $response = array(
-                                "status" => "alert-success",
-                                "message" => "Files successfully uploaded."
-                            );
-                        } else {
-                            $response = array(
-                                "status" => "alert-danger",
-                                "message" => "Files coudn't be uploaded due to database error."
-                            );
                         }
-                    }
+                    
                     if($i==5){
                         $insert5 = $fileName;
-                        if($insert5) {
-                            $response = array(
-                                "status" => "alert-success",
-                                "message" => "Files successfully uploaded."
-                            );
-                        } else {
-                            $response = array(
-                                "status" => "alert-danger",
-                                "message" => "Files coudn't be uploaded due to database error."
-                            );
                         }
-                    }
+                    
 
                 }
             }
+        }
 
 
 
@@ -153,18 +94,7 @@
 
 
 
-        } else {
-            // Error
-            $response = array(
-                "status" => "alert-danger",
-                "message" => "Please select a file to upload."
-            );
-        }
-        
-
-
-
-
-
     }
-    header("Location: htmlAjouterAnnonce.php?");
+    }
+    
+    header("Location: htmlAjouterAnnonce.php?msg=$msg");
