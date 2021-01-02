@@ -8,7 +8,7 @@
     //exit();
     }
 
-    $msg="Demande envoyée avec succès.";
+    
 
 
 
@@ -39,6 +39,7 @@
         
         // Velidate if files exist
         if (!empty(array_filter($_FILES['fileUpload']['name']))) {
+            $msg="Demande envoyée avec succès!";
         
         // Loop through file items
             $i=0;
@@ -96,5 +97,5 @@
 
     }
     }
-    
+
     header("Location: htmlAjouterAnnonce.php?msg=$msg");

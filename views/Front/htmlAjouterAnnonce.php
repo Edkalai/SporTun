@@ -84,11 +84,11 @@ if (isset($_GET["msg"]))
             <br><br>
             <p style="color :green; font-size: 25px; " ><?php echo $msg ?> </p>
 
-            <a href='annonce.php' class='btn paniervide-btn'> &#8592; Explorer Nos Produits  </a>
+            <a href='annonce.php' class='btn ajouterannoncesucceeded-btn'> &#8592; Explorer Nos Produits  </a>
             
-            <a href='htmlAjouterAnnonce.php' class='btn paniervide-btn'>Vendre Un Autre Produit  </a>
+            <a href='htmlAjouterAnnonce.php' class='btn ajouterannoncesucceeded-btn'>Vendre Un Autre Produit  </a>
             
-            <br><br><br><br><br><br><br><br>
+            
 
             </div>
         <?php
