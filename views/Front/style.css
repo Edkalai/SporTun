@@ -1001,7 +1001,11 @@ input[type="search"] {
   background: var(--color-brand);
 }
 
-
+.fcompte input[type=radio] {
+    border: 5px;
+    width: 2%;
+    height: 2em;
+}
 
 
 
