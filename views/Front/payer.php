@@ -26,9 +26,13 @@ else{
     {
         $titre=$rows['titre'];
         $prix=$rows['prix'];
+        $id=$rows['id'];
         $sql="insert into vente (email,titre,prix,datevente) values ('$useremail','$titre','$prix','$date');";
         mysqli_query($conn,$sql);
+        $sqlx="delete from miseenvente where id='$id';";
+        mysqli_query($conn,$sqlx);
     }
+    
     $sql="delete from panier where email='$useremail';";
     mysqli_query($conn,$sql);
     header ("Location: panier.php");

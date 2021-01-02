@@ -2,6 +2,13 @@
 
 
 $error="";
+if (isset($_GET["msg"]))
+    {
+    $msg=$_GET["msg"];
+    }
+    else{
+    $msg='';
+    }
 
 ?>
 
@@ -67,6 +74,30 @@ $error="";
 
     <div class="account-page">
         <div class="container">
+
+
+        <?php
+        if ($msg!='')
+        {
+        ?>
+            <div style="text-align:center;">
+            <br><br>
+            <p style="color :green; font-size: 25px; " ><?php echo $msg ?> </p>
+
+            <a href='annonce.php' class='btn ajouterannoncesucceeded-btn'> &#8592; Explorer Nos Produits  </a>
+            
+            <a href='htmlAjouterAnnonce.php' class='btn ajouterannoncesucceeded-btn'>Vendre Un Autre Produit  </a>
+            
+            
+
+            </div>
+        <?php
+        }
+        else
+        { 
+        ?>
+
+
             <div class="row">
                 <!--<div class="col-2">
                     <img src="assets/img/image1.png" alt="" width="100%">
@@ -176,6 +207,7 @@ $error="";
                 </div>
             </div>
         </div>
+        <?php } ?>
     </div>
     </div>
 

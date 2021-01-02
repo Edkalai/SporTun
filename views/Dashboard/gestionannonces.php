@@ -1,9 +1,19 @@
 <?php
 include 'DBconnection.php';
+session_start();
+if (!isset($_SESSION["emailadmin"]))
+    {
+        header("Location: dashboardlogin.php");
+        exit();
+    }
+    $sql='select * from utilisateurs where email="'.$_SESSION["emailadmin"].'";';
+    $result=mysqli_query($conn,$sql);
+    $row=mysqli_fetch_assoc($result);
+    $compte=$row['nom'].' '.$row['prenom'];
+
 
 /***********js error msg********/
 $error="";
-
 
 if(isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -18,17 +28,29 @@ if(isset($_GET['choix'])){
         $choix = 0;
     }
 
-if($choix!=2){
+/***** statistics ******/
 
 if($choix==0){
-mysqli_query($conn,"DELETE FROM demandesdevente WHERE id='".$id."'");
-$sql='select * from demandesdevente;';
+    $total='nombre total de demandes de vente:';
+    $table='demandesdevente';
 }
 
 if($choix==1){
-mysqli_query($conn,"DELETE FROM miseenvente WHERE id='".$id."'");
-$sql='select * from miseenvente;';
+    $total='nombre total de produits en vente:';
+    $table='miseenvente';
+
 }
+
+
+
+
+
+
+if($choix!=2){
+
+mysqli_query($conn,"DELETE FROM $table WHERE id='".$id."'");
+$sql="select * from $table;";
+
 
 
 //mysqli_close($conn);
@@ -71,19 +93,7 @@ $NbAnnonces=mysqli_num_rows($result);
     <link rel="shortcut icon" href="../front/assets/img/logo.ico">
 
     <?php if($choix==2){
-    echo"<link href='../Front/style.css' rel='stylesheet' media='all'>
-    
-    <style>
-        .reg-container {
-          max-width: 450px;
-        }
-        .imgGallery img {
-          padding: 8px;
-          max-width: 100px;
-        }    
-    </style>
-    
-    ";
+    echo"<link href='../Front/style.css' rel='stylesheet' media='all'>";
     }
     ?>
 
@@ -108,14 +118,8 @@ $NbAnnonces=mysqli_num_rows($result);
                     </div>
                     <div class="header__navbar">
                         <ul class="list-unstyled">
-                            <li class="has-sub">
-                                <a href="#">
-                                    <i class="fas fa-home"></i>Acceuil
-                                    <span class="bot-line"></span>
-                                </a>
-                            </li>
                             <li>
-                                <a href="#gestionannonces.php">
+                                <a href="gestionannonces.php">
                                     <i class="fas fa-bullhorn"></i>
                                     <span class="bot-line"></span>Gestion des produits</a>
                             </li>
@@ -123,19 +127,26 @@ $NbAnnonces=mysqli_num_rows($result);
                                 <a href="gestionbillets.php">
                                     <i class="fas fa-tag"></i>
                                     <span class="bot-line"></span>Gestion des billets</a>
-                            </li>   
+                            </li> 
                             <li class="has-sub">
-                                <a href="#">
+                                <a href="gestionventes.php">
+                                    <i class="fas fa-user"></i>
+                                    <span class="bot-line"></span>Gestion des ventes</a>
+                            
+                            </li>  
+                            <li class="has-sub">
+                            <a href="gestionactualites.php">
                                     <i class="fas fa-list-alt"></i>
                                     <span class="bot-line"></span>Gestion des actualités</a>
                             
                             </li>
                             <li class="has-sub">
-                                <a href="gestioncompte.html">
+                                <a href="gestioncomptes.php">
                                     <i class="fas fa-user"></i>
                                     <span class="bot-line"></span>Gestion des comptes</a>
                             
                             </li>
+                           
                         </ul>
                     </div>
                     <div class="header__tool">
@@ -166,42 +177,13 @@ $NbAnnonces=mysqli_num_rows($result);
                         </div>
                         <div class="account-wrap">
                             <div class="account-item account-item--style2 clearfix js-item-menu">
-                                <div class="image">
-                                    <img src="images/icon/avatar-01.png" alt="John Doe" />
-                                </div>
                                 <div class="content">
-                                    <a class="js-acc-btn" href="#">john doe</a>
+                                  <span> <?php echo $compte ?></span>
                                 </div>
                                 <div class="account-dropdown js-dropdown">
-                                    <div class="info clearfix">
-                                        <div class="image">
-                                            <a href="#">
-                                                <img src="imag/avat.png" alt="John Doe" />
-                                            </a>
-                                        </div>
-                                        <div class="content">
-                                            <h5 class="name">
-                                                <a href="#">john doe</a>
-                                            </h5>
-                                            <span class="email">johndoe@example.com</span>
-                                        </div>
-                                    </div>
-                                    <div class="account-dropdown__body">
-                                        <div class="account-dropdown__item">
-                                            <a href="#">
-                                                <i class="zmdi zmdi-account"></i>Account</a>
-                                        </div>
-                                        <div class="account-dropdown__item">
-                                            <a href="#">
-                                                <i class="zmdi zmdi-settings"></i>Setting</a>
-                                        </div>
-                                        <div class="account-dropdown__item">
-                                            <a href="#">
-                                                <i class="zmdi zmdi-money-box"></i>Billing</a>
-                                        </div>
-                                    </div>
+                                    
                                     <div class="account-dropdown__footer">
-                                        <a href="#">
+                                        <a href="adminlogout.php">
                                             <i class="zmdi zmdi-power"></i>Logout</a>
                                     </div>
                                 </div>
@@ -213,96 +195,7 @@ $NbAnnonces=mysqli_num_rows($result);
         </header>
         <!-- END HEADER DESKTOP-->
 
-        <!-- HEADER MOBILE-->
-        
-
-
-
-
-        <div class="sub-header-mobile-2 d-block d-lg-none">
-            <div class="header__tool">
-                
-                <div class="header-button-item js-item-menu">
-                    <i class="zmdi zmdi-settings"></i>
-                    <div class="setting-dropdown js-dropdown">
-                        <div class="account-dropdown__body">
-                            <div class="account-dropdown__item">
-                                <a href="#">
-                                    <i class="zmdi zmdi-account"></i>Account</a>
-                            </div>
-                            <div class="account-dropdown__item">
-                                <a href="#">
-                                    <i class="zmdi zmdi-settings"></i>Setting</a>
-                            </div>
-                            <div class="account-dropdown__item">
-                                <a href="#">
-                                    <i class="zmdi zmdi-money-box"></i>Billing</a>
-                            </div>
-                        </div>
-                        <div class="account-dropdown__body">
-                            <div class="account-dropdown__item">
-                                <a href="#">
-                                    <i class="zmdi zmdi-globe"></i>Language</a>
-                            </div>
-                            <div class="account-dropdown__item">
-                                <a href="#">
-                                    <i class="zmdi zmdi-pin"></i>Location</a>
-                            </div>
-                            <div class="account-dropdown__item">
-                                <a href="#">
-                                    <i class="zmdi zmdi-email"></i>Email</a>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="account-wrap">
-                    <div class="account-item account-item--style2 clearfix js-item-menu">
-                        <div class="image">
-                            <img src="images/icon/avatar-01.jpg" alt="John Doe" />
-                        </div>
-                        <div class="content">
-                            <a class="js-acc-btn" href="#">ash</a>
-                        </div>
-                        <div class="account-dropdown js-dropdown">
-                            <div class="info clearfix">
-                                <div class="image">
-                                    <a href="#">
-                                        <img src="images/icon/avatar-01.jpg" alt="John Doe" />
-                                    </a>
-                                </div>
-                                <div class="content">
-                                    <h5 class="name">
-                                        <a href="#">ash</a>
-                                    </h5>
-                                    <span class="email">ash@example.com</span>
-                                </div>
-                            </div>
-                            <div class="account-dropdown__body">
-                                <div class="account-dropdown__item">
-                                    <a href="#">
-                                        <i class="zmdi zmdi-account"></i>Account</a>
-                                </div>
-                                <div class="account-dropdown__item">
-                                    <a href="#">
-                                        <i class="zmdi zmdi-settings"></i>Setting</a>
-                                </div>
-                                <div class="account-dropdown__item">
-                                    <a href="#">
-                                        <i class="zmdi zmdi-money-box"></i>Billing</a>
-                                </div>
-                            </div>
-                            <div class="account-dropdown__footer">
-                                <a href="#">
-                                    <i class="zmdi zmdi-power"></i>Logout</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- END HEADER MOBILE -->
-
+    
         <!-- PAGE CONTENT-->
         <?php if($choix!=2){?>
             
@@ -356,7 +249,7 @@ $NbAnnonces=mysqli_num_rows($result);
 
                                     <div class='stat'>
                                         <div class='title'>
-                                            <h4>nombre total de produits: </h4>
+                                            <h4><?php echo $total; ?></h4>
                                             <?php echo "<p>$NbAnnonces</p>" ?>
                                         </div>
 
@@ -448,57 +341,63 @@ $NbAnnonces=mysqli_num_rows($result);
 
     <?php
         }else{
+    /*********************page ajouter produit (choix==2)************************/
     ?>
-                                <div class='page-content--bgf7'>
-                                <br><br><br>
+
+    <div class='page-content--bgf7'>
+    <br><br><br>
 
 
 
-                                    <div class=choose-btn>
-                                        <div>
-
-                                            <a href="gestionannonces.php?choix=0" class="button button5"> <strong>Demandes de vente</strong> </a>
-
-
-                                        </div>
-                                        <div>
-
-                                            <a href="gestionannonces.php?choix=1" class="button button5"> <strong>Produits en vente</strong> </a>
-
-
-                                        </div>
-                                        <div>
-
-                                            <a href="gestionannonces.php?choix=2" class="button button5 active"> <strong>Mettre en vente</strong> </a>
-
-
-                                        </div>
-
-
-                                    </div>
+    <div class=choose-btn>
+    <div>
+    <a href="gestionannonces.php?choix=0" class="button button5"> <strong>Demandes de vente</strong> </a>
+    </div>
+    <div>
+    <a href="gestionannonces.php?choix=1" class="button button5"> <strong>Produits en vente</strong> </a>
+    </div>
+    <div>
+    <a href="gestionannonces.php?choix=2" class="button button5 active"> <strong>Mettre en vente</strong> </a>
+    </div>
+    </div>
 
 
 
-                                    <div class="account-page">
+    <div class="account-page">
         <div class="container">
+
+
+        <?php
+
+        if (isset($_GET["msg"]))
+        {
+        $msg=$_GET["msg"];
+        }
+        else{
+        $msg='';
+        }
+
+        if ($msg!='')
+        {
+        ?>
+            <div style="text-align:center;">
+            <br><br><br>
+            
+            <p style="color :green; font-size: 25px; " ><?php echo $msg ?> </p>
+            
+            <a href='gestionannonces.php?choix=2' class='btn paniervide-btn'>Publier Un Autre Produit  </a>
+            
+            <br><br><br><br><br><br><br><br>
+
+            </div>
+        <?php
+        }
+        else
+        { 
+        ?>
+
+
             <div class="row">
-                <!--<div class="col-2">
-                    <img src="assets/img/image1.png" alt="" width="100%">
-                </div> -->
-                <!--<div class="col-2">
-                    <div class="form-container">
-                        <div class="form-btn">
-                            <span onclick="login()">Connexion</span>
-                            <span onclick="register()">Inscription</span>
-                            <hr id="indicator">
-                        </div>
-                        <form action="login.php" method="POST" id="LoginForm">
-                            <input type="email" name="email" placeholder="Email">
-                            <input type="password" name="mdp" placeholder="password">
-                            <button type="submit" class="btn">Connexion</button>
-                            <a href="mdp.html">Mot de passe oublié ?</a>
-                        </form>
-                -->        
                     <div class="vendreproduit-container">
                         <form action="AjouterAnnonce1.php" method="POST" id="AnnForm" name="f1" enctype="multipart/form-data">
                             <label for="titre">Titre</label>
@@ -556,6 +455,8 @@ $NbAnnonces=mysqli_num_rows($result);
                 </div>
             </div>
         </div>
+        <?php } ?>
+
     </div>
     </div>
 

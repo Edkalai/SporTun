@@ -9,7 +9,12 @@
         $choix = ($_GET['choix']);
         }
 
-
+    if($choix==0){
+    $tab='demandesdevente';
+    }
+    if($choix==1){
+    $tab='miseenvente';
+    }
 
     if(isset($_GET['image'])) {
         $image = ($_GET['image']);
@@ -20,7 +25,7 @@
 
 
     $id = $_GET['id'];
-    $sql = "SELECT * FROM miseenvente WHERE id=". $id .";";
+    $sql = "SELECT * FROM $tab WHERE id=". $id .";";
     
 
 

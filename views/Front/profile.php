@@ -4,6 +4,17 @@ session_start();
 $sql='select * from utilisateurs where email="'.$_SESSION["email"].'";';
 $result=mysqli_query($conn,$sql);
 $row=mysqli_fetch_assoc($result);
+$sql='select * from vente where email="'.$_SESSION["email"].'" order by datevente desc;';
+$resultat=mysqli_query($conn,$sql);
+$error="";
+$success="";
+if (isset($_GET['msgerror']) ){
+$error=$_GET['msgerror'];
+}
+if (isset($_GET['msgsuccess']) ){
+    $success=$_GET['msgsuccess'];
+    }
+
 ?>
 
 
@@ -33,7 +44,7 @@ $row=mysqli_fetch_assoc($result);
               <ul id="MenuItems">
                   <li><a href="index.php">Acceuil</a></li>
                   <li><a href="annonce.php">Produits</a></li>
-                  <li><a href='AjouterAnnonce.html'>Vendre un produit</a></li>
+                  <li><a href='AjouterAnnonce.php'>Vendre un produit</a></li>
                   <li><a href="billets.php">Billets</a></li>
                   <li><a href="actualites.php">Actualités</a></li>
                   <li><a href="account.php">Profil</a></li>
@@ -55,15 +66,15 @@ $row=mysqli_fetch_assoc($result);
         <i class="fa fa-credit-card"></i>
         </a>
         <a onclick="tabs(2)" class="tab">
-        <i class="fa fa-cog"></i>
+        <i class="fa fa-history"></i>
         </a>
         
         </nav>
     </div>
     <div class="rightbox">
-        <div class="profile tabShow">
-            <form action="modif.php" name="f2" method="POST" id="modifform">
-            <h1>Informations Personnelles</h1>
+        <div class="profile tabShow" >
+            <form action="modif.php" name="f2" method="POST" id="modifform" >
+            <h1>Informations personnelles</h1>
             <h2>Nom</h2>
             <input type="text" class="input" name="nom" id="esm" value="<?php echo $row['nom']; ?>" >
             <h2>Prénom</h2>
@@ -71,14 +82,17 @@ $row=mysqli_fetch_assoc($result);
             <h2>Email</h2>
             <input type="text" class="input" name="email" id="email" value="<?php echo $row['email']; ?>" >
             <h2>Mot de passe</h2>
-            <input type="password" class="input" name="mdp" id="mdp" placeholder="Saisir votre nouveau mot de passe" >
+            <input type="password" class="input" name="mdp" id="mdp" placeholder="Saisir votre mot de passe" >
+            <input type="password" class="input" name="nvmdp" id="nvmdp" placeholder="Saisir votre nouveau mot de passe" >
+            <input type="password" class="input" name="nvmdp2" id="nvmdp2" placeholder="Confirmer votre nouveau mot de passe" >
             <h2>Date de naissance</h2>
             <input type="date" class="input" name="datenaissance" id="datenaissance" value="<?php echo $row['datenaissance']; ?>">
             <h2>Numéro de téléphone</h2>
             <input type="text" class="input" name="numtel" id="numtel" value="<?php echo $row['numtel']; ?>" >
             <h2>Adresse</h2>
             <input type="text" class="input" name="adresse" id="adresse" value="<?php echo $row['adresse']; ?>" >
-            <p  id="erreurmodif" style="color :#ff523b; margin:10px 0px;" ></p>
+            <p  id="erreurmodif" style="color :#ff523b; margin:10px 0px;" ><?php echo $error; ?></p>
+            <p   style="color :green; margin:10px 0px;" ><?php echo $success; ?></p>
             <button class="btn profile-btn" type="submit" onclick="return verif()">Modifier</button>
             
             </form>
@@ -94,7 +108,37 @@ $row=mysqli_fetch_assoc($result);
             <button class="btn">Ajouter à votre solde</button>
         
         </div>
-     
+        <div class="historique tabShow">
+            <h1>Historique d'achats</h1>
+            <table class="historiqueachat">
+            <tr> 
+            <th> ID </th>
+            <th> Titre </th>
+            <th>Prix</th>
+            <th>Date d'achat</th>
+            </tr>
+            <?php 
+                            while($rows=mysqli_fetch_assoc($resultat))
+                            {
+                                ?>
+
+                            <tr class="tr-shadow">
+
+                                <td><?php echo $rows['idvente']; ?></td>
+                                <td><?php echo $rows['titre']; ?></td>
+                                <td><?php echo $rows['prix']; ?></td>
+                                <td><?php echo $rows['datevente']; ?></td>
+
+                            </tr>
+                            <?php
+                            }
+                            ?>
+                                
+           
+            
+            </table>
+        
+        </div>
         </div>
 
 </div>

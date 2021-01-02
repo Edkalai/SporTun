@@ -8,6 +8,9 @@
     //exit();
     }
 
+
+    
+
     
 
 
@@ -34,6 +37,7 @@
         
         // Velidate if files exist
         if (!empty(array_filter($_FILES['fileUpload']['name']))) {
+        $msg="Produit mis en vente avec succès!";
         
         // Loop through file items
             $i=0;
@@ -51,7 +55,7 @@
                 if(in_array($fileType, $allowedFileType)){
                         if(move_uploaded_file($tempLocation, $targetFilePath)){
                             $sqlVal = "('".$fileName."', '".$uploadDate."')";
-                }
+                        }
                 // Add into MySQL database
                 if(!empty($sqlVal)) {
 
@@ -60,26 +64,27 @@
                     if($i==1){
                         $insert1 = $fileName;
                         }
-                    }
+                    
                     if($i==2){
                         $insert2 = $fileName;
                         }
-                    }
+                    
                     if($i==3){
                         $insert3 = $fileName;
                         }
-                    }
+                    
                     if($i==4){
                         $insert4 = $fileName;
                         }
-                    }
+                    
                     if($i==5){
                         $insert5 = $fileName;
                         }
-                    }
+                    
 
                 }
             }
+        }
 
 
 
@@ -88,18 +93,12 @@
 
 
 
-        } else {
-            // Error
-            $response = array(
-                "status" => "alert-danger",
-                "message" => "Please select a file to upload."
-            );
-        }
+
         
 
 
 
 
-
     }
-    header("Location: gestionannonces.php?choix=2");
+    }
+    header("Location: gestionannonces.php?choix=2&msg=$msg");

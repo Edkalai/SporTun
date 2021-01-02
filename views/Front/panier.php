@@ -89,9 +89,8 @@ $error=$_GET['msg'];
 
                     <tr>
                      <td>
-                <div class="cart-info">
-                    <img src="assets/img/<?php echo $rows['image']; ?>" src2="<?php echo $rows['image'];?>">
-                    <img  src="<?php echo $rows['image'];?>">
+                <div class="cart-info">  
+                    <img src="assets/img/<?php echo $rows['image']; ?>">
                       <div>
                           <p><?php echo $rows['titre']; ?></p>
                           <small> Prix : <?php echo $rows['prix']; ?> TND</small>
