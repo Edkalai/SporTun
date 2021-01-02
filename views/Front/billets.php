@@ -6,7 +6,7 @@ include 'PHPfunctions.php';
 session_start();
 
 $choix='Par défaut';
-$noresultmsg='Désolé, il n’y a aucun produit actuellement.';
+$noresultmsg='Désolé, il n’y a aucun évènement actuellement.';
 
 
 $compte="Compte";
@@ -20,7 +20,7 @@ if (isset($_SESSION["email"]))
 if(isset($_GET['categorie'])) {
     $categorie = $_GET['categorie'];
     }else{
-        $categorie = 'Tous Les Produits';   
+        $categorie = 'Tous Les évènements';   
     }
 
 if(isset($_GET['tri'])) {
@@ -48,20 +48,20 @@ if(isset($_POST['submit_search'])){
     }
 }
 
-/********************nombre des produits à afficher pour tous les critères sélectionnés ***********************/
+/********************nombre des events à afficher pour tous les critères sélectionnés ***********************/
 
-            if($categorie == 'Tous Les Produits'){
-            $sql1 = "SELECT * FROM events WHERE (titre LIKE '%$search%' OR descourte LIKE '%$search%' OR 
+            if($categorie == 'Tous Les évènements'){
+            $sql1 = "SELECT * FROM events WHERE (titre LIKE '%$search%' OR descourte  LIKE '%$search%' OR deslongue  LIKE '%$search%' OR 
             categorie LIKE '%$search%' OR prix LIKE '%$search%') ;"; 
             }else{
-            $sql1 = "SELECT * FROM events WHERE (titre LIKE '%$search%' OR descourte LIKE '%$search%' OR 
+            $sql1 = "SELECT * FROM events WHERE (titre LIKE '%$search%' OR descourte  LIKE '%$search%' OR deslongue  LIKE '%$search%' OR 
             categorie LIKE '%$search%' OR prix LIKE '%$search%') AND categorie ='" . $categorie. "';";
             }
             $result1=mysqli_query($conn,$sql1);
-            $NbAnnonces=mysqli_num_rows($result1);
-            if($NbAnnonces==0){
+            $Nbevents=mysqli_num_rows($result1);
+            if($Nbevents==0){
                 if($search==''){
-                $noresultmsg= "Désolé, Il n'y a aucun produit qui correspond à la categorie sélectionnée .";
+                $noresultmsg= "Désolé, Il n'y a aucun évènement qui correspond à la categorie sélectionnée .";
                 }else{
                 $noresultmsg= "Désolé, aucun résultat ne correspond à vos critères de recherche.";
                 }
@@ -74,7 +74,7 @@ if(isset($_POST['submit_search'])){
         //Par défaut
     if($tri==0){
 
-        $sql="SELECT * from events WHERE titre LIKE '%$search%' OR descourte LIKE '%$search%' OR 
+        $sql="SELECT * from events WHERE titre LIKE '%$search%' OR descourte  LIKE '%$search%' OR deslongue  LIKE '%$search%' OR 
         categorie LIKE '%$search%' OR prix LIKE '%$search%'  ;";
         //echo $sql; die;
         $result=mysqli_query($conn,$sql);
@@ -85,7 +85,7 @@ if(isset($_POST['submit_search'])){
         //Popularité
     if($tri==1){
 
-        $sql="SELECT * from events WHERE titre LIKE '%$search%' OR descourte LIKE '%$search%' OR 
+        $sql="SELECT * from events WHERE titre LIKE '%$search%' OR descourte  LIKE '%$search%'  OR deslongue  LIKE '%$search%' OR 
         categorie LIKE '%$search%' OR prix LIKE '%$search%' ORDER BY vues DESC;";
         $result=mysqli_query($conn,$sql);
         $choix='Popularité';
@@ -95,7 +95,7 @@ if(isset($_POST['submit_search'])){
         //Nouveautés
     if($tri==2){
 
-        $sql="SELECT * FROM events WHERE titre LIKE '%$search%' OR descourte LIKE '%$search%' OR 
+        $sql="SELECT * FROM events WHERE titre LIKE '%$search%' OR descourte  LIKE '%$search%'OR deslongue  LIKE '%$search%' OR 
         categorie LIKE '%$search%' OR prix LIKE '%$search%' ORDER BY date ASC ;";
         $result=mysqli_query($conn,$sql);
         $choix='évènements à venir';
@@ -106,7 +106,7 @@ if(isset($_POST['submit_search'])){
         //Prix le plus bas
     if($tri==4){
 
-        $sql="SELECT * FROM events WHERE titre LIKE '%$search%' OR descourte LIKE '%$search%' OR 
+        $sql="SELECT * FROM events WHERE titre LIKE '%$search%' OR descourte  LIKE '%$search%'  OR deslongue  LIKE '%$search%' OR 
         categorie LIKE '%$search%' OR prix LIKE '%$search%' ORDER BY prix ASC ;";
         //echo $sql; die;
         $result=mysqli_query($conn,$sql);
@@ -117,7 +117,7 @@ if(isset($_POST['submit_search'])){
         //Prix le plus élevé
     if($tri==5){
 
-        $sql="SELECT * FROM events WHERE titre LIKE '%$search%' OR descourte LIKE '%$search%' OR 
+        $sql="SELECT * FROM events WHERE titre LIKE '%$search%' OR descourte  LIKE '%$search%'  OR deslongue  LIKE '%$search%' OR 
         categorie LIKE '%$search%' OR prix LIKE '%$search%' ORDER BY prix DESC ;";
         $result=mysqli_query($conn,$sql);
         $choix='Prix le plus élevé';
@@ -181,25 +181,25 @@ if(isset($_POST['submit_search'])){
 
         <div class="row">
             <?php $s=$npage+1;?>
-            <?php echo "<a href='billets.php?categorie=Fitness Muscu&?npage=$s&tri=$tri&#c1' class='col-categories'>";?>
-                <img src="assets/img/20_thumb.png" alt="Fitness Muscu">
-                <h2>FITNESS MUSCU</h2>
+            <?php echo "<a href='billets.php?categorie=Carritatif&?npage=$s&tri=$tri&#c1' class='col-categories'>";?>
+                <img src="assets/img/20_thumb.png" alt="Carritatif">
+                <h2>CARRITATIF</h2>
             </a>
-            <?php echo "<a href='billets.php?categorie=Cyclisme&?npage=$s&tri=$tri#c1' class='col-categories'>";?>
-                <img src="assets/img/18_thumb.png" alt="Cyclisme">
-                <h2>CYCLISME</h2>
+            <?php echo "<a href='billets.php?categorie=Tournoi&?npage=$s&tri=$tri#c1' class='col-categories'>";?>
+                <img src="assets/img/18_thumb.png" alt="Tournoi">
+                <h2>TOURNOI</h2>
             </a>
-            <?php echo "<a href='billets.php?categorie=Equitation&?npage=$s&tri=$tri#c1' class='col-categories'>";?>
-                <img src="assets/img/4_thumb.png" alt="Equitation">
-                <h2>EQUITATION</h2>
+            <?php echo "<a href='billets.php?categorie=Commercial&?npage=$s&tri=$tri#c1' class='col-categories'>";?>
+                <img src="assets/img/4_thumb.png" alt="Commercial">
+                <h2>COMMERCIAL</h2>
             </a>
-            <?php echo "<a href='billets.php?categorie=Golf&?npage=$s&tri=$tri#c1' class='col-categories'>";?>
-                <img src="assets/img/8_thumb.png" alt="Golf">
-                <h2>GOLF</h2>
+            <?php echo "<a href='billets.php?categorie=Conference&?npage=$s&tri=$tri#c1' class='col-categories'>";?>
+                <img src="assets/img/8_thumb.png" alt="Conference">
+                <h2>CONFERENCE</h2>
             </a>
-            <?php echo "<a href='billets.php?categorie=Nautique&?npage=$s&tri=$tri#c1' class='col-categories'>";?>
-                <img src="assets/img/21_thumb.png" alt="Nautique">
-                <h2>NAUTIQUE</h2>
+            <?php echo "<a href='billets.php?categorie=Online&?npage=$s&tri=$tri#c1' class='col-categories'>";?>
+                <img src="assets/img/21_thumb.png" alt="Online">
+                <h2>ONLINE</h2>
             </a>
             <?php echo "<a href='billets.php?categorie=Autre&?npage=$s&tri=$tri#c1' class='col-categories'>";?>
                 <img src="assets/img/230_thumb.png" alt="Autre">
@@ -210,9 +210,9 @@ if(isset($_POST['submit_search'])){
 
         <br>
         <div class="row">
-            <?php echo "<a href='billets.php?categorie=Tous Les Produits&?npage=$s&tri=$tri#c1' class='col-allproducts'>";?>
+            <?php echo "<a href='billets.php?categorie=Tous Les évènements&?npage=$s&tri=$tri#c1' class='col-allproducts'>";?>
                 <img src="assets/img/equipements.png" style="width: 100%;" alt="Fitness Muscu">
-                <h2>TOUS LES PRODUITS</h2>
+                <h2>TOUS LES EVENEMENTS</h2>
             </a>   
         </div>
         
@@ -244,7 +244,7 @@ if(isset($_POST['submit_search'])){
 
 
 
-<form action=<?php echo "'Annonce.php?categorie=$categorie#c1'";?> class="search-form" method="POST" role="search">
+<form action=<?php echo "'billets.php?categorie=$categorie#c1'";?> class="search-form" method="POST" role="search">
 <input id="search" type="search" name="search" value="<?php echo $search; ?>" placeholder="chercher..." />
 <button type="submit" name="submit_search" class="search-button"><i class="fas fa-search"></i></button>    
 </form>
@@ -254,7 +254,7 @@ if(isset($_POST['submit_search'])){
  <div class="container">
     
     <?php 
-   if($NbAnnonces==0){
+   if($Nbevents==0){
         
     echo "</br></br></br></br></br>";
     echo "<h1 style='text-align:center;'> $noresultmsg </h1>";
@@ -269,7 +269,7 @@ $i=0;
  
     
                             while($rows=mysqli_fetch_assoc($result)){
-                            if(($rows['categorie']==$categorie)||($categorie=='Tous Les Produits')){
+                            if(($rows['categorie']==$categorie)||($categorie=='Tous Les évènements')){
                                 if($n>=($npage*12))
                                 {   
                                     $i++;  
@@ -343,8 +343,8 @@ $i=0;
 
 
 
-        $nbpages=intdiv($NbAnnonces, 12);
-        $mod=$NbAnnonces%12;
+        $nbpages=intdiv($Nbevents, 12);
+        $mod=$Nbevents%12;
         if($mod>0){
             $nbpages+=1;
             }
@@ -363,7 +363,7 @@ $i=0;
         
         if($npage!=($nbpages-1)){
 
-            if($NbAnnonces>12){
+            if($Nbevents>12){
                 $s=$npage+1;
                 echo"<a href='billets.php?categorie=$categorie&npage=$s&tri=$tri&search=$search#c1'><span>&#8594;</span></a>"; 
             }      

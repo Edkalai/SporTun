@@ -32,12 +32,14 @@ $result=mysqli_query($conn,$sql);
 $row=mysqli_fetch_assoc($result);
 
 
-//Produits Connexes
+//events Connexes
 
-
+$sql1 = "SELECT * FROM events WHERE categorie ='" . $row['categorie']. " ' and id !=". $id ." LIMIT 4 ;";
+$categorie= $row['categorie'];
 
 
 //echo $sql1; die;
+$result1 = mysqli_query($conn,$sql1);
 //echo $row['categorie']
 
 
@@ -89,22 +91,12 @@ $row=mysqli_fetch_assoc($result);
                 <div class="col-2">
                 <?php echo " <img src=../Dashboard/".$row['image']." > "?>
                 
-                    <div class="small-img-row">
-                        <?php
-
-                            echo "<div class='small-img-col'>";
-                                echo "<a href=detailevent.php?id=$id&image=image> <img src=/".$row['image']. " width='100%' ></a> ";
-                            echo "</div>";
-                            
-                           
-                            
-
-                        ?>
-                    </div>     
+                       
                 
                 </div> 
                 <div class="col-2">
                     <h1><?php echo $row['titre']; ?></h1>
+                    <h5 style="color:grey;"><?php echo $row['date']; ?></h5>
                     
                     <h4><?php echo $row['prix'] . ' TND'; ?></h4>
                     <input id="quantite" type="number" value="1" min="1">
@@ -126,7 +118,60 @@ $row=mysqli_fetch_assoc($result);
     <!-------------------products-------------------->
 
 
+    <div class="small-container">
+            <div class="row row-2">
+                <h2>Autres évènements qui peuvent vous intéresser</h2>
+
+                <?php echo "<p><a href='billets.php?categorie=$categorie#c1' class='hoverprofile'>Voir Plus</a></p>";?>
+            </div>
+        </div>
+
+
+    <!-------------------products-------------------->
+
+
+    <div class="small-container">
+
+        <div class="row">
+
+
+
+            <?php
+                
+                while($rows=mysqli_fetch_assoc($result1))
+                {
+                    $idx=$rows['id'];
+                    
+                
+            ?>
+                     <div class='col-4'>
+                        <?php $descourte=LimitCharacter($rows['descourte'],50); ?>
+                        <?php echo "<a href=detailevent.php?id=$idx> <img src=assets/img/" .$rows['image']. " ></a> "?>
+                        <h4><?php echo $rows['titre']; ?></h4>
+                        <p><?php echo $rows['prix'] . ' TND'; ?></p>
+                        <p><?php echo $descourte ?></p>
+                        <!--<p> <a href="" class="hoverprofile" title="Voir profil de vendeur" > Nada </a> </p>-->
+                        <br><br><br><br>
+                    </div>
+
+            <?php
+                }
+        
+            ?>
+
+
+
+
+
+
+
+
+
+        </div>
+        
     
+
+    </div>
 
     
 

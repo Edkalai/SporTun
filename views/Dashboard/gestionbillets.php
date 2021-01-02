@@ -251,11 +251,11 @@ $result=mysqli_query($conn,$sql);
                     <div class="col-12 col-md-9">
                     <select name="categorie" id="categorie">
                                 <option value="Sélectionner">Sélectionner</option>
-                                <option value="Equitation">Carritatif</option>
-                                <option value="Fitness Muscu">Tournoi</option>
-                                <option value="Cyclisme">Commercial</option>
-                                <option value="Golf">Conf</option>
-                                <option value="Nautique">NAUTIQUE</option>
+                                <option value="Carritatif">Carritatif</option>
+                                <option value="Tournoi">Tournoi</option>
+                                <option value="Commercial">Commercial</option>
+                                <option value="Conference">Conférence</option>
+                                <option value="Online">Online</option>
                                 <option value="Autre">AUTRE</option>
 
                             </select>

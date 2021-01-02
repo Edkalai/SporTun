@@ -132,7 +132,7 @@ $NbAnnonces=mysqli_num_rows($result);
                                     <span class="bot-line"></span>Gestion des produits</a>
                             </li>
                             <li>
-                                <a href="table.html">
+                                <a href="gestionbillets.php">
                                     <i class="fas fa-tag"></i>
                                     <span class="bot-line"></span>Gestion des billets</a>
                             </li>   
