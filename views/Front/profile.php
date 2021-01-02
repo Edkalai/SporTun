@@ -44,7 +44,7 @@ if (isset($_GET['msgsuccess']) ){
               <ul id="MenuItems">
                   <li><a href="index.php">Acceuil</a></li>
                   <li><a href="annonce.php">Produits</a></li>
-                  <li><a href='AjouterAnnonce.html'>Vendre un produit</a></li>
+                  <li><a href='AjouterAnnonce.php'>Vendre un produit</a></li>
                   <li><a href="billets.php">Billets</a></li>
                   <li><a href="actualites.php">Actualités</a></li>
                   <li><a href="account.php">Profil</a></li>
