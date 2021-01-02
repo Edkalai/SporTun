@@ -92,34 +92,35 @@ if (
                     </div>
                     <div class="header__navbar">
                         <ul class="list-unstyled">
-                            <li class="has-sub">
-                                <a href="index.html">
-                                    <i class="fas fa-home"></i>Acceuil
-                                    <span class="bot-line"></span>
-                                </a>
-                            </li>
                             <li>
-                                <a href="gestionannonces.html">
+                                <a href="#gestionannonces.php">
                                     <i class="fas fa-bullhorn"></i>
                                     <span class="bot-line"></span>Gestion des produits</a>
                             </li>
                             <li>
-                                <a href="gestionbillets.html">
+                                <a href="gestionbillets.php">
                                     <i class="fas fa-tag"></i>
                                     <span class="bot-line"></span>Gestion des billets</a>
-                            </li>
+                            </li> 
                             <li class="has-sub">
-                                <a href="gestionactualites.html">
+                                <a href="gestionventes.php">
+                                    <i class="fas fa-user"></i>
+                                    <span class="bot-line"></span>Gestion des ventes</a>
+                            
+                            </li>  
+                            <li class="has-sub">
+                                <a href="gestionactualites.php">
                                     <i class="fas fa-list-alt"></i>
                                     <span class="bot-line"></span>Gestion des actualités</a>
-
+                            
                             </li>
                             <li class="has-sub">
                                 <a href="gestioncomptes.php">
                                     <i class="fas fa-user"></i>
                                     <span class="bot-line"></span>Gestion des comptes</a>
-
+                            
                             </li>
+                           
                         </ul>
                     </div>
                     <div class="header__tool">
