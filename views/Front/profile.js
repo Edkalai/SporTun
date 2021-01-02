@@ -5,6 +5,8 @@ var nom=document.f2.nom.value.toUpperCase();
 var prenom=document.f2.prenom.value.toUpperCase();
 var email=document.f2.email.value;
 var mdp=document.f2.mdp.value;
+var nvmdp=document.f2.nvmdp.value;
+var nvmdp2=document.f2.nvmdp2.value;
 var date=document.f2.datenaissance.value;
 var numtel=document.f2.numtel.value;
 var adresse=document.f2.adresse.value;
@@ -71,7 +73,14 @@ var dates = {
   
 
     if(mdp==""){
-        error="veuillez renseigner un mot de passe";
+        error="veuillez renseigner votre mot de passe";
+        document.getElementById("erreurmodif").innerHTML = error;
+        return false;
+       
+    }
+
+    if(nvmdp!=nvmdp2){
+        error="les nouveaux mots de passe ne correspondent pas";
         document.getElementById("erreurmodif").innerHTML = error;
         return false;
        

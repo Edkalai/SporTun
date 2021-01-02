@@ -1,11 +1,11 @@
 <?php
 	include_once 'DBconnection.php';
 	
-    $target_dir = "./front/assets/img";
+    $target_dir = "../Front/assets/img/";
     $target_file = $target_dir . basename($_FILES["image"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-    /*
+    
     // Check if image file is a actual image or fake image
     if(isset($_POST["submit"])) {
       $check = getimagesize($_FILES["image"]["tmp_name"]);
@@ -47,21 +47,22 @@
       } else {
         echo "Sorry, there was an error uploading your file.";
       }
-    }  */
+    }  
 
 	$titre = $_POST['titre'];
 	$descourte = $_POST['descourte'];
 	$deslongue = $_POST['deslongue'];
 	$prix = $_POST['prix'];
-	$date = $_POST['date'];
+  $date = $_POST['date'];
+  $categorie = $_POST['categorie'];
 //	$image = $_POST['image'];
     
 
-    $sql = "INSERT INTO events (titre, descourte, deslongue, date, prix, image)
-    VALUES ('$titre', '$descourte', '$deslongue', '$date', '$prix', '$target_file');";
+    $sql = "INSERT INTO events (titre, descourte, deslongue, date, prix, image, categorie)
+    VALUES ('$titre', '$descourte', '$deslongue', '$date', '$prix', '$target_file','$categorie');";
 
     mysqli_query($conn,$sql);
-
+  
     header("Location: gestionbillets.php");
     ?>
 
