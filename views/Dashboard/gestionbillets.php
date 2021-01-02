@@ -1,5 +1,6 @@
 <?php
 include 'DBconnection.php';
+include '../front/PHPfunctions.php';
 session_start();
 if (!isset($_SESSION["emailadmin"]))
     {
@@ -7,13 +8,83 @@ if (!isset($_SESSION["emailadmin"]))
         exit();
     }
     $sql='select * from utilisateurs where email="'.$_SESSION["emailadmin"].'";';
-    $result=mysqli_query($conn,$sql);
-    $row=mysqli_fetch_assoc($result);
+    $result1=mysqli_query($conn,$sql);
+    $row=mysqli_fetch_assoc($result1);
     $compte=$row['nom'].' '.$row['prenom'];
 
 
-$sql='select * from events;';
-$result=mysqli_query($conn,$sql);
+
+    $choix='Par défaut';
+
+    if(isset($_GET['id'])) {
+        $id = $_GET['id'];
+        }else{
+            $id = 0;
+        }
+    
+    //$id = $_GET['id'];
+
+   mysqli_query($conn,"DELETE FROM events WHERE id='".$id."'");
+    $sql="select * from events;";
+
+    if(isset($_GET['tri'])) {
+        $tri = $_GET['tri'];
+        }else{
+            $tri = 0;
+        }
+
+    if($tri==0){
+
+        $sql1="SELECT * from events ORDER BY id DESC;";
+        //echo $sql; die;
+        $result=mysqli_query($conn,$sql1);
+        $choix='Par défaut';
+
+
+    }
+        //Popularité
+    if($tri==1){
+
+        $sql1="SELECT * from events ORDER BY vues DESC;";
+        $result=mysqli_query($conn,$sql1);
+        $choix='Popularité';
+
+    }
+
+        //Nouveautés
+    if($tri==2){
+
+        $sql1="SELECT * FROM events ORDER BY date ASC ;";
+        $result=mysqli_query($conn,$sql1);
+        $choix='évènements à venir';
+
+
+    }
+
+        //Prix le plus bas
+    if($tri==4){
+
+        $sql1="SELECT * FROM events  ORDER BY prix ASC ;";
+        //echo $sql; die;
+        $result=mysqli_query($conn,$sql1);
+        $choix='Prix le plus bas';
+
+
+    }
+        //Prix le plus élevé
+    if($tri==5){
+
+        $sql1="SELECT * FROM events ORDER BY prix DESC ;";
+        $result=mysqli_query($conn,$sql1);
+        $choix='Prix le plus élevé';
+
+
+    }
+
+
+
+//$sql='select * from events;';
+//$result=mysqli_query($conn,$sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -213,6 +284,22 @@ $result=mysqli_query($conn,$sql);
         </form>
 
 </div>
+<div class="row row-2">
+    
+
+    
+
+    
+    <select name="formal" onchange="javascript:handleSelect(this)">  
+   <?php echo "<option selected disabled value='Sélectionner'>$choix</option>";?>  
+    <option value="0">Par défaut</option> 
+    <option value="1">Popularité</option> 
+    <option value="2">évènements à venir</option> 
+    <option value="4">Prix le plus bas</option> 
+    <option value="5">Prix le plus élevé</option> 
+    </select> 
+
+</div>
 
 <div class="card-header">
     <strong>Liste des évènements:</strong>
@@ -227,6 +314,7 @@ $result=mysqli_query($conn,$sql);
             <th>Prix (en DT)</th>
             <th>Catégorie</th>
             <th>Vues</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -234,6 +322,7 @@ $result=mysqli_query($conn,$sql);
                             <?php 
                             while($rows=mysqli_fetch_assoc($result))
                             {
+                               // $id=$rows['id'];
                                 ?>
 
                             <tr class="tr-shadow">
@@ -245,6 +334,19 @@ $result=mysqli_query($conn,$sql);
                                 <td><?php echo $rows['prix']; ?></td>
                                 <td><?php echo $rows['categorie']; ?></td>
                                 <td><?php echo $rows['vues']; ?></td>
+                                <td>
+
+
+<div class="table-data-feature">
+<?php $id=$rows['id'];?>
+<?php echo"<a href='gestionbillets.php?id=$id'>
+            <button class='item' data-toggle='tooltip' data-placement='top' title='Supprimer'>
+                <i class='zmdi zmdi-delete'></i>
+            </button>
+           </a>"; ?>
+</div>
+</td>
+
                               
 
                                 
@@ -267,5 +369,15 @@ $result=mysqli_query($conn,$sql);
 </div>
 
 
+<script type="text/javascript"> 
+            function handleSelect(elm) 
+            {
+           
+            window.location = "gestionbillets.php?&tri="+elm.value; 
+            //window.location = "AjouterAnnonce.html?tri=1"; 
+            //window.location = elm.value+".php"; 
+            } 
+        </script>
+
 </body>
-</html>
+</html>        
