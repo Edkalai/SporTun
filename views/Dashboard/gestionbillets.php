@@ -1,7 +1,90 @@
 <?php
 include 'DBconnection.php';
-$sql='select * from events;';
-$result=mysqli_query($conn,$sql);
+include '../front/PHPfunctions.php';
+session_start();
+if (!isset($_SESSION["emailadmin"]))
+    {
+        header("Location: dashboardlogin.php");
+        exit();
+    }
+    $sql='select * from utilisateurs where email="'.$_SESSION["emailadmin"].'";';
+    $result1=mysqli_query($conn,$sql);
+    $row=mysqli_fetch_assoc($result1);
+    $compte=$row['nom'].' '.$row['prenom'];
+
+
+
+    $choix='Par défaut';
+
+    if(isset($_GET['id'])) {
+        $id = $_GET['id'];
+        }else{
+            $id = 0;
+        }
+    
+    //$id = $_GET['id'];
+
+   mysqli_query($conn,"DELETE FROM events WHERE id='".$id."'");
+    $sql="select * from events;";
+
+    if(isset($_GET['tri'])) {
+        $tri = $_GET['tri'];
+        }else{
+            $tri = 0;
+        }
+
+    if($tri==0){
+
+        $sql1="SELECT * from events ORDER BY id DESC;";
+        //echo $sql; die;
+        $result=mysqli_query($conn,$sql1);
+        $choix='Par défaut';
+
+
+    }
+        //Popularité
+    if($tri==1){
+
+        $sql1="SELECT * from events ORDER BY vues DESC;";
+        $result=mysqli_query($conn,$sql1);
+        $choix='Popularité';
+
+    }
+
+        //Nouveautés
+    if($tri==2){
+
+        $sql1="SELECT * FROM events ORDER BY date ASC ;";
+        $result=mysqli_query($conn,$sql1);
+        $choix='évènements à venir';
+
+
+    }
+
+        //Prix le plus bas
+    if($tri==4){
+
+        $sql1="SELECT * FROM events  ORDER BY prix ASC ;";
+        //echo $sql; die;
+        $result=mysqli_query($conn,$sql1);
+        $choix='Prix le plus bas';
+
+
+    }
+        //Prix le plus élevé
+    if($tri==5){
+
+        $sql1="SELECT * FROM events ORDER BY prix DESC ;";
+        $result=mysqli_query($conn,$sql1);
+        $choix='Prix le plus élevé';
+
+
+    }
+
+
+
+//$sql='select * from events;';
+//$result=mysqli_query($conn,$sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,180 +106,98 @@ $result=mysqli_query($conn,$sql);
         
             <!-- Main CSS-->
             <link href="css/styles.css" rel="stylesheet" media="all">
+            <link rel="shortcut icon" href="../front/assets/img/logo.ico">
         
     </head>
 
-<body class="animsition">
-    <div class="page-wrapper">
-<header class="header-desktop3 d-none d-lg-block">
-    <div class="section__content section__content--p35">
-        <div class="header3-wrap">
-            <div class="header__logo">
-                <a href="index.html">
-                    <img src="images/icon/logo-white.png" alt="CoolAdmin" />
-                </a>
-            </div>
-            <div class="header__navbar">
-                <ul class="list-unstyled">
-                    <li class="has-sub">
-                        <a href="index.html">
-                            <i class="fas fa-home"></i>Acceuil
-                            <span class="bot-line"></span>
+    <body>
+ <div class="page-wrapper">
+        <!-- HEADER DESKTOP-->
+        <header class="header-desktop3 d-none d-lg-block">
+            <div class="section__content section__content--p35">
+                <div class="header3-wrap">
+                    <div class="header__logo">
+                        <a href="#">
+                            <img src="images/icon/logo-white.png" alt="CoolAdmin" />
                         </a>
-                    </li>
-                    <li>
-                        <a href="gestionannonces.html">
-                            <i class="fas fa-bullhorn"></i>
-                            <span class="bot-line"></span>Gestion des produits</a>
-                    </li>
-                    <li>
-                        <a href="gestionbillets.html">
-                            <i class="fas fa-tag"></i>
-                            <span class="bot-line"></span>Gestion des billets</a>
-                    </li>   
-                    <li class="has-sub">
-                        <a href="gestionactualites.html">
-                            <i class="fas fa-list-alt"></i>
-                            <span class="bot-line"></span>Gestion des actualités</a>
-                    
-                    </li>
-                    <li class="has-sub">
-                        <a href="gestioncomptes.php">
-                            <i class="fas fa-user"></i>
-                            <span class="bot-line"></span>Gestion des comptes</a>
-                    
-                    </li>
-                    <li class="has-sub">
-                        <a href="gestioncomptes.php">
-                            <i class="fas fa-user"></i>
-                            <span class="bot-line"></span>Gestion des publicités</a>
-                    
-                    </li>
-                </ul>
-            </div>
-            <div class="header__tool">
-                <div class="header-button-item has-noti js-item-menu">
-                    <i class="zmdi zmdi-notifications"></i>
-                    <div class="notifi-dropdown notifi-dropdown--no-bor js-dropdown">
-                        <div class="notifi__title">
-                            <p>You have 3 Notifications</p>
-                        </div>
-                        <div class="notifi__item">
-                            <div class="bg-c1 img-cir img-40">
-                                <i class="zmdi zmdi-email-open"></i>
-                            </div>
-                            <div class="content">
-                                <p>You got a email notification</p>
-                                <span class="date">April 12, 2018 06:50</span>
-                            </div>
-                        </div>
-                        <div class="notifi__item">
-                            <div class="bg-c2 img-cir img-40">
-                                <i class="zmdi zmdi-account-box"></i>
-                            </div>
-                            <div class="content">
-                                <p>Your account has been blocked</p>
-                                <span class="date">April 12, 2018 06:50</span>
-                            </div>
-                        </div>
-                        <div class="notifi__item">
-                            <div class="bg-c3 img-cir img-40">
-                                <i class="zmdi zmdi-file-text"></i>
-                            </div>
-                            <div class="content">
-                                <p>You got a new file</p>
-                                <span class="date">April 12, 2018 06:50</span>
-                            </div>
-                        </div>
-                        <div class="notifi__footer">
-                            <a href="#">All notifications</a>
-                        </div>
                     </div>
-                </div>
-                <div class="header-button-item js-item-menu">
-                    <i class="zmdi zmdi-settings"></i>
-                    <div class="setting-dropdown js-dropdown">
-                        <div class="account-dropdown__body">
-                            <div class="account-dropdown__item">
-                                <a href="#">
-                                    <i class="zmdi zmdi-account"></i>Account</a>
-                            </div>
-                            <div class="account-dropdown__item">
-                                <a href="#">
-                                    <i class="zmdi zmdi-settings"></i>Setting</a>
-                            </div>
-                            <div class="account-dropdown__item">
-                                <a href="#">
-                                    <i class="zmdi zmdi-money-box"></i>Billing</a>
-                            </div>
-                        </div>
-                        <div class="account-dropdown__body">
-                            <div class="account-dropdown__item">
-                                <a href="#">
-                                    <i class="zmdi zmdi-globe"></i>Language</a>
-                            </div>
-                            <div class="account-dropdown__item">
-                                <a href="#">
-                                    <i class="zmdi zmdi-pin"></i>Location</a>
-                            </div>
-                            <div class="account-dropdown__item">
-                                <a href="#">
-                                    <i class="zmdi zmdi-email"></i>Email</a>
-                            </div>
-                            <div class="account-dropdown__item">
-                                <a href="#">
-                                    <i class="zmdi zmdi-notifications"></i>Notifications</a>
-                            </div>
-                        </div>
+                    <div class="header__navbar">
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="gestionannonces.php">
+                                    <i class="fas fa-bullhorn"></i>
+                                    <span class="bot-line"></span>Gestion des produits</a>
+                            </li>
+                            <li>
+                                <a href="gestionbillets.php">
+                                    <i class="fas fa-tag"></i>
+                                    <span class="bot-line"></span>Gestion des billets</a>
+                            </li> 
+                            <li class="has-sub">
+                                <a href="gestionventes.php">
+                                    <i class="fas fa-user"></i>
+                                    <span class="bot-line"></span>Gestion des ventes</a>
+                            
+                            </li>  
+                            <li class="has-sub">
+                            <a href="gestionactualites.php">
+                                    <i class="fas fa-list-alt"></i>
+                                    <span class="bot-line"></span>Gestion des actualités</a>
+                            
+                            </li>
+                            <li class="has-sub">
+                                <a href="gestioncomptes.php">
+                                    <i class="fas fa-user"></i>
+                                    <span class="bot-line"></span>Gestion des comptes</a>
+                            
+                            </li>
+                           
+                        </ul>
                     </div>
-                </div>
-                <div class="account-wrap">
-                    <div class="account-item account-item--style2 clearfix js-item-menu">
-                        <div class="image">
-                            <img src="images/icon/avatar-01.png" alt="John Doe" />
-                        </div>
-                        <div class="content">
-                            <a class="js-acc-btn" href="#">john doe</a>
-                        </div>
-                        <div class="account-dropdown js-dropdown">
-                            <div class="info clearfix">
-                                <div class="image">
-                                    <a href="#">
-                                        <img src="images/icon/avatar-01.jpg" alt="John Doe" />
-                                    </a>
+                    <div class="header__tool">
+                        
+                        <div class="header-button-item js-item-menu">
+                            <i class="zmdi zmdi-settings"></i>
+                            <div class="setting-dropdown js-dropdown">
+                               
+                                <div class="account-dropdown__body">
+                                    <div class="account-dropdown__item">
+                                        <a href="#">
+                                            <i class="zmdi zmdi-globe"></i>Language</a>
+                                    </div>
+                                    <div class="account-dropdown__item">
+                                        <a href="#">
+                                            <i class="zmdi zmdi-pin"></i>Location</a>
+                                    </div>
+                                    <div class="account-dropdown__item">
+                                        <a href="#">
+                                            <i class="zmdi zmdi-email"></i>Email</a>
+                                    </div>
+                                    <div class="account-dropdown__item">
+                                        <a href="#">
+                                            <i class="zmdi zmdi-notifications"></i>Notifications</a>
+                                    </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="account-wrap">
+                            <div class="account-item account-item--style2 clearfix js-item-menu">
                                 <div class="content">
-                                    <h5 class="name">
-                                        <a href="#">john doe</a>
-                                    </h5>
-                                    <span class="email">johndoe@example.com</span>
+                                  <span> <?php echo $compte ?></span>
                                 </div>
-                            </div>
-                            <div class="account-dropdown__body">
-                                <div class="account-dropdown__item">
-                                    <a href="#">
-                                        <i class="zmdi zmdi-account"></i>Account</a>
+                                <div class="account-dropdown js-dropdown">
+                                    
+                                    <div class="account-dropdown__footer">
+                                        <a href="adminlogout.php">
+                                            <i class="zmdi zmdi-power"></i>Logout</a>
+                                    </div>
                                 </div>
-                                <div class="account-dropdown__item">
-                                    <a href="#">
-                                        <i class="zmdi zmdi-settings"></i>Setting</a>
-                                </div>
-                                <div class="account-dropdown__item">
-                                    <a href="#">
-                                        <i class="zmdi zmdi-money-box"></i>Billing</a>
-                                </div>
-                            </div>
-                            <div class="account-dropdown__footer">
-                                <a href="#">
-                                    <i class="zmdi zmdi-power"></i>Logout</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</header>
+        </header>
 
 <div class="col-lg-6">
     <div class="card">
@@ -283,6 +284,22 @@ $result=mysqli_query($conn,$sql);
         </form>
 
 </div>
+<div class="row row-2">
+    
+
+    
+
+    
+    <select name="formal" onchange="javascript:handleSelect(this)">  
+   <?php echo "<option selected disabled value='Sélectionner'>$choix</option>";?>  
+    <option value="0">Par défaut</option> 
+    <option value="1">Popularité</option> 
+    <option value="2">évènements à venir</option> 
+    <option value="4">Prix le plus bas</option> 
+    <option value="5">Prix le plus élevé</option> 
+    </select> 
+
+</div>
 
 <div class="card-header">
     <strong>Liste des évènements:</strong>
@@ -297,6 +314,7 @@ $result=mysqli_query($conn,$sql);
             <th>Prix (en DT)</th>
             <th>Catégorie</th>
             <th>Vues</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -304,6 +322,7 @@ $result=mysqli_query($conn,$sql);
                             <?php 
                             while($rows=mysqli_fetch_assoc($result))
                             {
+                               // $id=$rows['id'];
                                 ?>
 
                             <tr class="tr-shadow">
@@ -315,6 +334,19 @@ $result=mysqli_query($conn,$sql);
                                 <td><?php echo $rows['prix']; ?></td>
                                 <td><?php echo $rows['categorie']; ?></td>
                                 <td><?php echo $rows['vues']; ?></td>
+                                <td>
+
+
+<div class="table-data-feature">
+<?php $id=$rows['id'];?>
+<?php echo"<a href='gestionbillets.php?id=$id'>
+            <button class='item' data-toggle='tooltip' data-placement='top' title='Supprimer'>
+                <i class='zmdi zmdi-delete'></i>
+            </button>
+           </a>"; ?>
+</div>
+</td>
+
                               
 
                                 
@@ -336,6 +368,16 @@ $result=mysqli_query($conn,$sql);
     </table>
 </div>
 
+
+<script type="text/javascript"> 
+            function handleSelect(elm) 
+            {
+           
+            window.location = "gestionbillets.php?&tri="+elm.value; 
+            //window.location = "AjouterAnnonce.html?tri=1"; 
+            //window.location = elm.value+".php"; 
+            } 
+        </script>
 
 </body>
 </html>
