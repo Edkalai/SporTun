@@ -21,26 +21,25 @@ if(isset($_GET['choix'])){
 
 if($choix==0){
     $total='nombre total de demandes de vente:';
+    $table='demandesdevente';
 }
 
 if($choix==1){
     $total='nombre total de produits en vente:';
+    $table='miseenvente';
+
 }
 
 
-    
+
+
+
 
 if($choix!=2){
 
-if($choix==0){
-mysqli_query($conn,"DELETE FROM demandesdevente WHERE id='".$id."'");
-$sql='select * from demandesdevente;';
-}
+mysqli_query($conn,"DELETE FROM $table WHERE id='".$id."'");
+$sql="select * from $table;";
 
-if($choix==1){
-mysqli_query($conn,"DELETE FROM miseenvente WHERE id='".$id."'");
-$sql='select * from miseenvente;';
-}
 
 
 //mysqli_close($conn);
@@ -460,57 +459,63 @@ $NbAnnonces=mysqli_num_rows($result);
 
     <?php
         }else{
+    /*********************page ajouter produit (choix==2)************************/
     ?>
-                                <div class='page-content--bgf7'>
-                                <br><br><br>
+
+    <div class='page-content--bgf7'>
+    <br><br><br>
 
 
 
-                                    <div class=choose-btn>
-                                        <div>
-
-                                            <a href="gestionannonces.php?choix=0" class="button button5"> <strong>Demandes de vente</strong> </a>
-
-
-                                        </div>
-                                        <div>
-
-                                            <a href="gestionannonces.php?choix=1" class="button button5"> <strong>Produits en vente</strong> </a>
-
-
-                                        </div>
-                                        <div>
-
-                                            <a href="gestionannonces.php?choix=2" class="button button5 active"> <strong>Mettre en vente</strong> </a>
-
-
-                                        </div>
-
-
-                                    </div>
+    <div class=choose-btn>
+    <div>
+    <a href="gestionannonces.php?choix=0" class="button button5"> <strong>Demandes de vente</strong> </a>
+    </div>
+    <div>
+    <a href="gestionannonces.php?choix=1" class="button button5"> <strong>Produits en vente</strong> </a>
+    </div>
+    <div>
+    <a href="gestionannonces.php?choix=2" class="button button5 active"> <strong>Mettre en vente</strong> </a>
+    </div>
+    </div>
 
 
 
-                                    <div class="account-page">
+    <div class="account-page">
         <div class="container">
+
+
+        <?php
+
+        if (isset($_GET["msg"]))
+        {
+        $msg=$_GET["msg"];
+        }
+        else{
+        $msg='';
+        }
+
+        if ($msg!='')
+        {
+        ?>
+            <div style="text-align:center;">
+            <br><br><br>
+            
+            <p style="color :green; font-size: 25px; " ><?php echo $msg ?> </p>
+            
+            <a href='gestionannonces.php?choix=2' class='btn paniervide-btn'>Publier Un Autre Produit  </a>
+            
+            <br><br><br><br><br><br><br><br>
+
+            </div>
+        <?php
+        }
+        else
+        { 
+        ?>
+
+
             <div class="row">
-                <!--<div class="col-2">
-                    <img src="assets/img/image1.png" alt="" width="100%">
-                </div> -->
-                <!--<div class="col-2">
-                    <div class="form-container">
-                        <div class="form-btn">
-                            <span onclick="login()">Connexion</span>
-                            <span onclick="register()">Inscription</span>
-                            <hr id="indicator">
-                        </div>
-                        <form action="login.php" method="POST" id="LoginForm">
-                            <input type="email" name="email" placeholder="Email">
-                            <input type="password" name="mdp" placeholder="password">
-                            <button type="submit" class="btn">Connexion</button>
-                            <a href="mdp.html">Mot de passe oublié ?</a>
-                        </form>
-                -->        
                     <div class="vendreproduit-container">
                         <form action="AjouterAnnonce1.php" method="POST" id="AnnForm" name="f1" enctype="multipart/form-data">
                             <label for="titre">Titre</label>
@@ -568,6 +573,8 @@ $NbAnnonces=mysqli_num_rows($result);
                 </div>
             </div>
         </div>
+        <?php } ?>
+
     </div>
     </div>
 
