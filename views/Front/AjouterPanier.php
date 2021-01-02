@@ -29,7 +29,7 @@
 
   mysqli_query($conn,$sql);
 
-  $msg="Produit ajouter au panier avec succès.";
+  $msg="Produit ajouté avec succès.";
 
   header("Location: DetailsAnnonce.php?id=$id&msg=$msg");
 

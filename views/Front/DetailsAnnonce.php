@@ -290,7 +290,7 @@
                     <!--<input id="quantite" type="number" value="1">-->
                     <a href='AjouterPanier.php?id=<?php echo$id?>' class='btn'>Ajouter Au Panier</a>
                     <!--<a href='' onclick="this.href='AjouterPanier.php?id=< ?php echo$id?>&quantite='+document.getElementById('quantite').value" class='btn'>Ajouter Au Panier</a>-->
-                    <p style="color :#ff523b; margin: -20px 0px 30px; text-align:left; front-size:18px;"> <?php echo $msg ?> </p>
+                    <p style="color :green; margin: -20px 0px 30px; text-align:left; front-size:18px;"> <?php echo $msg ?> </p>
 
                     <h3>Description <i class="fa fa-indent"></i></h3>
                     <br>
