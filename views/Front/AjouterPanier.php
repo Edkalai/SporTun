@@ -10,7 +10,7 @@
 
 
     $id = $_GET['id'];
-    $quantite = $_GET['quantite'];
+    $quantite = 1;
     $email = $_SESSION['email'];
 
     
@@ -29,6 +29,8 @@
 
   mysqli_query($conn,$sql);
 
-  header("Location: DetailsAnnonce.php?id=$id");
+  $msg="Produit ajouter au panier avec succès.";
+
+  header("Location: DetailsAnnonce.php?id=$id&msg=$msg");
 
 ?>
