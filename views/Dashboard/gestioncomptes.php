@@ -37,6 +37,7 @@ if (isset($_GET['msg'])){
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="shortcut icon" href="../front/assets/img/logo.ico">
 <meta charset="UTF-8">
 
 

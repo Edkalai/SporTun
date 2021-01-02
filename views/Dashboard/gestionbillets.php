@@ -35,6 +35,7 @@ $result=mysqli_query($conn,$sql);
         
             <!-- Main CSS-->
             <link href="css/styles.css" rel="stylesheet" media="all">
+            <link rel="shortcut icon" href="../front/assets/img/logo.ico">
         
     </head>
 
