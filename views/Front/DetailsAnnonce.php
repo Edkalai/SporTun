@@ -14,6 +14,14 @@
     }
 
 
+    if(isset($_GET['msg'])) {
+        $msg = ($_GET['msg']);
+        
+        }else{
+            $msg = '';
+        }
+
+
     if(isset($_GET['image'])) {
         $image = ($_GET['image']);
         
@@ -56,6 +64,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script type='text/javascript' src='https://demo.wpzoom.com/domino/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
 </head>
 <body>
       <div class="container">
@@ -81,6 +90,155 @@
       </div>
 
       </div>
+
+
+
+
+      
+
+
+
+<!--
+
+
+
+      <div class="wpzoom-style-picker no_display closed" style="display: block;">
+
+    <div class="content">
+
+
+
+
+
+        <h2 class="picker-title">CATEGORIES</h2>
+
+
+ ------ featured categories -------
+ <div class="categories1">
+
+<div class="small-container">
+    <div class="row1">
+        <a href='actualitesfb.php' class='col-categories1'>
+            <img src="assets/img/20_thumb.png" alt="Football">
+            <h2>FOOTBALL</h2>
+        </a>
+        <a href='actualitescyclisme.php' class='col-categories1'>
+            <img src="assets/img/18_thumb.png" alt="Cyclisme">
+            <h2>CYCLISME</h2>
+        </a>
+        <a href='actualitesathletisme.php' class='col-categories1'>
+            <img src="assets/img/4_thumb.png" alt="Athlétisme">
+            <h2>ATHLETISME</h2>
+        </a>
+        <a href='actualitestennis.php' class='col-categories1'>
+            <img src="assets/img/8_thumb.png" alt="Tennis">
+            <h2>TENNIS</h2>
+        </a>
+        <a href='actualiteshb.php' class='col-categories1'>
+            <img src="assets/img/21_thumb.png" alt="Handball">
+            <h2>HANDBALL</h2>
+        </a>
+        <a href='actualites.php' class='col-categories1'>
+            <img src="assets/img/230_thumb.png" style="width: 100%;" alt="NEWS">
+            <h2>TOUT ARTICLES</h2>
+        </a>
+    </div>
+</div>
+</div>
+
+
+
+    </div>
+
+    <div class="close-button">
+        <a  class="dashicons dashicons-menu" href="#">
+        </a>
+    </div>
+
+
+
+    <script>
+        jQuery(document).ready(function() {
+            jQuery(".wpzoom-style-picker").fadeIn();
+
+            jQuery(".wpzoom-style-picker .close-button").bind("click", function(e) {
+                jQuery(".wpzoom-style-picker").toggleClass("closed");
+                e.preventDefault();
+            });
+
+            jQuery("label.style-option").each(function() {
+                var $inputid = "#" + jQuery(this).attr('data-input');
+                var $input = jQuery($inputid);
+                var $selector = $input.attr("data-selector");
+
+                jQuery(this).parent().find('label').each(function() {
+                    var $val = jQuery(this).attr('data-value');
+                    if (jQuery($selector).hasClass($val)) {
+                        $input.val($val);
+                        jQuery(this).parent().find('label.active').removeClass("active");
+                        jQuery(this).addClass("active");
+                    }
+                });
+            });
+
+            jQuery('label[id^="wpzoom-style-picker-"]').bind("click", function(e) {
+                var $inputid = "#" + jQuery(this).attr('data-input');
+                var $input = jQuery($inputid);
+
+                var $val = jQuery(this).attr('data-value');
+                var $selector = $input.attr("data-selector");
+
+                $oldval = jQuery($inputid).val()
+                $input.val($val);
+
+                if ($input.attr("data-css")) {
+                    $css = $input.attr("data-css");
+                    var $options = {};
+                    $options[$css] = $val;
+                    jQuery($selector).animate($options);
+                } else {
+                    jQuery($selector).removeClass($oldval);
+                    jQuery($selector).addClass($val);
+                }
+
+                jQuery(this).parent().find('label.active').removeClass("active");
+                jQuery(this).addClass("active");
+            });
+
+            jQuery('select[name^="wpzoom-style-picker-"]').each(function(e) {
+                jQuery(this).data("old", jQuery(this).val());
+            });
+
+            jQuery('[name^="wpzoom-style-picker-"]').bind("change", function(e) {
+                jQuery(this).data("new", jQuery(this).val());
+
+                var $selector = jQuery(this).attr("data-selector");
+                var $val = jQuery(this).val();
+                var $oldval = jQuery(this).data("old");
+
+                if (jQuery(this).attr("data-css")) {
+                    jQuery($selector).css(jQuery(this).attr("data-css"), $val);
+                } else {
+                    jQuery($selector).removeClass($oldval);
+                    jQuery($selector).addClass($val);
+                }
+
+                console.log($oldval + " || " + $val);
+
+                jQuery(this).data("old", $val);
+            })
+        });
+    </script>
+</div>
+
+
+
+--------------------------------------- -->
+
+
+
+
+
 
 
 
@@ -129,10 +287,11 @@
                     <h1><?php echo $row['titre']; ?></h1>
                     
                     <h4><?php echo $row['prix'] . ' TND'; ?></h4>
-                    <input id="quantite" type="number" value="1">
-                              
-                    <a href='' onclick="this.href='AjouterPanier.php?id=<?php echo$id?>&quantite='+document.getElementById('quantite').value" class='btn'>Ajouter Au Panier</a>
-                
+                    <!--<input id="quantite" type="number" value="1">-->
+                    <a href='AjouterPanier.php?id=<?php echo$id?>' class='btn'>Ajouter Au Panier</a>
+                    <!--<a href='' onclick="this.href='AjouterPanier.php?id=< ?php echo$id?>&quantite='+document.getElementById('quantite').value" class='btn'>Ajouter Au Panier</a>-->
+                    <p style="color :#ff523b; margin: -20px 0px 30px; text-align:left; front-size:18px;"> <?php echo $msg ?> </p>
+
                     <h3>Description <i class="fa fa-indent"></i></h3>
                     <br>
                     <p><?php echo $row['description']; ?></p>

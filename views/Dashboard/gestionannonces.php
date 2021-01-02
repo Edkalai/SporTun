@@ -4,7 +4,6 @@ include 'DBconnection.php';
 /***********js error msg********/
 $error="";
 
-
 if(isset($_GET['id'])) {
     $id = $_GET['id'];
     }else{
@@ -17,6 +16,19 @@ if(isset($_GET['choix'])){
     }else{
         $choix = 0;
     }
+
+/***** statistics ******/
+
+if($choix==0){
+    $total='nombre total de demandes de vente:';
+}
+
+if($choix==1){
+    $total='nombre total de produits en vente:';
+}
+
+
+    
 
 if($choix!=2){
 
@@ -356,7 +368,7 @@ $NbAnnonces=mysqli_num_rows($result);
 
                                     <div class='stat'>
                                         <div class='title'>
-                                            <h4>nombre total de produits: </h4>
+                                            <h4><?php echo $total; ?></h4>
                                             <?php echo "<p>$NbAnnonces</p>" ?>
                                         </div>
 
