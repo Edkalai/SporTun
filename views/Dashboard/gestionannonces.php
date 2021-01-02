@@ -1,5 +1,16 @@
 <?php
 include 'DBconnection.php';
+session_start();
+if (!isset($_SESSION["emailadmin"]))
+    {
+        header("Location: dashboardlogin.php");
+        exit();
+    }
+    $sql='select * from utilisateurs where email="'.$_SESSION["emailadmin"].'";';
+    $result=mysqli_query($conn,$sql);
+    $row=mysqli_fetch_assoc($result);
+    $compte=$row['nom'].' '.$row['prenom'];
+
 
 /***********js error msg********/
 $error="";
@@ -82,19 +93,7 @@ $NbAnnonces=mysqli_num_rows($result);
     <link rel="shortcut icon" href="../front/assets/img/logo.ico">
 
     <?php if($choix==2){
-    echo"<link href='../Front/style.css' rel='stylesheet' media='all'>
-    
-    <style>
-        .reg-container {
-          max-width: 450px;
-        }
-        .imgGallery img {
-          padding: 8px;
-          max-width: 100px;
-        }    
-    </style>
-    
-    ";
+    echo"<link href='../Front/style.css' rel='stylesheet' media='all'>";
     }
     ?>
 
@@ -119,14 +118,8 @@ $NbAnnonces=mysqli_num_rows($result);
                     </div>
                     <div class="header__navbar">
                         <ul class="list-unstyled">
-                            <li class="has-sub">
-                                <a href="#">
-                                    <i class="fas fa-home"></i>Acceuil
-                                    <span class="bot-line"></span>
-                                </a>
-                            </li>
                             <li>
-                                <a href="#gestionannonces.php">
+                                <a href="gestionannonces.php">
                                     <i class="fas fa-bullhorn"></i>
                                     <span class="bot-line"></span>Gestion des produits</a>
                             </li>
@@ -134,19 +127,26 @@ $NbAnnonces=mysqli_num_rows($result);
                                 <a href="gestionbillets.php">
                                     <i class="fas fa-tag"></i>
                                     <span class="bot-line"></span>Gestion des billets</a>
-                            </li>   
+                            </li> 
                             <li class="has-sub">
-                                <a href="#">
+                                <a href="gestionventes.php">
+                                    <i class="fas fa-user"></i>
+                                    <span class="bot-line"></span>Gestion des ventes</a>
+                            
+                            </li>  
+                            <li class="has-sub">
+                            <a href="gestionactualites.php">
                                     <i class="fas fa-list-alt"></i>
                                     <span class="bot-line"></span>Gestion des actualités</a>
                             
                             </li>
                             <li class="has-sub">
-                                <a href="gestioncompte.html">
+                                <a href="gestioncomptes.php">
                                     <i class="fas fa-user"></i>
                                     <span class="bot-line"></span>Gestion des comptes</a>
                             
                             </li>
+                           
                         </ul>
                     </div>
                     <div class="header__tool">
@@ -177,42 +177,13 @@ $NbAnnonces=mysqli_num_rows($result);
                         </div>
                         <div class="account-wrap">
                             <div class="account-item account-item--style2 clearfix js-item-menu">
-                                <div class="image">
-                                    <img src="images/icon/avatar-01.png" alt="John Doe" />
-                                </div>
                                 <div class="content">
-                                    <a class="js-acc-btn" href="#">john doe</a>
+                                  <span> <?php echo $compte ?></span>
                                 </div>
                                 <div class="account-dropdown js-dropdown">
-                                    <div class="info clearfix">
-                                        <div class="image">
-                                            <a href="#">
-                                                <img src="imag/avat.png" alt="John Doe" />
-                                            </a>
-                                        </div>
-                                        <div class="content">
-                                            <h5 class="name">
-                                                <a href="#">john doe</a>
-                                            </h5>
-                                            <span class="email">johndoe@example.com</span>
-                                        </div>
-                                    </div>
-                                    <div class="account-dropdown__body">
-                                        <div class="account-dropdown__item">
-                                            <a href="#">
-                                                <i class="zmdi zmdi-account"></i>Account</a>
-                                        </div>
-                                        <div class="account-dropdown__item">
-                                            <a href="#">
-                                                <i class="zmdi zmdi-settings"></i>Setting</a>
-                                        </div>
-                                        <div class="account-dropdown__item">
-                                            <a href="#">
-                                                <i class="zmdi zmdi-money-box"></i>Billing</a>
-                                        </div>
-                                    </div>
+                                    
                                     <div class="account-dropdown__footer">
-                                        <a href="#">
+                                        <a href="adminlogout.php">
                                             <i class="zmdi zmdi-power"></i>Logout</a>
                                     </div>
                                 </div>
@@ -224,96 +195,7 @@ $NbAnnonces=mysqli_num_rows($result);
         </header>
         <!-- END HEADER DESKTOP-->
 
-        <!-- HEADER MOBILE-->
-        
-
-
-
-
-        <div class="sub-header-mobile-2 d-block d-lg-none">
-            <div class="header__tool">
-                
-                <div class="header-button-item js-item-menu">
-                    <i class="zmdi zmdi-settings"></i>
-                    <div class="setting-dropdown js-dropdown">
-                        <div class="account-dropdown__body">
-                            <div class="account-dropdown__item">
-                                <a href="#">
-                                    <i class="zmdi zmdi-account"></i>Account</a>
-                            </div>
-                            <div class="account-dropdown__item">
-                                <a href="#">
-                                    <i class="zmdi zmdi-settings"></i>Setting</a>
-                            </div>
-                            <div class="account-dropdown__item">
-                                <a href="#">
-                                    <i class="zmdi zmdi-money-box"></i>Billing</a>
-                            </div>
-                        </div>
-                        <div class="account-dropdown__body">
-                            <div class="account-dropdown__item">
-                                <a href="#">
-                                    <i class="zmdi zmdi-globe"></i>Language</a>
-                            </div>
-                            <div class="account-dropdown__item">
-                                <a href="#">
-                                    <i class="zmdi zmdi-pin"></i>Location</a>
-                            </div>
-                            <div class="account-dropdown__item">
-                                <a href="#">
-                                    <i class="zmdi zmdi-email"></i>Email</a>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="account-wrap">
-                    <div class="account-item account-item--style2 clearfix js-item-menu">
-                        <div class="image">
-                            <img src="images/icon/avatar-01.jpg" alt="John Doe" />
-                        </div>
-                        <div class="content">
-                            <a class="js-acc-btn" href="#">ash</a>
-                        </div>
-                        <div class="account-dropdown js-dropdown">
-                            <div class="info clearfix">
-                                <div class="image">
-                                    <a href="#">
-                                        <img src="images/icon/avatar-01.jpg" alt="John Doe" />
-                                    </a>
-                                </div>
-                                <div class="content">
-                                    <h5 class="name">
-                                        <a href="#">ash</a>
-                                    </h5>
-                                    <span class="email">ash@example.com</span>
-                                </div>
-                            </div>
-                            <div class="account-dropdown__body">
-                                <div class="account-dropdown__item">
-                                    <a href="#">
-                                        <i class="zmdi zmdi-account"></i>Account</a>
-                                </div>
-                                <div class="account-dropdown__item">
-                                    <a href="#">
-                                        <i class="zmdi zmdi-settings"></i>Setting</a>
-                                </div>
-                                <div class="account-dropdown__item">
-                                    <a href="#">
-                                        <i class="zmdi zmdi-money-box"></i>Billing</a>
-                                </div>
-                            </div>
-                            <div class="account-dropdown__footer">
-                                <a href="#">
-                                    <i class="zmdi zmdi-power"></i>Logout</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- END HEADER MOBILE -->
-
+    
         <!-- PAGE CONTENT-->
         <?php if($choix!=2){?>
             
