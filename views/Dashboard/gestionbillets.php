@@ -107,7 +107,7 @@ if (!isset($_SESSION["emailadmin"]))
             <!-- Main CSS-->
             <link href="css/styles.css" rel="stylesheet" media="all">
             <link rel="shortcut icon" href="../front/assets/img/logo.ico">
-        
+            <script src="ajoutbillet.js"> </script>
     </head>
 
     <body>
@@ -211,28 +211,28 @@ if (!isset($_SESSION["emailadmin"]))
                         <label for="text-input" class=" form-control-label">Titre</label>
                     </div>
                     <div class="col-12 col-md-9">
-                        <input type="text" id="text-input" maxlength = "25" name="titre" style=" width:700px;" placeholder="Titre" class="form-control">
+                        <input type="text" id="titre" maxlength = "25" name="titre" style=" width:700px;" placeholder="Titre" class="form-control">
                         <small class="form-text text-muted">Titre de l'évènement</small>
                     </div>
                     <div class="col col-md-3">
                         <label for="text-input" class=" form-control-label">Déscription courte</label>
                     </div>
                     <div class="col-12 col-md-9">
-                        <input type="text" id="text-input" name="descourte" maxlength = "69" style=" width:700px;" placeholder="Déscription courte" class="form-control">
+                        <input type="text" id="descourte" name="descourte" maxlength = "69" style=" width:700px;" placeholder="Déscription courte" class="form-control">
                         <small class="form-text text-muted">Déscription courte de l'évènement</small>
                     </div>
                     <div class="col col-md-3">
                         <label for="text-input" class=" form-control-label">Prix billet</label>
                     </div>
                     <div class="col-12 col-md-9">
-                        <input type="number" id="text-input" name="prix" max = "200" style=" width:700px;" placeholder="Prix" class="form-control">
+                        <input type="number" id="prix" name="prix" max = "200" style=" width:700px;" placeholder="Prix" class="form-control">
                         <small class="form-text text-muted">Prix en DT</small>
                     </div>
                     <div class="col col-md-3">
                         <label for="text-input" class=" form-control-label">Déscription Longue</label>
                     </div>
                     <div class="col-12 col-md-9">
-                        <textarea type="text" id="text-input" name="deslongue" maxlength = "800" cols="92" rows="15" style=" height:100px; width:700px;" placeholder="Déscription Longue" class="form-control"></textarea>
+                        <textarea type="text" id="deslongue" name="deslongue" maxlength = "800" cols="92" rows="15" style=" height:100px; width:700px;" placeholder="Déscription Longue" class="form-control"></textarea>
                         <small class="form-text text-muted">Déscription longue</small>
                     </div>
                    
@@ -269,11 +269,11 @@ if (!isset($_SESSION["emailadmin"]))
                         <label for="file-input" class=" form-control-label">Choisir L'image</label>
                     </div>
                     <div class="col-12 col-md-9">
-                    <input type="file" name="image" accept="images/*" multiple>
+                    <input type="file" name="image" id="chooseFile" accept="images/*" multiple>
                     </div>
                 <br> <br> <br> <br> 
         <div class="card-footer">
-            <button type="submit" name="submit" class="btn btn-primary btn-sm">
+            <button type="submit" name="submit" class="btn btn-primary btn-sm" value="AnnForm" onclick="return verif()" >
                 <i class="fa fa-dot-circle-o"></i> Publier
             </button>
             <button type="reset" class="btn btn-danger btn-sm">
@@ -281,7 +281,7 @@ if (!isset($_SESSION["emailadmin"]))
             </button>
         </div>
 
-        </form>
+        </form><p style="color: rgb(255, 0, 0);" id="erreur"></p>
 
 </div>
 <div class="row row-2">
