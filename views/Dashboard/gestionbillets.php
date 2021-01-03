@@ -1,5 +1,6 @@
 <?php
 include 'DBconnection.php';
+include '../front/PHPfunctions.php';
 session_start();
 if (!isset($_SESSION["emailadmin"]))
     {
@@ -7,13 +8,83 @@ if (!isset($_SESSION["emailadmin"]))
         exit();
     }
     $sql='select * from utilisateurs where email="'.$_SESSION["emailadmin"].'";';
-    $result=mysqli_query($conn,$sql);
-    $row=mysqli_fetch_assoc($result);
+    $result1=mysqli_query($conn,$sql);
+    $row=mysqli_fetch_assoc($result1);
     $compte=$row['nom'].' '.$row['prenom'];
 
 
-$sql='select * from events;';
-$result=mysqli_query($conn,$sql);
+
+    $choix='Par défaut';
+
+    if(isset($_GET['id'])) {
+        $id = $_GET['id'];
+        }else{
+            $id = 0;
+        }
+    
+    //$id = $_GET['id'];
+
+   mysqli_query($conn,"DELETE FROM events WHERE id='".$id."'");
+    $sql="select * from events;";
+
+    if(isset($_GET['tri'])) {
+        $tri = $_GET['tri'];
+        }else{
+            $tri = 0;
+        }
+
+    if($tri==0){
+
+        $sql1="SELECT * from events ORDER BY id DESC;";
+        //echo $sql; die;
+        $result=mysqli_query($conn,$sql1);
+        $choix='Par défaut';
+
+
+    }
+        //Popularité
+    if($tri==1){
+
+        $sql1="SELECT * from events ORDER BY vues DESC;";
+        $result=mysqli_query($conn,$sql1);
+        $choix='Popularité';
+
+    }
+
+        //Nouveautés
+    if($tri==2){
+
+        $sql1="SELECT * FROM events ORDER BY date ASC ;";
+        $result=mysqli_query($conn,$sql1);
+        $choix='évènements à venir';
+
+
+    }
+
+        //Prix le plus bas
+    if($tri==4){
+
+        $sql1="SELECT * FROM events  ORDER BY prix ASC ;";
+        //echo $sql; die;
+        $result=mysqli_query($conn,$sql1);
+        $choix='Prix le plus bas';
+
+
+    }
+        //Prix le plus élevé
+    if($tri==5){
+
+        $sql1="SELECT * FROM events ORDER BY prix DESC ;";
+        $result=mysqli_query($conn,$sql1);
+        $choix='Prix le plus élevé';
+
+
+    }
+
+
+
+//$sql='select * from events;';
+//$result=mysqli_query($conn,$sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +107,7 @@ $result=mysqli_query($conn,$sql);
             <!-- Main CSS-->
             <link href="css/styles.css" rel="stylesheet" media="all">
             <link rel="shortcut icon" href="../front/assets/img/logo.ico">
-        
+            <script src="ajoutbillet.js"> </script>
     </head>
 
     <body>
@@ -74,6 +145,18 @@ $result=mysqli_query($conn,$sql);
                                     <span class="bot-line"></span>Gestion des actualités</a>
                             
                             </li>
+                            <li class="has-sub">
+                            <a href="ModifierPublicite.php">
+                                <i class="fas fa-user"></i>
+                                <span class="bot-line"></span>Gestion des publicités</a>
+
+                        </li>
+                        <li class="has-sub">
+                            <a href="Modifierpromo.php">
+                                <i class="fas fa-user"></i>
+                                <span class="bot-line"></span>Gestion des promotions</a>
+
+                        </li>
                             <li class="has-sub">
                                 <a href="gestioncomptes.php">
                                     <i class="fas fa-user"></i>
@@ -117,8 +200,8 @@ $result=mysqli_query($conn,$sql);
                                 <div class="account-dropdown js-dropdown">
                                     
                                     <div class="account-dropdown__footer">
-                                        <a href="adminlogout.php">
-                                            <i class="zmdi zmdi-power"></i>Logout</a>
+                                        <a href="../../controller/adminlogout.php">
+                                            <i class="zmdi zmdi-power"></i>Déconnexion</a>
                                     </div>
                                 </div>
                             </div>
@@ -140,28 +223,28 @@ $result=mysqli_query($conn,$sql);
                         <label for="text-input" class=" form-control-label">Titre</label>
                     </div>
                     <div class="col-12 col-md-9">
-                        <input type="text" id="text-input" maxlength = "25" name="titre" style=" width:700px;" placeholder="Titre" class="form-control">
+                        <input type="text" id="titre" maxlength = "25" name="titre" style=" width:700px;" placeholder="Titre" class="form-control">
                         <small class="form-text text-muted">Titre de l'évènement</small>
                     </div>
                     <div class="col col-md-3">
                         <label for="text-input" class=" form-control-label">Déscription courte</label>
                     </div>
                     <div class="col-12 col-md-9">
-                        <input type="text" id="text-input" name="descourte" maxlength = "69" style=" width:700px;" placeholder="Déscription courte" class="form-control">
+                        <input type="text" id="descourte" name="descourte" maxlength = "69" style=" width:700px;" placeholder="Déscription courte" class="form-control">
                         <small class="form-text text-muted">Déscription courte de l'évènement</small>
                     </div>
                     <div class="col col-md-3">
                         <label for="text-input" class=" form-control-label">Prix billet</label>
                     </div>
                     <div class="col-12 col-md-9">
-                        <input type="number" id="text-input" name="prix" max = "200" style=" width:700px;" placeholder="Prix" class="form-control">
+                        <input type="number" id="prix" name="prix" max = "200" style=" width:700px;" placeholder="Prix" class="form-control">
                         <small class="form-text text-muted">Prix en DT</small>
                     </div>
                     <div class="col col-md-3">
                         <label for="text-input" class=" form-control-label">Déscription Longue</label>
                     </div>
                     <div class="col-12 col-md-9">
-                        <textarea type="text" id="text-input" name="deslongue" maxlength = "800" cols="92" rows="15" style=" height:100px; width:700px;" placeholder="Déscription Longue" class="form-control"></textarea>
+                        <textarea type="text" id="deslongue" name="deslongue" maxlength = "800" cols="92" rows="15" style=" height:100px; width:700px;" placeholder="Déscription Longue" class="form-control"></textarea>
                         <small class="form-text text-muted">Déscription longue</small>
                     </div>
                    
@@ -198,11 +281,11 @@ $result=mysqli_query($conn,$sql);
                         <label for="file-input" class=" form-control-label">Choisir L'image</label>
                     </div>
                     <div class="col-12 col-md-9">
-                    <input type="file" name="image" accept="images/*" multiple>
+                    <input type="file" name="image" id="chooseFile" accept="images/*" multiple>
                     </div>
                 <br> <br> <br> <br> 
         <div class="card-footer">
-            <button type="submit" name="submit" class="btn btn-primary btn-sm">
+            <button type="submit" name="submit" class="btn btn-primary btn-sm" value="AnnForm" onclick="return verif()" >
                 <i class="fa fa-dot-circle-o"></i> Publier
             </button>
             <button type="reset" class="btn btn-danger btn-sm">
@@ -210,7 +293,23 @@ $result=mysqli_query($conn,$sql);
             </button>
         </div>
 
-        </form>
+        </form><p style="color: rgb(255, 0, 0);" id="erreur"></p>
+
+</div>
+<div class="row row-2">
+    
+
+    
+
+    
+    <select name="formal" onchange="javascript:handleSelect(this)">  
+   <?php echo "<option selected disabled value='Sélectionner'>$choix</option>";?>  
+    <option value="0">Par défaut</option> 
+    <option value="1">Popularité</option> 
+    <option value="2">évènements à venir</option> 
+    <option value="4">Prix le plus bas</option> 
+    <option value="5">Prix le plus élevé</option> 
+    </select> 
 
 </div>
 
@@ -227,6 +326,7 @@ $result=mysqli_query($conn,$sql);
             <th>Prix (en DT)</th>
             <th>Catégorie</th>
             <th>Vues</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -234,6 +334,7 @@ $result=mysqli_query($conn,$sql);
                             <?php 
                             while($rows=mysqli_fetch_assoc($result))
                             {
+                               // $id=$rows['id'];
                                 ?>
 
                             <tr class="tr-shadow">
@@ -245,6 +346,19 @@ $result=mysqli_query($conn,$sql);
                                 <td><?php echo $rows['prix']; ?></td>
                                 <td><?php echo $rows['categorie']; ?></td>
                                 <td><?php echo $rows['vues']; ?></td>
+                                <td>
+
+
+<div class="table-data-feature">
+<?php $id=$rows['id'];?>
+<?php echo"<a href='gestionbillets.php?id=$id'>
+            <button class='item' data-toggle='tooltip' data-placement='top' title='Supprimer'>
+                <i class='zmdi zmdi-delete'></i>
+            </button>
+           </a>"; ?>
+</div>
+</td>
+
                               
 
                                 
@@ -267,5 +381,15 @@ $result=mysqli_query($conn,$sql);
 </div>
 
 
+<script type="text/javascript"> 
+            function handleSelect(elm) 
+            {
+           
+            window.location = "gestionbillets.php?&tri="+elm.value; 
+            //window.location = "AjouterAnnonce.html?tri=1"; 
+            //window.location = elm.value+".php"; 
+            } 
+        </script>
+
 </body>
-</html>
+</html>        

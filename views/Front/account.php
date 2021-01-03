@@ -23,7 +23,7 @@ $error=$_GET['msg'];
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <title>Login</title>
-    <script src="signup.js"> </script>
+    <script src="../../controller/signup.js"> </script>
 </head>
 <body>
     <div class="login-container">
@@ -39,6 +39,7 @@ $error=$_GET['msg'];
             <li><a href="annonce.php">Produits</a></li>
             <li><a href="billets.php">Billets</a></li>
             <li><a href="actualites.php">Actualités</a></li>
+            <li><a href="Publicite.php">Publicite</a></li>
             <li><a href="account.php">Compte</a></li>
         </ul>
     </nav>
@@ -61,7 +62,7 @@ $error=$_GET['msg'];
                         <span onclick="login()">Connexion</span>
                         <hr id="indicator">
                     </div>
-                    <form  action="login.php" method="POST" id="LoginForm">
+                    <form  action="../../controller/login.php" method="POST" id="LoginForm">
                         <input type="email" name="email" placeholder="Email">
                         <input type="password" name="mdp" placeholder="password">
                         <p style="color :#ff523b; margin:10px 0px;"> <?php echo $error ?> </p>
@@ -70,7 +71,7 @@ $error=$_GET['msg'];
                     </form>
                     
                     <div class="reg-container">
-                        <form action="SignUp.php" method="POST" id="RegForm" name="f1" >
+                        <form action="../../controller/SignUp.php" method="POST" id="RegForm" name="f1" >
                         <input type="text" name="nom" placeholder="Nom" id="nom">
                         <input type="text" name="prenom" placeholder="Prénom" id="prenom">
                         <input type="email" name="email" placeholder="Email" id="email">

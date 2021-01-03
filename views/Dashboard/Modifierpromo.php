@@ -1,4 +1,4 @@
-<?php
+<?php 
 include 'DBconnection.php';
 session_start();
 if (!isset($_SESSION["emailadmin"]))
@@ -10,32 +10,19 @@ if (!isset($_SESSION["emailadmin"]))
     $result=mysqli_query($conn,$sql);
     $row=mysqli_fetch_assoc($result);
     $compte=$row['nom'].' '.$row['prenom'];
-$sql='select * from vente;';
+$sql='select * from miseenvente;';
 $result=mysqli_query($conn,$sql);
-$sql='select count(idvente) as total from vente ;';
-$resultat=mysqli_query($conn,$sql);
-$nbvente=mysqli_fetch_assoc($resultat);
-$sql='select email, count(*) as c FROM vente GROUP BY email ORDER BY c DESC';
-$resultat=mysqli_query($conn,$sql);
-$sql='select email, sum(prix) as s FROM vente GROUP BY email ORDER BY s DESC';
-$resultatprix=mysqli_query($conn,$sql);
+require_once "../../controller/ajouterpromotion.php" 
+
 ?>
-
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-
-
-    <meta charset="UTF-8">
-
-
-
     <!-- Title Page-->
-    <title>Gestion des ventes</title>
+    <title>gestion des publicité</title>
 
     <!-- Fontfaces CSS-->
-    
+
     <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
     <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
 
@@ -47,16 +34,17 @@ $resultatprix=mysqli_query($conn,$sql);
 
     <!-- Main CSS-->
     <link href="css/styles.css" rel="stylesheet" media="all">
-    <link rel="shortcut icon" href="../front/assets/img/logo.ico">
 </head>
-<body >
+
+
+<body>
  <div class="page-wrapper">
         <!-- HEADER DESKTOP-->
         <header class="header-desktop3 d-none d-lg-block">
             <div class="section__content section__content--p35">
                 <div class="header3-wrap">
                     <div class="header__logo">
-                        
+                        <a href="#">
                             <img src="images/icon/logo-white.png" alt="CoolAdmin" />
                         </a>
                     </div>
@@ -82,9 +70,7 @@ $resultatprix=mysqli_query($conn,$sql);
                             <a href="gestionactualites.php">
                                     <i class="fas fa-list-alt"></i>
                                     <span class="bot-line"></span>Gestion des actualités</a>
-                            
-                            </li>
-                            <li class="has-sub">
+                                    <li class="has-sub">
                             <a href="ModifierPublicite.php">
                                 <i class="fas fa-user"></i>
                                 <span class="bot-line"></span>Gestion des publicités</a>
@@ -96,6 +82,8 @@ $resultatprix=mysqli_query($conn,$sql);
                                 <span class="bot-line"></span>Gestion des promotions</a>
 
                         </li>
+                            
+                            </li>
                             <li class="has-sub">
                                 <a href="gestioncomptes.php">
                                     <i class="fas fa-user"></i>
@@ -139,7 +127,7 @@ $resultatprix=mysqli_query($conn,$sql);
                                 <div class="account-dropdown js-dropdown">
                                     
                                     <div class="account-dropdown__footer">
-                                    <a href="../../controller/adminlogout.php">
+                                        <a href="../../controller/adminlogout.php">
                                             <i class="zmdi zmdi-power"></i>Déconnexion</a>
                                     </div>
                                 </div>
@@ -150,44 +138,88 @@ $resultatprix=mysqli_query($conn,$sql);
             </div>
         </header>
         <!-- END HEADER DESKTOP-->
-
-      
-        <!-- PAGE CONTENT-->
-        <div class="page-content--bgf7">
-        <section class="statistic statistic2">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-md-6 col-lg-3">
-                                        <div class="statistic__item statistic__item--blue" style="left:500px;">
-                                            <h2 class="number"><?php echo ($nbvente['total']) ?></h2>
-                                            <span class="desc">Nombre de vente</span>
-                                            <div class="icon">
-                                                <i class="zmdi zmdi-shopping-cart"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> 
-                     </section>
-            
+        <div class='page-content--bgf7'>
             <div class="container">
-            <div class="row">
-            <div class="col-md-12">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header">
+                <strong>Gestion des Publicites:</strong>
+            </div>
+</div>
+</div>
+         
+                <div class="table-responsive table--no-card m-b-30">
+                    <?PHP
 
-            
-                    
-                    
+                    $promoC = new promoC();
+                    $listepromo = $promoC->afficherpromotion();
+                    ?>
+                    <table class="table table-borderless table-striped table-earning">
+                        <thead>
+                        <th>ID Promotion</th>
+                        <th>Titre</th>
+                        <th>Prix</th>
+                        <th>ID</th>
+                        <th></th>
+                       
+                        
+                        
+                
+                        
+                        </thead>
+                        <tbody>
+
+                        <?PHP
+                        $numprom=0;
+                        foreach ($listepromo as $row) {
+                            ?>
+                            <tr>
+                                <td><?PHP echo $row['idpromo']; ?></td>
+                                <td><?PHP echo $row['titre']; ?></td>
+                                <td><?PHP echo $row['prix']; ?></td>
+                                <td><?PHP echo $row['idproduit']; ?></td>
+                                <td>
+                                <h1><button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                            <i class="zmdi zmdi-delete"></i>
+                                                        </button></h1>
+                                    <form method="POST" action="../../controller/supprimerpromotion.php">
+                                        <input type="submit" name="supprimer" value="Supprimer">
+                                        <input type="hidden" value=<?PHP echo $row['idpromo']; ?> name="idpromo">
+                                    </form>
+                                </td>
+                                
+                            </tr>
+                            <?PHP $numprom++; ?>
+                            <?PHP
+                        }
+                        
+                        ?>
+                     
+                        <section class="statistic statistic2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-3">
+                            <div class="statistic__item statistic__item--orange">
+                                <h2 class="number"><?php echo $numprom ; ?></h2>
+                                <span class="desc">Nombres des promotions</span>
+                                <div class="icon">
+                                    <i class="zmdi zmdi-calendar-note"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
                 </div>
-                <div class="table-responsive table-responsive-data2">
+            </section>
+            <div class="table-responsive table-responsive-data2">
                     <table class="table table-data2">
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Email</th>
                                 <th>Titre</th>
+                                <th>Desription</th>
                                 <th>Prix</th>
-                                <th>Date de vente</th>
-                                
+                                <th></th>
 
                                 
                             </tr>
@@ -196,64 +228,25 @@ $resultatprix=mysqli_query($conn,$sql);
                         <?php 
                             while($rows=mysqli_fetch_assoc($result))
                             {
+                                $id=$rows['id'];
                                 ?>
 
                             <tr class="tr-shadow">
 
-                                <td><?php echo $rows['idvente']; ?></td>
-                                <td><?php echo $rows['email']; ?></td>
+                                <td><?php echo $rows['id']; ?></td>
                                 <td><?php echo $rows['titre']; ?></td>
+                                <td><?php echo $rows['description']; ?></td>
                                 <td><?php echo $rows['prix']; ?></td>
-                                <td><?php echo $rows['datevente']; ?></td>
-                                
+                                <td></td>
+                                <td><h1><?php echo"<a href='ajoutprom.php?id=$id'>
+                                                <button class='item' data-toggle='tooltip' data-placement='top' title='Ajouter la Promotion'>
+                                                    <i class='zmdi zmdi-mail-send'></i>
+                                                </button>
+                                               </a>"; ?></h1></td>
 
-                            </tr>
-
-                            <?php
-                            }
-                            ?>
-                            <tr class="spacer"></tr>
                             
-
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-                  
-
-                     <div class="page-content--bgf7">
-            
-            <div class="container">
-            <div class="row">
-            <div class="col-md-12">
-
-            
-                    
-                    
-                </div>
-                <div class="table-responsive table-responsive-data2">
-                    <table class="table table-data2">
-                        <thead>
-                            <tr>
-                                <th>Email</th>
-                                <th>Montant dépensé</th>
+          
                                 
-
-                                
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <?php 
-                            while($rows=mysqli_fetch_assoc($resultatprix))
-                            {
-                                ?>
-
-                            <tr class="tr-shadow">
-
-                                <td><?php echo $rows['email']; ?></td>
-                                <td><?php echo $rows['s']; ?></td>
                                 
                                 
 
@@ -269,74 +262,12 @@ $resultatprix=mysqli_query($conn,$sql);
                         </tbody>
                     </table>
                 </div>
-            </div>
-        </div>
-
-                     <div class="page-content--bgf7">
-            
-            <div class="container">
-            <div class="row">
-            <div class="col-md-12">
-
-            
-                    
-                    
-                </div>
-                <div class="table-responsive table-responsive-data2">
-                    <table class="table table-data2">
-                        <thead>
-                            <tr>
-                                <th>Email</th>
-                                <th>Nombre d'achats</th>
-                                
-
-                                
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <?php 
-                            while($rows=mysqli_fetch_assoc($resultat))
-                            {
-                                ?>
-
-                            <tr class="tr-shadow">
-
-                                <td><?php echo $rows['email']; ?></td>
-                                <td><?php echo $rows['c']; ?></td>
-                                
-                                
-
-                            </tr>
-
-                            <?php
-                            }
-                            ?>
-                            <tr class="spacer"></tr>
-                            
-
 
                         </tbody>
                     </table>
                 </div>
-            </div>
-        </div>
+                        </div>
+                        </div>
 
-
-                <script src="vendor/jquery-3.2.1.min.js"></script>
-    <!-- Bootstrap JS-->
-    <script src="vendor/bootstrap-4.1/popper.min.js"></script>
-    <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
-    <!-- Vendor JS       -->
-    
-    <script src="vendor/animsition/animsition.min.js"></script>
-
-    
-   
-   
-    
-    
-
-    <!-- Main JS-->
-    <script src="js/main.js"></script>
 </body>
 </html>
