@@ -8,10 +8,10 @@
     //exit();
     }
 
+
     
 
-
-
+    
 
 
 
@@ -30,16 +30,14 @@
         $categorie = $_POST['categorie'];
         //$image = $_POST['$target_file'];
         $prix = $_POST['prix'];
-        $emplacement = $_POST['emplacement'];
-        $numtel = $_POST['numtel'];
       
 
-        $uploadsDir = "assets/img/";
+        $uploadsDir = "../views/Front/assets/img/";
         $allowedFileType = array('jpg','png','jpeg');
         
         // Velidate if files exist
         if (!empty(array_filter($_FILES['fileUpload']['name']))) {
-            $msg="Demande envoyée avec succès!";
+        $msg="Produit mis en vente avec succès!";
         
         // Loop through file items
             $i=0;
@@ -90,12 +88,17 @@
 
 
 
-            mysqli_query($conn,"INSERT INTO demandesdevente (titre, description, categorie, image1, image2, image3, image4, image5, prix, emplacement,email,numtel)
-            VALUES ('$titre', '$description', '$categorie', '$insert1', '$insert2', '$insert3', '$insert4', '$insert5', '$prix', '$emplacement','$email','$numtel');");
+            mysqli_query($conn,"INSERT INTO miseenvente (titre, description, categorie, image1, image2, image3, image4, image5, prix)
+            VALUES ('$titre', '$description', '$categorie', '$insert1', '$insert2', '$insert3', '$insert4', '$insert5', '$prix');");
+
+
+
+
+        
+
 
 
 
     }
     }
-
-    header("Location: htmlAjouterAnnonce.php?msg=$msg");
+    header("Location: ../views/Dashboard/gestionannonces.php?choix=2&msg=$msg");

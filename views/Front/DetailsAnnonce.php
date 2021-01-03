@@ -1,7 +1,7 @@
 <?php
 
     include '../Dashboard/DBconnection.php';
-    include 'PHPfunctions.php';
+    include '../../controller/PHPfunctions.php';
 
 
 
@@ -78,7 +78,7 @@
                 <li><a href="index.php">Acceuil</a></li>
                 <li><a href="annonce.php">Produits</a></li>
                 <?php if($compte=="Profil"){ 
-                echo"<li><a href='AjouterAnnonce.php'>Vendre un produit</a></li>";
+                echo"<li><a href='../../controller/AjouterAnnonce.php'>Vendre un produit</a></li>";
                 }?>
                 <li><a href="billets.php">Billets</a></li>
                 <li><a href="actualites.php">Actualités</a></li>
@@ -289,7 +289,7 @@
                     
                     <h4><?php echo $row['prix'] . ' TND'; ?></h4>
                     <!--<input id="quantite" type="number" value="1">-->
-                    <a href='AjouterPanier.php?id=<?php echo$id?>' class='btn'>Ajouter Au Panier</a>
+                    <a href='../../controller/AjouterPanier.php?id=<?php echo$id?>' class='btn'>Ajouter Au Panier</a>
                     <!--<a href='' onclick="this.href='AjouterPanier.php?id=< ?php echo$id?>&quantite='+document.getElementById('quantite').value" class='btn'>Ajouter Au Panier</a>-->
                     <p style="color :green; margin: -20px 0px 30px; text-align:left; front-size:18px;"> <?php echo $msg ?> </p>
 
