@@ -253,8 +253,8 @@ if (!isset($_SESSION["emailadmin"]))
                         </div>
                     <div class="col-12 col-md-9">
                     <input type="date" id="start" name="date" class="form-control"
-                           value="2020-01-01"
-                           min="2020-01-01" max="2021-12-31">
+                           value="2021-01-05"
+                           min="2021-01-05" max="2021-12-31" style=" width:700px;">
                             <small class="form-text text-muted">Tapez la date de l'évènement</small>
 
                     </div>

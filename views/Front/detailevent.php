@@ -1,7 +1,7 @@
  <?php
 
 include '../Dashboard/DBconnection.php';
-include 'PHPfunctions.php';
+include '../../controller/PHPfunctions.php';
 
 
 

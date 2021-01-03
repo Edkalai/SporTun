@@ -1,6 +1,6 @@
 <?php
 include '../Dashboard/DBconnection.php';
-include 'PHPfunctions.php';
+include '../../controller/PHPfunctions.php';
 
 
 session_start();
@@ -385,11 +385,11 @@ $i=0;
     
             
     </div>
-</div></div>
+</div>
 
   
-    
-
+</div>
+<footer>
     <!---------- footer ------------>
     <div class="footer">
         <div class="container">
@@ -428,7 +428,7 @@ $i=0;
             <hr>
             <p class="copyright">Copyright 2020 - SporTun</p>
         
-   
+         
             <script type="text/javascript"> 
             function handleSelect(elm) 
             {
@@ -439,5 +439,6 @@ $i=0;
             //window.location = elm.value+".php"; 
             } 
         </script>
+</footer>
 </body>
 </html>
