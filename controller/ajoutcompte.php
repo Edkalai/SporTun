@@ -19,4 +19,4 @@
 
     mysqli_query($conn,$sql);
     $notif="Utilisateur ajouté avec succés";
-    header("Location: gestioncomptes.php?choix=2&msg=$notif");
+    header("Location: ../views/dashboard/gestioncomptes.php?choix=2&msg=$notif");
