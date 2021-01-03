@@ -82,6 +82,7 @@
                 }?>
                 <li><a href="billets.php">Billets</a></li>
                 <li><a href="actualites.php">Actualités</a></li>
+                <li><a href="Publicite.php">Publicite</a></li>
                 <li><a href="account.php"><?php echo $compte ?></a></li>
             </ul>
         </nav>

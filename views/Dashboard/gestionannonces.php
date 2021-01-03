@@ -141,6 +141,18 @@ $NbAnnonces=mysqli_num_rows($result);
                             
                             </li>
                             <li class="has-sub">
+                            <a href="ModifierPublicite.php">
+                                <i class="fas fa-user"></i>
+                                <span class="bot-line"></span>Gestion des publicités</a>
+
+                        </li>
+                        <li class="has-sub">
+                            <a href="Modifierpromo.php">
+                                <i class="fas fa-user"></i>
+                                <span class="bot-line"></span>Gestion des promotions</a>
+
+                        </li>
+                            <li class="has-sub">
                                 <a href="gestioncomptes.php">
                                     <i class="fas fa-user"></i>
                                     <span class="bot-line"></span>Gestion des comptes</a>
