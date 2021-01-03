@@ -358,7 +358,7 @@ if (isset($_GET['msg'])){
          else { ?>
          <div class="ajout-compte-container">
          <div class="account-page">
-             <form action="ajoutcompte.php" method="POST" name="fcompte" id="fcompte" class="fcompte">
+             <form action="../../controller/ajoutcompte.php" method="POST" name="fcompte" id="fcompte" class="fcompte">
              <input type="text" name="nom" placeholder="Nom" id="nom">
                         <input type="text" name="prenom" placeholder="Prénom" id="prenom">
                         <input type="email" name="email" placeholder="Email" id="email">
