@@ -7,7 +7,7 @@ class publiciteC
 
     public function ajouterpublicite($publicite)
     {
-        $sql = "INSERT INTO publicite(titre,description,image,lien) 
+        $sql = "INSERT INTO pub(titre,description,image,lien) 
 			VALUES (:titre,:description,:image,:lien)";
         $db = config::getConnexion();
         try {
@@ -28,7 +28,7 @@ class publiciteC
     public function afficherpublicite()
     {
 
-        $sql = "SELECT * FROM publicite";
+        $sql = "SELECT * FROM pub";
         $db = config::getConnexion();
         try {
             $liste = $db->query($sql);
@@ -42,7 +42,7 @@ class publiciteC
 
     function supprimerpublicite($id)
     {
-        $sql = "DELETE FROM publicite WHERE idpublicite = :idpublicite";
+        $sql = "DELETE FROM pub WHERE idpublicite = :idpublicite";
         $db = config::getConnexion();
         $req = $db->prepare($sql);
         $req->bindValue(':idpublicite', $id);
@@ -58,7 +58,7 @@ class publiciteC
         try {
             $db = config::getConnexion();
             $query = $db->prepare(
-                'UPDATE publicite SET 
+                'UPDATE pub SET 
 						titre = :titre, 
 					    description = :description,
 						image = :image,
@@ -81,7 +81,7 @@ class publiciteC
 
     function recupererpublicite($id)
     {
-        $sql = "SELECT * from publicite where idpublicite=$id";
+        $sql = "SELECT * from pub where idpublicite=$id";
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);

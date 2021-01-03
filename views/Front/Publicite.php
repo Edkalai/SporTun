@@ -1,43 +1,58 @@
-0.<?php include "../../controller/ajouterpublicite.php";
-
+<?php include "../../controller/ajouterpublicite.php";
+session_start();
 $publiciteC = new publiciteC();
 $listepublicites = $publiciteC->afficherpublicite();
+$compte="Compte";
+if (isset($_SESSION["email"]))
+{
+    $compte="Profil";
+}
 
 ?>
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Actualités</title>
-    <link rel="stylesheet" type="text/css" href="news.css">
-    <link rel="stylesheet" type="text/css" href="news.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SporTun</title>
+    <link rel="shortcut icon" href="assets/img/logo.ico">
     <link rel="stylesheet" href="style.css">
-    <meta name="viewport" content="width=device-width , initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
 </head>
-
 <body>
-    <div class="header">
-        <div class="container">
-            <div class="navbar">
-                <div class="logo">
-                    <a href="index.html"> <img src="assets/img/logo.png"> </a>
-                </div>
-                <nav>
-                    <ul>
-                        <li><a href="index.html">Acceuil</a></li>
-                        <li><a href="annonce.html">Annonces</a></li>
-                        <li><a href="publicite.php">Publicite</a></li>
-                        <li><a href="billets.html">Billets</a></li>
-                        <li><a href="actualites.html">Actualités</a></li>
-                        <li><a href="account.php">Compte</a></li>
-                    </ul>
-                </nav>
-                <img src="assets/img/cart.png" class="cart" alt="">
-            </div>
 
-        </div>   
-    </div>
+
+
+
+
+
+      <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <a href="index.html"> <img src="assets/img/logo.png"> </a>
+            </div>
+        
+        <nav>
+            <ul id="MenuItems">
+                <li><a href="index.php">Acceuil</a></li>
+                <li><a href="Annonce.php">Produits</a></li>
+                <?php if($compte=="Profil"){ 
+                echo"<li><a href='AjouterAnnonce.php'>Vendre un produit</a></li>";
+                }?>
+                <li><a href="billets.php">Billets</a></li>
+                <li><a href="actualites.php">Actualités</a></li>
+                <li><a href="Publicite.php">Publicite</a></li>
+                <li><a href="account.php"><?php echo"$compte"?></a></li>
+            </ul>
+        </nav>
+        <a href="panier.php"><img src="assets/img/cart.png" class="cart" alt=""></a>
+        <img src="assets/img/menu.png" class="menu-icon" onclick="togglemenu()">
+      </div>
+
+      </div>
 
 
     <div class="categories">
@@ -49,7 +64,7 @@ $listepublicites = $publiciteC->afficherpublicite();
             foreach ($listepublicites as $row) {
             ?>
      <div class="col-3">
-         <img src="images/<?PHP echo $row['image']; ?>" >
+         <img src="assets/img/<?PHP echo $row['image']; ?>" >
          <div class="text text-center">
               <h2><?PHP echo $row['titre']; ?></h2>
               <h2><?PHP echo $row['description']; ?></h2>

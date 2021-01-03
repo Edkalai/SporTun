@@ -138,7 +138,8 @@ require_once "../../controller/ajouterpromotion.php"
             </div>
         </header>
         <!-- END HEADER DESKTOP-->
-
+        <div class='page-content--bgf7'>
+            <div class="container">
     <div class="col-lg-6">
         <div class="card">
             <div class="card-header">
@@ -146,8 +147,7 @@ require_once "../../controller/ajouterpromotion.php"
             </div>
 </div>
 </div>
-            </th>
-            <th>
+         
                 <div class="table-responsive table--no-card m-b-30">
                     <?PHP
 
@@ -156,16 +156,16 @@ require_once "../../controller/ajouterpromotion.php"
                     ?>
                     <table class="table table-borderless table-striped table-earning">
                         <thead>
-                        <th>idpromo</th>
+                        <th>ID Promotion</th>
                         <th>Titre</th>
-                        <th>description</th>
                         <th>Prix</th>
                         <th>ID</th>
                         <th></th>
+                       
                         
                         
                 
-                        </tr>
+                        
                         </thead>
                         <tbody>
 
@@ -176,7 +176,6 @@ require_once "../../controller/ajouterpromotion.php"
                             <tr>
                                 <td><?PHP echo $row['idpromo']; ?></td>
                                 <td><?PHP echo $row['titre']; ?></td>
-                                <td><?PHP echo $row['description']; ?></td>
                                 <td><?PHP echo $row['prix']; ?></td>
                                 <td><?PHP echo $row['idproduit']; ?></td>
                                 <td>
@@ -267,6 +266,8 @@ require_once "../../controller/ajouterpromotion.php"
                         </tbody>
                     </table>
                 </div>
+                        </div>
+                        </div>
 
 </body>
 </html>

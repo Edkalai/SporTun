@@ -39,6 +39,7 @@ $error=$_GET['msg'];
             <li><a href="annonce.php">Produits</a></li>
             <li><a href="billets.php">Billets</a></li>
             <li><a href="actualites.php">Actualités</a></li>
+            <li><a href="Publicite.php">Publicite</a></li>
             <li><a href="account.php">Compte</a></li>
         </ul>
     </nav>

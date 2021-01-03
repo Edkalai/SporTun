@@ -47,6 +47,7 @@ if (isset($_GET['msgsuccess']) ){
                   <li><a href='AjouterAnnonce.php'>Vendre un produit</a></li>
                   <li><a href="billets.php">Billets</a></li>
                   <li><a href="actualites.php">Actualités</a></li>
+                  <li><a href="Publicite.php">Publicite</a></li>
                   <li><a href="account.php">Profil</a></li>
               </ul>
           </nav>

@@ -137,7 +137,7 @@ if (!isset($_SESSION["emailadmin"]))
             </div>
         </header>
         <!-- END HEADER DESKTOP-->
-
+<div class="container">
     <div class="col-lg-6">
         <div class="card">
             <div class="card-header">
@@ -174,7 +174,7 @@ if (!isset($_SESSION["emailadmin"]))
                 <td><?PHP echo $row['idpublicite']; ?></td>
                 <td><?PHP echo $row['titre']; ?></td>
                 <td><?PHP echo $row['description']; ?></td>
-                <td><img width="100" src="../front/images/<?PHP echo $row['image']; ?> "> </td>
+                <td><img width="100" src="../front/assets/img/<?PHP echo $row['image']; ?> "> </td>
                 <td><?PHP echo $row['lien']; ?></td>
 
                 <td>
@@ -228,6 +228,6 @@ if (!isset($_SESSION["emailadmin"]))
             </tbody>
         </table>
     </div>
-
+    </div>
 </body>
 </html>
