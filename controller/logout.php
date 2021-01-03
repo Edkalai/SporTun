@@ -4,7 +4,7 @@ session_start();
 $sql='update utilisateurs set Loggedin=0 where email="'.$_SESSION["email"].'";';
 mysqli_query($conn,$sql);
 session_destroy();
-header("location: account.php");
+header("location: ../views/front/account.php");
 exit();
 ?>
 

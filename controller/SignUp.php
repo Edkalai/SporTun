@@ -18,4 +18,4 @@
 
     mysqli_query($conn,$sql);
     $_SESSION["email"] = $email;
-    header("Location: annonce.php?signup=success");
+    header("Location: ../views/front/annonce.php?signup=success");

@@ -13,7 +13,7 @@ $useremail=$_SESSION["email"];
 if ($total>$solde)
 {
      $error="Solde insuffisant";
-     header("Location: panier.php?msg=$error");
+     header("Location: ../views/front/panier.php?msg=$error");
 }
 else{
     $nvsolde=$solde-$total;
@@ -35,7 +35,7 @@ else{
     
     $sql="delete from panier where email='$useremail';";
     mysqli_query($conn,$sql);
-    header ("Location: panier.php");
+    header ("Location: ../views/front/panier.php");
     
 }
 ?>
