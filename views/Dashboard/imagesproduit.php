@@ -1,7 +1,7 @@
 <?php
 
     include 'DBconnection.php';
-    include '../Front/PHPfunctions.php';
+    include '../../controller/PHPfunctions.php';
 
 
 

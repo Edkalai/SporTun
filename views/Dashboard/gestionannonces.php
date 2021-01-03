@@ -101,7 +101,7 @@ $NbAnnonces=mysqli_num_rows($result);
     
 
 
-    <script src="AjouterAnnonce1.js"> </script>
+    <script src="../../controller/AjouterAnnonce1.js"> </script>
 
 
 </head>
@@ -411,7 +411,7 @@ $NbAnnonces=mysqli_num_rows($result);
 
             <div class="row">
                     <div class="vendreproduit-container">
-                        <form action="AjouterAnnonce1.php" method="POST" id="AnnForm" name="f1" enctype="multipart/form-data">
+                        <form action="../../controller/AjouterAnnonce1.php" method="POST" id="AnnForm" name="f1" enctype="multipart/form-data">
                             <label for="titre">Titre</label>
                             <input type="text" name="titre" id="titre" placeholder="Saisissez un titre descriptif">
                             </br></br>

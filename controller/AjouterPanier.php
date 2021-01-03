@@ -31,6 +31,6 @@
 
   $msg="Produit ajouté avec succès.";
 
-  header("Location: DetailsAnnonce.php?id=$id&msg=$msg");
+  header("Location: ../views/Front/DetailsAnnonce.php?id=$id&msg=$msg");
 
 ?>

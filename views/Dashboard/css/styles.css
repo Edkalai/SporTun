@@ -14846,3 +14846,11 @@ section {
 									   color-stop(0.72, rgb(189, 73, 73)),
 									   color-stop(0.86, rgb(217, 122, 122)));
 }
+
+
+
+/********image in ajout form**********/
+.imgGallery img {
+    padding: 8px;
+    max-width: 100px;
+}

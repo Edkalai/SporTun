@@ -41,7 +41,7 @@ if (isset($_GET["msg"]))
         }    
     </style>
 
-<script src="AjouterAnnonce.js"> </script>
+<script src="../../controller/AjouterAnnonce.js"> </script>
 </head>
 
 <body>
@@ -117,7 +117,7 @@ if (isset($_GET["msg"]))
                         </form>
                 -->  
                     <div class="vendreproduit-container">
-                        <form action="AjouterAnnonce.php" method="POST" id="AnnForm" name="f1" enctype="multipart/form-data">
+                        <form action="../../controller/AjouterAnnonce.php" method="POST" id="AnnForm" name="f1" enctype="multipart/form-data">
                             <label for="titre">Titre</label>
                             <input type="text" name="titre" id="titre" placeholder="Saisissez un titre descriptif">
                             </br></br>
