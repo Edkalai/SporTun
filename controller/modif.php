@@ -12,7 +12,7 @@
     if (!  password_verify($currentpassword, $hashed_current_password) )
     {
         $error="Mot de passe invalide";
-        header("Location: profile.php?msgerror=$error");
+        header("Location: ../views/front/profile.php?msgerror=$error");
     }
     else
     {
@@ -47,7 +47,7 @@
     $success="Modifications effectuées avec succès";
     $_SESSION["email"]=$email;
     }
-    header("Location: profile.php?msgsuccess=$success");
+    header("Location: ../views/front/profile.php?msgsuccess=$success");
 }
 ?>
    

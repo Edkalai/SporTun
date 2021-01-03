@@ -30,7 +30,7 @@ if (isset($_GET['msgsuccess']) ){
 <link href="assets/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
     <link href="assets/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
 <title>Profile</title>
-<script src="profile.js"></script>
+<script src="../../contoller/profile.js"></script>
 </head>
 <body style="overflow-x:hidden;" >
 <div class="header" >
@@ -74,7 +74,7 @@ if (isset($_GET['msgsuccess']) ){
     </div>
     <div class="rightbox">
         <div class="profile tabShow" >
-            <form action="modif.php" name="f2" method="POST" id="modifform" >
+            <form action="../../controller/modif.php" name="f2" method="POST" id="modifform" >
             <h1>Informations personnelles</h1>
             <h2>Nom</h2>
             <input type="text" class="input" name="nom" id="esm" value="<?php echo $row['nom']; ?>" >
@@ -97,7 +97,7 @@ if (isset($_GET['msgsuccess']) ){
             <button class="btn profile-btn" type="submit" onclick="return verif()">Modifier</button>
             
             </form>
-            <button  class="btn logout-btn profile-btn"><a href="logout.php" style="color:white;" > Déconnexion </a> </button> 
+            <button  class="btn logout-btn profile-btn"><a href="../../controller/logout.php" style="color:white;" > Déconnexion </a> </button> 
         
         </div>
         <div class="payment tabShow">

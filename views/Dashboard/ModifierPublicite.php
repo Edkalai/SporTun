@@ -126,8 +126,8 @@ if (!isset($_SESSION["emailadmin"]))
                                 <div class="account-dropdown js-dropdown">
                                     
                                     <div class="account-dropdown__footer">
-                                        <a href="adminlogout.php">
-                                            <i class="zmdi zmdi-power"></i>Logout</a>
+                                        <a href="../../controller/adminlogout.php">
+                                            <i class="zmdi zmdi-power"></i>Déconnexion</a>
                                     </div>
                                 </div>
                             </div>

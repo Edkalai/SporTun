@@ -119,7 +119,7 @@ $error=$_GET['msg'];
                 </table>
             </div>
             <p style="color :#ff523b; margin:10px 0px;  text-align:right; font-size:18px;"> <?php echo $error ?> </p>
-            <button  class="btn checkout-btn"><a href="payer.php" style="color:white;" > Payer </a> </button> 
+            <button  class="btn checkout-btn"><a href="../../controller/payer.php" style="color:white;" > Payer </a> </button> 
             <?php
               }
               ?>

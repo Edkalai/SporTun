@@ -1,5 +1,5 @@
 <?php
-include_once 'DBconnection.php';
+include_once '../views/dashboard/DBconnection.php';
 session_start();
 $email = $_POST['email'];
 $mdp = $_POST['mdp'];
@@ -23,24 +23,24 @@ else
     }
     else
     {
-    $sql="SELECT * from utilisateurs where email='$email' and ban=0";
+    $sql="SELECT * from utilisateurs where email='$email' and admin=1";
     $result=mysqli_query($conn,$sql);
     if(mysqli_num_rows($result)==0) 
     {
-      $error="Votre compte est suspendu";
+      $error="vous n'etes pas un administrateur";
     }
     else
     {
         $sql="SELECT nom from utilisateurs where email='$email';";
         $nom=mysqli_query($conn,$sql);
-        $_SESSION["email"] = $email;
-        mysqli_query($conn,"update utilisateurs set loggedin=1 where email='$email';");
-        header("Location: Annonce.php");
+        $_SESSION["emailadmin"] = $email;
+        mysqli_query($conn,"update utilisateurs set loggedindashboard=1 where email='$email';");
+        header("Location: ../views/dashboard/gestionannonces.php");
         
     }
     }
 }
 if ($error!='') {
-  header("Location: account.php?msg=$error");
+  header("Location: ../views/dashboard/dashboardlogin.php?msg=$error");
 }
 ?>

@@ -146,6 +146,18 @@ if (!isset($_SESSION["emailadmin"]))
                             
                             </li>
                             <li class="has-sub">
+                            <a href="ModifierPublicite.php">
+                                <i class="fas fa-user"></i>
+                                <span class="bot-line"></span>Gestion des publicités</a>
+
+                        </li>
+                        <li class="has-sub">
+                            <a href="Modifierpromo.php">
+                                <i class="fas fa-user"></i>
+                                <span class="bot-line"></span>Gestion des promotions</a>
+
+                        </li>
+                            <li class="has-sub">
                                 <a href="gestioncomptes.php">
                                     <i class="fas fa-user"></i>
                                     <span class="bot-line"></span>Gestion des comptes</a>
@@ -188,8 +200,8 @@ if (!isset($_SESSION["emailadmin"]))
                                 <div class="account-dropdown js-dropdown">
                                     
                                     <div class="account-dropdown__footer">
-                                        <a href="adminlogout.php">
-                                            <i class="zmdi zmdi-power"></i>Logout</a>
+                                        <a href="../../controller/adminlogout.php">
+                                            <i class="zmdi zmdi-power"></i>Déconnexion</a>
                                     </div>
                                 </div>
                             </div>
