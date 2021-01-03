@@ -1,3 +1,14 @@
+<?php
+include_once "DBconnection.php";
+session_start();
+$compte="Compte";
+if (isset($_SESSION["email"]))
+{
+    $compte="Profil";
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 
@@ -46,11 +57,14 @@
                 </div>
                 <nav>
                     <ul>
-                        <li><a href="index.html">Acceuil</a></li>
-                        <li><a href="annonce.html">Annonces</a></li>
-                        <li><a href="billets.html">Billets</a></li>
+                        <li><a href="index.php">Acceuil</a></li>
+                        <li><a href="annonce.php">Produits</a></li>
+                        <?php if($compte=="Profil"){ 
+                echo"<li><a href='AjouterAnnonce.php'>Vendre un produit</a></li>";
+                }?>
+                        <li><a href="billets.php">Billets</a></li>
                         <li><a href="actualites.php">Actualités</a></li>
-                        <li><a href="account.html">Compte</a></li>
+                        <li><a href="account.php"><?php echo $compte ?></a></li>
                     </ul>
                 </nav>
                 <img src="assets/img/cart.png" class="cart" alt="">

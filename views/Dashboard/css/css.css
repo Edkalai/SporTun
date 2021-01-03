@@ -91,7 +91,7 @@
 }
 
 .btnscrolltotop:active {
-    background: #777s;
+    background: #777;
 }
 #btnscrolltotop {
     position: fixed;
@@ -128,7 +128,6 @@
     -webkit-font-smoothing: antialiased;
 }
 .tex{
-    position: absolute;
-    left: 25px;
-    right: 25px;
+    margin-left: 25px;
+    margin-right: 25px;
 }
