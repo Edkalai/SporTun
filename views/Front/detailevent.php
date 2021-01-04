@@ -147,7 +147,7 @@ $result1 = mysqli_query($conn,$sql1);
             ?>
                      <div class='col-4'>
                         <?php $descourte=LimitCharacter($rows['descourte'],50); ?>
-                        <?php echo "<a href=detailevent.php?id=$idx> <img src=assets/img/" .$rows['image']. " ></a> "?>
+                        <?php echo "<a href=detailevent.php?id=$idx> <img src=" .$rows['image']. " ></a> "?>
                         <h4><?php echo $rows['titre']; ?></h4>
                         <p><?php echo $rows['prix'] . ' TND'; ?></p>
                         <p><?php echo $descourte ?></p>

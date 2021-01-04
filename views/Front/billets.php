@@ -138,7 +138,7 @@ if(isset($_POST['submit_search'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SporTun</title>
     <link rel="stylesheet" href="billets.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="stylebillet.css">
     <link rel="shortcut icon" href="assets/img/logo.ico">
    <!-- <link rel="preconnect" href="https://fonts.gstatic.com">   -->
     <link rel="shortcut icon" href="logo.ico">
@@ -183,7 +183,7 @@ if(isset($_POST['submit_search'])){
         <div class="row">
             <?php $s=$npage+1;?>
             <?php echo "<a href='billets.php?categorie=Carritatif&?npage=$s&tri=$tri&#c1' class='col-categories'>";?>
-                <img src="assets/img/20_thumb.png" alt="Carritatif">
+                <img src="assets/img/taswiracute.jpg" alt="Carritatif">
                 <h2>CARRITATIF</h2>
             </a>
             <?php echo "<a href='billets.php?categorie=Tournoi&?npage=$s&tri=$tri#c1' class='col-categories'>";?>
@@ -195,11 +195,11 @@ if(isset($_POST['submit_search'])){
                 <h2>COMMERCIAL</h2>
             </a>
             <?php echo "<a href='billets.php?categorie=Conference&?npage=$s&tri=$tri#c1' class='col-categories'>";?>
-                <img src="assets/img/8_thumb.png" alt="Conference">
+                <img src="assets/img/gordon_ramsey.jpg" alt="Conference">
                 <h2>CONFERENCE</h2>
             </a>
             <?php echo "<a href='billets.php?categorie=Online&?npage=$s&tri=$tri#c1' class='col-categories'>";?>
-                <img src="assets/img/21_thumb.png" alt="Online">
+                <img src="assets/img/download.jpg" alt="Online">
                 <h2>ONLINE</h2>
             </a>
             <?php echo "<a href='billets.php?categorie=Autre&?npage=$s&tri=$tri#c1' class='col-categories'>";?>
@@ -212,8 +212,8 @@ if(isset($_POST['submit_search'])){
         <br>
         <div class="row">
             <?php echo "<a href='billets.php?categorie=Tous Les évènements&?npage=$s&tri=$tri#c1' class='col-allproducts'>";?>
-                <img src="assets/img/equipements.png" style="width: 100%;" alt="Fitness Muscu">
-                <h2>TOUS LES EVENEMENTS</h2>
+                <img src="assets/img/taswira.jpg" style="width: 100%;" alt="Fitness Muscu">
+                <h1>TOUS LES EVENEMENTS</h1>
             </a>   
         </div>
         
@@ -289,6 +289,7 @@ $i=0;
                             </div>
                         </div>
                     </div>
+                    <h1 style="color :white;">sss</h1>
                     <div class="col-md-7 col-sm-12 col-xs-12">
                     <div class="product-deatil">
                             <h5 class="name">
@@ -316,6 +317,7 @@ $i=0;
                     </div>
                 </div>
             </div>
+        </div>
         </div>
         <!-- end product --><?php
                                      }}

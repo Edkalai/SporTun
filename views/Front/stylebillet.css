@@ -85,7 +85,7 @@ p
     background: radial-gradient(#fff,#999494);
 }
 .header .row{
-margin-top: 70px;
+margin-top: 10px;
 }
 .cart
 {
@@ -234,11 +234,7 @@ margin-top: 70px;
 
 
     flex-basis:25%;
-    padding:10px;
-    width:300px;
-
-    min-width:200px;
-    margin-bottom:50px;
+  
 
     display: inline-block;
     vertical-align: middle;
@@ -1378,13 +1374,6 @@ input[type="search"] {
 
 
 */
-
-
-
-
-
-
-
 
 
 
