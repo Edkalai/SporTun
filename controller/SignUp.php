@@ -1,5 +1,7 @@
-<?php
-    include_once 'DBconnection.php';
+<?PHP
+    require_once 'C://wamp64/www/SporTun/model/user.php';
+    require_once 'C://wamp64/www/SporTun/controller/userb.php';
+
     session_start();
 
     $nom = $_POST['nom'];
@@ -13,9 +15,8 @@
     
     $hashed_password=password_hash($mdp,PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO utilisateurs (nom, prenom, email, mdp, datenaissance, sexe, numtel, adresse, ban)
-    VALUES ('$nom', '$prenom', '$email', '$hashed_password', '$datenaissance', '$sexe' , '$numtel', '$adresse', '0');";
-
-    mysqli_query($conn,$sql);
+    $userb=new userb;
+    $user=new user($nom,$prenom,$email,$hashed_password,$datenaissance,$sexe,$numtel,$adresse,'0');
+    $userb->adduser($user);
     $_SESSION["email"] = $email;
     header("Location: ../views/front/annonce.php?signup=success");

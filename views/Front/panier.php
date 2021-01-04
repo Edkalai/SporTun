@@ -47,7 +47,7 @@ $error=$_GET['msg'];
                   <li><a href="index.php">Acceuil</a></li>
                   <li><a href="annonce.php">Produits</a></li>
                   <?php if($connected==1){ 
-                  echo"<li><a href='AjouterAnnonce.php'>Vendre un produit</a></li>";
+                  echo"<li><a href='htmlAjouterAnnonce.php'>Vendre un produit</a></li>";
                   }?> 
                   <li><a href="billets.php">Billets</a></li>
                   <li><a href="actualites.php">Actualités</a></li>
@@ -175,7 +175,7 @@ $error=$_GET['msg'];
         MenuItems.style.maxHeight="0px";
         function togglemenu(){
             if (MenuItems.style.maxHeight =="0px") {
-                MenuItems.style.maxHeight ="250px";
+                MenuItems.style.maxHeight ="280px";
             }
             else
             {

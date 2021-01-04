@@ -122,7 +122,7 @@ margin-left: 2px;
         height: 300px;
         object-fit: cover;
     }
-}
+
 .hoverprofile:hover{
     color: black;
 }

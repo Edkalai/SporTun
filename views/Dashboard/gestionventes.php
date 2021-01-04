@@ -74,7 +74,7 @@ $resultatprix=mysqli_query($conn,$sql);
                             </li> 
                             <li class="has-sub">
                                 <a href="gestionventes.php">
-                                    <i class="fas fa-user"></i>
+                                    <i class="fas fa-shopping-cart"></i>
                                     <span class="bot-line"></span>Gestion des ventes</a>
                             
                             </li>  
@@ -86,13 +86,13 @@ $resultatprix=mysqli_query($conn,$sql);
                             </li>
                             <li class="has-sub">
                             <a href="ModifierPublicite.php">
-                                <i class="fas fa-user"></i>
+                                <i class="fas fa-bookmark"></i>
                                 <span class="bot-line"></span>Gestion des publicités</a>
 
                         </li>
                         <li class="has-sub">
                             <a href="Modifierpromo.php">
-                                <i class="fas fa-user"></i>
+                                <i class="fas fa-bell"></i>
                                 <span class="bot-line"></span>Gestion des promotions</a>
 
                         </li>

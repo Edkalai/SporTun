@@ -460,7 +460,7 @@ if(isset($_POST['submit_search'])){
         MenuItems.style.maxHeight="0px";
         function togglemenu(){
             if (MenuItems.style.maxHeight =="0px") {
-                MenuItems.style.maxHeight ="250px";
+                MenuItems.style.maxHeight ="280px";
             }
             else
             {

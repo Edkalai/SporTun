@@ -4,7 +4,7 @@ session_start();
 $sql='select * from utilisateurs where email="'.$_SESSION["email"].'";';
 $result=mysqli_query($conn,$sql);
 $row=mysqli_fetch_assoc($result);
-$sql='select * from vente where email="'.$_SESSION["email"].'" order by datevente desc;';
+$sql='select * from vente where email="'.$_SESSION["email"].'" order by idvente desc;';
 $resultat=mysqli_query($conn,$sql);
 $error="";
 $success="";
@@ -44,7 +44,7 @@ if (isset($_GET['msgsuccess']) ){
               <ul id="MenuItems">
                   <li><a href="index.php">Acceuil</a></li>
                   <li><a href="annonce.php">Produits</a></li>
-                  <li><a href='AjouterAnnonce.php'>Vendre un produit</a></li>
+                  <li><a href='htmlAjouterAnnonce.php'>Vendre un produit</a></li>
                   <li><a href="billets.php">Billets</a></li>
                   <li><a href="actualites.php">Actualités</a></li>
                   <li><a href="Publicite.php">Publicite</a></li>
@@ -213,7 +213,7 @@ $(".tab").click(function() {
         MenuItems.style.maxHeight="0px";
         function togglemenu(){
             if (MenuItems.style.maxHeight =="0px") {
-                MenuItems.style.maxHeight ="250px";
+                MenuItems.style.maxHeight ="280px";
             }
             else
             {

@@ -92,14 +92,14 @@ if (
 
                         </li>
                         <li class="has-sub">
-                            <a href="Modifierpublicite.php">
-                                <i class="fas fa-user"></i>
+                            <a href="ModifierPublicite.php">
+                                <i class="fas fa-bookmark"></i>
                                 <span class="bot-line"></span>Gestion des publicités</a>
 
                         </li>
                         <li class="has-sub">
                             <a href="Modifierpromo.php">
-                                <i class="fas fa-user"></i>
+                                <i class="fas fa-bell"></i>
                                 <span class="bot-line"></span>Gestion des promotions</a>
 
                         </li>
@@ -291,7 +291,22 @@ if (
             </div>
             </th>
 
+            <script src="vendor/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap JS-->
+    <script src="vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <!-- Vendor JS       -->
+    
+    <script src="vendor/animsition/animsition.min.js"></script>
 
+    
+   
+   
+    
+    
 
+    <!-- Main JS-->
+    <script src="js/main.js"></script>
 </body>
 </html>
+
