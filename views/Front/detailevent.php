@@ -90,8 +90,7 @@ $result1 = mysqli_query($conn,$sql1);
         <div class="small-container single-product" >
             <div class="row">
                 <div class="col-2">
-                <?php echo " <img src=../Dashboard/".$row['image']." > "?>
-                
+                <img src="assets/img/<?php echo $row['image']; ?>">              
                        
                 
                 </div> 
@@ -147,7 +146,7 @@ $result1 = mysqli_query($conn,$sql1);
             ?>
                      <div class='col-4'>
                         <?php $descourte=LimitCharacter($rows['descourte'],50); ?>
-                        <?php echo "<a href=detailevent.php?id=$idx> <img src=" .$rows['image']. " ></a> "?>
+                        <?php echo "<a href=Detailevent.php?id=$idx>";?> <img src="assets/img/<?php echo $rows['image']; ?>"></a>
                         <h4><?php echo $rows['titre']; ?></h4>
                         <p><?php echo $rows['prix'] . ' TND'; ?></p>
                         <p><?php echo $descourte ?></p>

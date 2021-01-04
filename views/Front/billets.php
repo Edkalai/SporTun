@@ -284,7 +284,7 @@ $i=0;
                     
                         <div class="product-image"> 
                         <div class="col-4"> 
-                        <?php echo "<a href=Detailevent.php?id=$id> <img src=".$rows['image']." ></a> "?>
+                        <?php echo "<a href=Detailevent.php?id=$id>";?> <img src="assets/img/<?php echo $rows['image']; ?>"></a>
                             
                             </div>
                         </div>

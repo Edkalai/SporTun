@@ -252,15 +252,14 @@ margin-top: 10px;
     
         
 
-.col-4 img{
-        /*width: 100%;*/
+    .col-4 img{
 
-        width: 230px;
+        width: 300px;
         height: 230px;
 
         object-fit:cover;
 
-        
+
     }
 
 .col-4:hover {
