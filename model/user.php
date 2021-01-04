@@ -98,5 +98,6 @@ public function getNom()
         $this->loggedindashboard = $loggedindashboard;
         $this->ban = $ban;
         $this->admin = $admin;
-       
+       }
+
     }
