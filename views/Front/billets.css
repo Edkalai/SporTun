@@ -394,6 +394,7 @@ body{
     padding: 6px;
     -webkit-box-shadow: 0 1px 4px 0 rgba(21,180,255,0.5);
     box-shadow: 0 1px 1px 0 rgba(21,180,255,0.5);
+    width: 900px;
 }
 
 .prod-info-main .product-image {
@@ -668,7 +669,8 @@ body{
         padding-right: 0
     }
     .prod-wrap div[class*=col-md-7] {
-        padding: 0 13px 0 0
+        padding: 0 13px 0 0;
+        width: 455 px;
     }
     .prod-info-main .product-image {
         border-right: 1px solid #dfe5e9
@@ -678,10 +680,10 @@ body{
     }
 }
 
-.col-xs-12{
+       /*.col-xs-12{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-
+*/
 .menu-icon {
     width : 28px;
     margin-left: 20px;

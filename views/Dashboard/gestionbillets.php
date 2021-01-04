@@ -1,6 +1,6 @@
 <?php
 include 'DBconnection.php';
-include '../front/PHPfunctions.php';
+include '../../Controller/PHPfunctions.php';
 session_start();
 if (!isset($_SESSION["emailadmin"]))
     {
