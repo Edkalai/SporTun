@@ -57,6 +57,7 @@ if (isset($_SESSION["email"]))
                 </div>
                 <nav>
                     <ul>
+
                         <li><a href="index.php">Acceuil</a></li>
                         <li><a href="annonce.php">Produits</a></li>
                         <?php if($compte=="Profil"){ 
@@ -65,6 +66,7 @@ if (isset($_SESSION["email"]))
                         <li><a href="billets.php">Billets</a></li>
                         <li><a href="actualites.php">Actualités</a></li>
                         <li><a href="account.php"><?php echo $compte ?></a></li>
+
                     </ul>
                 </nav>
                 <img src="assets/img/cart.png" class="cart" alt="">
