@@ -244,7 +244,7 @@ if (
             </div>
             <div class="card-body card-block">
                 
-<form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                     <div class="row form-group">
                         <div class="col col-md-3">
                             <label for="text-input" class=" form-control-label">Titre:</label>
@@ -261,14 +261,12 @@ if (
                             <small class="form-text text-muted">Tapez la description</small>
                         </div>
 
-                        <div class="row form-group">
-                            <div class="col col-md-3">
+                           <div class="col col-md-3">
                                 <label for="file" class=" form-control-file">image:</label>
                             </div>
                             <div class="col-12 col-md-9">
                                 <input type="text" name="image" id="image" value="<?php echo $publicite['image']; ?> "  class="form-control-file">
                             </div>
-                        <div class="row form-group">
                             <div class="col col-md-3">
                                 <label for="text-input" class=" form-control-label">lien:</label>
                             </div>
@@ -278,10 +276,10 @@ if (
                             </div>
                         </div>
 
-                        </div>
-
-
                     </div>
+
+
+                    
                     <div class="card-footer">
                         <button type="submit" value="Envoyer" class="btn btn-primary btn-sm">
                             <i class="fa fa-dot-circle-o"></i> submit
