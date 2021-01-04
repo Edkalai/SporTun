@@ -1,5 +1,11 @@
 <?php
-
+include 'DBconnection.php';
+session_start();
+if ($_SESSION["email"]=="")
+{
+    header("Location: account.php");
+    exit();
+}
 
 $error="";
 if (isset($_GET["msg"]))
@@ -62,10 +68,11 @@ if (isset($_GET["msg"]))
                 <li><a href='htmlAjouterAnnonce.php'>Vendre un produit</a></li>
                 <li><a href="billets.php">Billets</a></li>
                 <li><a href="actualites.php">Actualités</a></li>
+                <li><a href="Publicite.php">Publicite</a></li>
                 <li><a href="account.php">Profil</a></li>
             </ul>
         </nav>
-        <a href="panier.html"><img src="assets/img/cart.png" class="cart" alt=""></a>
+        <a href="panier.php"><img src="assets/img/cart.png" class="cart" alt=""></a>
         <img src="assets/img/menu.png" class="menu-icon" onclick="togglemenu()">
       </div>
       </div>
@@ -292,7 +299,7 @@ if (isset($_GET["msg"]))
         MenuItems.style.maxHeight="0px";
         function togglemenu(){
             if (MenuItems.style.maxHeight =="0px") {
-                MenuItems.style.maxHeight ="250px";
+                MenuItems.style.maxHeight ="280px";
             }
             else
             {

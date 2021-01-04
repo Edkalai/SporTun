@@ -22,59 +22,59 @@ public function getNom()
         return $this->nom;
     }
 
-    public function getprenom()
+    public function getPrenom()
     {
         return $this->prenom;
     }
 
-    public function getemail()
+    public function getEmail()
     {
         return $this->email;
     }
-    public function getmdp()
+    public function getMdp()
     {
         return $this->mdp;
     }
 
-    public function getsolde()
+    public function getSolde()
     {
         return $this->solde;
     }
 
-    public function getdatenaissance()
+    public function getDatenaissance()
     {
         return $this->datenaissance;
     }
-    public function getsexe()
+    public function getSexe()
     {
         return $this->sexe;
     }
 
-    public function getnumtel()
+    public function getNumtel()
     {
         return $this->numtel;
     }
    
 
-    public function adresse()
+    public function getAdresse()
     {
         return $this->adresse;
     }
-    public function getloggedin()
+    public function getLoggedin()
     {
         return $this->loggedin;
     }
-    public function getloggedindashboard()
+    public function getLoggedindashboard()
     {
         return $this->loggedindashboard;
     }
 
-    public function getban()
+    public function getBan()
     {
         return $this->ban;
     }
 
-    public function getadmin()
+    public function getAdmin()
     {
         return $this->admin;
     }
@@ -83,21 +83,18 @@ public function getNom()
         return $this->titre;
     }
 
-    public function __construct($nom, $prenom, $email, $mdp, $solde, $datenaissance, $sexe, $numtel, $adresse, $loggedin, $loggedindashboard, $ban, $admin)
+    public function __construct($nom, $prenom, $email, $mdp, $datenaissance, $sexe, $numtel, $adresse, $admin)
     {
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->email = $email;
         $this->mdp = $mdp;
-        $this->solde = $solde;
         $this->datenaissance = $datenaissance;
         $this->sexe = $sexe;
         $this->numtel = $numtel;
         $this->adresse = $adresse;
-        $this->loggedin = $loggedin;
-        $this->loggedindashboard = $loggedindashboard;
-        $this->ban = $ban;
-        $this->admin = $admin;
-       }
+        $this->admin= $admin;
 
     }
+
+}
