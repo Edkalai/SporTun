@@ -1158,6 +1158,7 @@ section {
 }
 
 .form-control {
+    margin-left :0px;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     border-radius: 2px;

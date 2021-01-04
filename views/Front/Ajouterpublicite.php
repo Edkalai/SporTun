@@ -1,7 +1,12 @@
 <?php
 include_once '../../model/publicites.php';
 include_once '../../controller/ajouterpublicite.php';
-
+session_start();
+if ($_SESSION["email"]=="")
+{
+    header("Location: account.php");
+    exit();
+}
 $error = "";
 
 // create publicite
