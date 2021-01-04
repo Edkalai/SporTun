@@ -4,7 +4,7 @@
 
     if ($_SESSION["email"]=="")
     {
-        header("Location: account.php");
+        header("Location: ../views/front/account.php");
         exit();
     }
 
